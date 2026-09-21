@@ -1,4 +1,5 @@
 const http = require("http");
+const nodemailer = require("nodemailer");
 
 const PORT = process.env.PORT || 10000;
 
@@ -68,6 +69,32 @@ const ALOJAMIENTOS = {
 const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, `http://${req.headers.host}`);
+
+    // --------------------------------------------------
+    // SOLICITUD DE CONTACTO PARA RESERVA
+    // --------------------------------------------------
+
+    if (url.pathname === "/solicitud-reserva") {
+
+      if (req.method === "OPTIONS") {
+        res.writeHead(204, {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type"
+        });
+
+        return res.end();
+      }
+
+      if (req.method !== "POST") {
+        return enviarJSON(res, 405, {
+          ok: false,
+          error: "Metodo no permitido. Utiliza POST."
+        });
+      }
+
+      return await procesarSolicitudReserva(req, res);
+    }
 
     if (
       url.pathname === "/" &&
@@ -698,6 +725,220 @@ function extraerPresupuesto(data) {
     moneda:
       moneda
   };
+}
+
+
+// --------------------------------------------------
+// SOLICITUD DE CONTACTO PARA RESERVA
+// --------------------------------------------------
+
+async function procesarSolicitudReserva(req, res) {
+
+  try {
+
+    if (
+      !process.env.SMTP_HOST ||
+      !process.env.SMTP_PORT ||
+      !process.env.SMTP_USER ||
+      !process.env.SMTP_PASS
+    ) {
+      return enviarJSON(res, 500, {
+        ok: false,
+        error: "Configuracion SMTP incompleta"
+      });
+    }
+
+    const body = await leerJSON(req);
+
+    const nombreCompleto = String(
+      body.nombre_completo || ""
+    ).trim();
+
+    const email = String(
+      body.email || ""
+    ).trim();
+
+    const telefono = String(
+      body.telefono || ""
+    ).trim();
+
+    const alojamiento = String(
+      body.alojamiento || ""
+    ).trim();
+
+    const fechaEntrada = String(
+      body.fecha_entrada || ""
+    ).trim();
+
+    const fechaSalida = String(
+      body.fecha_salida || ""
+    ).trim();
+
+    const numeroHuespedes = Number(
+      body.numero_huespedes
+    );
+
+    const precioTotal = Number(
+      body.precio_total
+    );
+
+    const faltan = [];
+
+    if (!nombreCompleto) faltan.push("nombre_completo");
+    if (!email) faltan.push("email");
+    if (!telefono) faltan.push("telefono");
+    if (!alojamiento) faltan.push("alojamiento");
+    if (!fechaEntrada) faltan.push("fecha_entrada");
+    if (!fechaSalida) faltan.push("fecha_salida");
+
+    if (
+      !Number.isInteger(numeroHuespedes) ||
+      numeroHuespedes < 1
+    ) {
+      faltan.push("numero_huespedes");
+    }
+
+    if (
+      !Number.isFinite(precioTotal) ||
+      precioTotal < 0
+    ) {
+      faltan.push("precio_total");
+    }
+
+    if (faltan.length > 0) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "Faltan datos obligatorios o no son validos",
+        campos: faltan
+      });
+    }
+
+    if (!emailValido(email)) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "Direccion de correo electronico no valida"
+      });
+    }
+
+    const smtpPort = Number(process.env.SMTP_PORT);
+
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: smtpPort,
+      secure: smtpPort === 465,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
+      }
+    });
+
+    const asunto =
+      `Solicitud de reserva - ${alojamiento} - ${nombreCompleto}`;
+
+    const texto = [
+      "Nueva solicitud de contacto para tramitar una reserva",
+      "",
+      `Cliente: ${nombreCompleto}`,
+      `Email: ${email}`,
+      `Telefono: ${telefono}`,
+      "",
+      `Alojamiento: ${alojamiento}`,
+      `Fecha de entrada: ${fechaEntrada}`,
+      `Fecha de salida: ${fechaSalida}`,
+      `Numero de huespedes: ${numeroHuespedes}`,
+      `Precio total informado: ${precioTotal.toFixed(2)} EUR`,
+      "",
+      "El cliente ha solicitado que el equipo de Xperience Malaga Apartments contacte con el para ayudarle a tramitar la reserva."
+    ].join("\n");
+
+    const html = `
+      <h2>Nueva solicitud de contacto para reserva</h2>
+      <p><strong>Cliente:</strong> ${escaparHTML(nombreCompleto)}</p>
+      <p><strong>Email:</strong> ${escaparHTML(email)}</p>
+      <p><strong>Telefono:</strong> ${escaparHTML(telefono)}</p>
+      <hr>
+      <p><strong>Alojamiento:</strong> ${escaparHTML(alojamiento)}</p>
+      <p><strong>Fecha de entrada:</strong> ${escaparHTML(fechaEntrada)}</p>
+      <p><strong>Fecha de salida:</strong> ${escaparHTML(fechaSalida)}</p>
+      <p><strong>Numero de huespedes:</strong> ${numeroHuespedes}</p>
+      <p><strong>Precio total informado:</strong> ${precioTotal.toFixed(2)} EUR</p>
+      <hr>
+      <p>El cliente ha solicitado que el equipo de Xperience Malaga Apartments contacte con el para ayudarle a tramitar la reserva.</p>
+    `;
+
+    const info = await transporter.sendMail({
+      from: `Xperience Malaga Apartments <${process.env.SMTP_USER}>`,
+      to: [
+        "hola@xpce.es",
+        "atorres@xpce.es"
+      ],
+      replyTo: email,
+      subject: asunto,
+      text: texto,
+      html
+    });
+
+    return enviarJSON(res, 200, {
+      ok: true,
+      mensaje: "Solicitud enviada correctamente",
+      message_id: info.messageId || null
+    });
+
+  } catch (error) {
+
+    return enviarJSON(res, 500, {
+      ok: false,
+      error: "No se pudo enviar la solicitud de reserva",
+      detalle: error.message
+    });
+  }
+}
+
+
+function leerJSON(req) {
+
+  return new Promise((resolve, reject) => {
+
+    let contenido = "";
+
+    req.on("data", (chunk) => {
+      contenido += chunk;
+
+      if (contenido.length > 100000) {
+        reject(new Error("Solicitud demasiado grande"));
+        req.destroy();
+      }
+    });
+
+    req.on("end", () => {
+
+      try {
+        resolve(
+          contenido ? JSON.parse(contenido) : {}
+        );
+      } catch {
+        reject(new Error("JSON no valido"));
+      }
+    });
+
+    req.on("error", reject);
+  });
+}
+
+
+function emailValido(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+
+function escaparHTML(valor) {
+
+  return String(valor)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 
