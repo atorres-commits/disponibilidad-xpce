@@ -1,5 +1,4 @@
 const http = require("http");
-const nodemailer = require("nodemailer");
 
 const PORT = process.env.PORT || 10000;
 
@@ -333,7 +332,6 @@ const server = http.createServer(async (req, res) => {
     }
 
 
-    // Nos quedamos con un maximo de 3
     const opcionesDisponibles =
       disponibles.slice(0, MAX_RESULTADOS);
 
@@ -729,22 +727,17 @@ function extraerPresupuesto(data) {
 
 
 // --------------------------------------------------
-// SOLICITUD DE CONTACTO PARA RESERVA
+// SOLICITUD DE CONTACTO PARA RESERVA - RESEND
 // --------------------------------------------------
 
 async function procesarSolicitudReserva(req, res) {
 
   try {
 
-    if (
-      !process.env.SMTP_HOST ||
-      !process.env.SMTP_PORT ||
-      !process.env.SMTP_USER ||
-      !process.env.SMTP_PASS
-    ) {
+    if (!process.env.RESEND_API_KEY) {
       return enviarJSON(res, 500, {
         ok: false,
-        error: "Configuracion SMTP incompleta"
+        error: "RESEND_API_KEY no configurada"
       });
     }
 
@@ -820,18 +813,6 @@ async function procesarSolicitudReserva(req, res) {
       });
     }
 
-    const smtpPort = Number(process.env.SMTP_PORT);
-
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: smtpPort,
-      secure: smtpPort === 465,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
-    });
-
     const asunto =
       `Solicitud de reserva - ${alojamiento} - ${nombreCompleto}`;
 
@@ -866,22 +847,58 @@ async function procesarSolicitudReserva(req, res) {
       <p>El cliente ha solicitado que el equipo de Xperience Malaga Apartments contacte con el para ayudarle a tramitar la reserva.</p>
     `;
 
-    const info = await transporter.sendMail({
-      from: `Xperience Malaga Apartments <${process.env.SMTP_USER}>`,
-      to: [
-        "hola@xpce.es",
-        "atorres@xpce.es"
-      ],
-      replyTo: email,
-      subject: asunto,
-      text: texto,
-      html
-    });
+    const resendResponse = await fetch(
+      "https://api.resend.com/emails",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          from: "Xperience Malaga Apartments <hola@xpce.es>",
+          to: [
+            "hola@xpce.es",
+            "atorres@xpce.es"
+          ],
+          reply_to: email,
+          subject: asunto,
+          text: texto,
+          html
+        })
+      }
+    );
+
+    const resendTexto = await resendResponse.text();
+
+    let resendData = null;
+
+    try {
+      resendData = resendTexto
+        ? JSON.parse(resendTexto)
+        : {};
+    } catch {
+      resendData = {
+        raw: resendTexto
+      };
+    }
+
+    if (!resendResponse.ok) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        error: "Resend no pudo enviar el correo",
+        status: resendResponse.status,
+        detalle: resendData
+      });
+    }
 
     return enviarJSON(res, 200, {
       ok: true,
       mensaje: "Solicitud enviada correctamente",
-      message_id: info.messageId || null
+      email_id:
+        resendData && resendData.id
+          ? resendData.id
+          : null
     });
 
   } catch (error) {
