@@ -128,8 +128,6 @@ const server = http.createServer(async (req, res) => {
     }
 
 
-    // VALIDAR NUMERO DE HUESPEDES
-
     if (
       !Number.isInteger(numeroHuespedes) ||
       numeroHuespedes < 1
@@ -140,8 +138,6 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-
-    // ZONA VALIDA
 
     if (!ALOJAMIENTOS[zona]) {
       return enviarJSON(res, 400, {
@@ -164,14 +160,13 @@ const server = http.createServer(async (req, res) => {
     }
 
 
-    // FILTRAR PRIMERO POR CAPACIDAD
+    // FILTRAR POR CAPACIDAD
 
     const alojamientos = ALOJAMIENTOS[zona].filter(
-      alojamiento => alojamiento.capacidad >= numeroHuespedes
+      alojamiento =>
+        alojamiento.capacidad >= numeroHuespedes
     );
 
-
-    // SI NINGUN APARTAMENTO ADMITE ESE NUMERO DE HUESPEDES
 
     if (alojamientos.length === 0) {
       return enviarJSON(res, 200, {
@@ -203,7 +198,9 @@ const server = http.createServer(async (req, res) => {
     const MAX_RESULTADOS = 3;
 
 
-    // CONSULTAR DISPONIBILIDAD SOLO DE LOS APTOS CON CAPACIDAD SUFICIENTE
+    // --------------------------------------------------
+    // BUSCAR DISPONIBILIDAD
+    // --------------------------------------------------
 
     for (
       let i = 0;
@@ -246,6 +243,7 @@ const server = http.createServer(async (req, res) => {
               errores.push({
                 property_id: alojamiento.id,
                 nombre: alojamiento.nombre,
+                etapa: "disponibilidad",
                 status: response.status,
                 detalle
               });
@@ -256,8 +254,11 @@ const server = http.createServer(async (req, res) => {
 
             const data = await response.json();
 
+            const resultadoDisponibilidad =
+              obtenerDisponibilidad(data);
 
-            if (!estaDisponible(data)) {
+
+            if (!resultadoDisponibilidad.disponible) {
               return null;
             }
 
@@ -265,7 +266,9 @@ const server = http.createServer(async (req, res) => {
             return {
               property_id: alojamiento.id,
               nombre: alojamiento.nombre,
-              capacidad: alojamiento.capacidad
+              capacidad: alojamiento.capacidad,
+              room_type_id:
+                resultadoDisponibilidad.room_type_id
             };
 
 
@@ -274,6 +277,7 @@ const server = http.createServer(async (req, res) => {
             errores.push({
               property_id: alojamiento.id,
               nombre: alojamiento.nombre,
+              etapa: "disponibilidad",
               error: error.message
             });
 
@@ -302,16 +306,192 @@ const server = http.createServer(async (req, res) => {
     }
 
 
+    // Nos quedamos con un maximo de 3
+    const opcionesDisponibles =
+      disponibles.slice(0, MAX_RESULTADOS);
+
+
+    // --------------------------------------------------
+    // OBTENER PRECIO REAL DE LODGIFY
+    // --------------------------------------------------
+
+    const opcionesConPrecio = await Promise.all(
+
+      opcionesDisponibles.map(
+        async (alojamiento) => {
+
+          try {
+
+            if (!alojamiento.room_type_id) {
+
+              errores.push({
+                property_id: alojamiento.property_id,
+                nombre: alojamiento.nombre,
+                etapa: "presupuesto",
+                error: "No se pudo obtener room_type_id"
+              });
+
+              return {
+                ...alojamiento,
+                precio_total: null,
+                limpieza: null,
+                moneda: "EUR"
+              };
+            }
+
+
+            const quoteUrl = new URL(
+              `https://api.lodgify.com/v2/quote/${alojamiento.property_id}`
+            );
+
+            quoteUrl.searchParams.set(
+              "arrival",
+              fechaEntrada
+            );
+
+            quoteUrl.searchParams.set(
+              "departure",
+              fechaSalida
+            );
+
+            quoteUrl.searchParams.set(
+              "roomTypes[0].id",
+              String(alojamiento.room_type_id)
+            );
+
+            quoteUrl.searchParams.set(
+              "roomTypes[0].people",
+              String(numeroHuespedes)
+            );
+
+
+            const quoteResponse = await fetch(
+              quoteUrl.toString(),
+              {
+                method: "GET",
+                headers
+              }
+            );
+
+
+            if (!quoteResponse.ok) {
+
+              let detalle = "";
+
+              try {
+                detalle =
+                  await quoteResponse.text();
+              } catch {
+                detalle = "";
+              }
+
+
+              errores.push({
+                property_id:
+                  alojamiento.property_id,
+                nombre:
+                  alojamiento.nombre,
+                etapa: "presupuesto",
+                status:
+                  quoteResponse.status,
+                detalle
+              });
+
+
+              return {
+                ...alojamiento,
+                precio_total: null,
+                limpieza: null,
+                moneda: "EUR"
+              };
+            }
+
+
+            const quoteData =
+              await quoteResponse.json();
+
+
+            const presupuesto =
+              extraerPresupuesto(quoteData);
+
+
+            return {
+              property_id:
+                alojamiento.property_id,
+
+              nombre:
+                alojamiento.nombre,
+
+              capacidad:
+                alojamiento.capacidad,
+
+              precio_total:
+                presupuesto.precio_total,
+
+              limpieza:
+                presupuesto.limpieza,
+
+              moneda:
+                presupuesto.moneda
+            };
+
+
+          } catch (error) {
+
+            errores.push({
+              property_id:
+                alojamiento.property_id,
+              nombre:
+                alojamiento.nombre,
+              etapa: "presupuesto",
+              error: error.message
+            });
+
+
+            return {
+              ...alojamiento,
+              precio_total: null,
+              limpieza: null,
+              moneda: "EUR"
+            };
+          }
+
+        }
+      )
+    );
+
+
+    // --------------------------------------------------
+    // RESPUESTA FINAL
+    // --------------------------------------------------
+
     return enviarJSON(res, 200, {
+
       ok: true,
-      zona: nombreZona(zona),
-      fecha_entrada: fechaEntrada,
-      fecha_salida: fechaSalida,
-      numero_huespedes: numeroHuespedes,
-      total_disponibles: disponibles.length,
-      disponibles: disponibles.slice(0, MAX_RESULTADOS),
-      consultas_con_error: errores.length,
-      errores
+
+      zona:
+        nombreZona(zona),
+
+      fecha_entrada:
+        fechaEntrada,
+
+      fecha_salida:
+        fechaSalida,
+
+      numero_huespedes:
+        numeroHuespedes,
+
+      total_disponibles:
+        opcionesConPrecio.length,
+
+      disponibles:
+        opcionesConPrecio,
+
+      consultas_con_error:
+        errores.length,
+
+      errores:
+        errores
     });
 
 
@@ -327,61 +507,203 @@ const server = http.createServer(async (req, res) => {
 });
 
 
-function estaDisponible(data) {
+// --------------------------------------------------
+// INTERPRETAR DISPONIBILIDAD
+// --------------------------------------------------
+
+function obtenerDisponibilidad(data) {
 
   if (!data) {
-    return false;
-  }
-
-  let periodos = [];
-
-  if (Array.isArray(data)) {
-
-    if (data.length === 0) {
-      return false;
-    }
-
-    for (const item of data) {
-
-      if (item && Array.isArray(item.periods)) {
-        periodos.push(...item.periods);
-      }
-
-    }
-
-  } else if (
-    data &&
-    Array.isArray(data.periods)
-  ) {
-
-    periodos = data.periods;
-
+    return {
+      disponible: false,
+      room_type_id: null
+    };
   }
 
 
-  if (periodos.length === 0) {
-    return false;
+  if (!Array.isArray(data)) {
+
+    return {
+      disponible: false,
+      room_type_id: null
+    };
   }
 
 
-  return periodos.every((periodo) => {
+  for (const item of data) {
 
-    if (periodo.closed_period === true) {
-      return false;
+    if (
+      !item ||
+      !Array.isArray(item.periods)
+    ) {
+      continue;
     }
 
-    if (typeof periodo.available === "number") {
-      return periodo.available > 0;
+
+    const periodos = item.periods;
+
+
+    if (periodos.length === 0) {
+      continue;
     }
 
-    if (typeof periodo.available === "boolean") {
-      return periodo.available === true;
-    }
 
-    return false;
-  });
+    const disponible =
+      periodos.every((periodo) => {
+
+        if (
+          periodo.closed_period === true
+        ) {
+          return false;
+        }
+
+        if (
+          typeof periodo.available === "number"
+        ) {
+          return periodo.available > 0;
+        }
+
+        if (
+          typeof periodo.available === "boolean"
+        ) {
+          return periodo.available === true;
+        }
+
+        return false;
+      });
+
+
+    if (disponible) {
+
+      return {
+        disponible: true,
+        room_type_id:
+          item.room_type_id || null
+      };
+
+    }
+  }
+
+
+  return {
+    disponible: false,
+    room_type_id: null
+  };
 }
 
+
+// --------------------------------------------------
+// EXTRAER PRECIO TOTAL Y LIMPIEZA
+// --------------------------------------------------
+
+function extraerPresupuesto(data) {
+
+  let precioTotal = null;
+  let limpieza = 0;
+  let moneda = "EUR";
+
+
+  if (
+    !Array.isArray(data) ||
+    data.length === 0
+  ) {
+
+    return {
+      precio_total: null,
+      limpieza: null,
+      moneda
+    };
+  }
+
+
+  const quote = data[0];
+
+
+  if (
+    typeof quote.total_including_vat === "number"
+  ) {
+    precioTotal =
+      quote.total_including_vat;
+  }
+
+
+  if (quote.currency_code) {
+    moneda =
+      quote.currency_code;
+  }
+
+
+  if (
+    Array.isArray(quote.room_types)
+  ) {
+
+    for (
+      const roomType of quote.room_types
+    ) {
+
+      if (
+        !Array.isArray(roomType.price_types)
+      ) {
+        continue;
+      }
+
+
+      for (
+        const priceType of roomType.price_types
+      ) {
+
+        if (
+          !Array.isArray(priceType.prices)
+        ) {
+          continue;
+        }
+
+
+        for (
+          const price of priceType.prices
+        ) {
+
+          const descripcion =
+            normalizar(
+              price.description || ""
+            );
+
+
+          if (
+            descripcion.includes("limpieza") ||
+            descripcion.includes("cleaning")
+          ) {
+
+            if (
+              typeof price.amount === "number"
+            ) {
+              limpieza +=
+                price.amount;
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+
+  return {
+    precio_total:
+      precioTotal,
+
+    limpieza:
+      limpieza,
+
+    moneda:
+      moneda
+  };
+}
+
+
+// --------------------------------------------------
+// NORMALIZAR TEXTO
+// --------------------------------------------------
 
 function normalizar(texto) {
 
@@ -392,6 +714,10 @@ function normalizar(texto) {
     .trim();
 }
 
+
+// --------------------------------------------------
+// NOMBRE DE ZONA
+// --------------------------------------------------
 
 function nombreZona(zona) {
 
@@ -411,6 +737,10 @@ function nombreZona(zona) {
 }
 
 
+// --------------------------------------------------
+// ESPERAR
+// --------------------------------------------------
+
 function esperar(ms) {
 
   return new Promise(
@@ -419,12 +749,20 @@ function esperar(ms) {
 }
 
 
+// --------------------------------------------------
+// RESPUESTA JSON
+// --------------------------------------------------
+
 function enviarJSON(res, status, data) {
 
   res.writeHead(status, {
-    "Content-Type": "application/json; charset=UTF-8",
-    "Access-Control-Allow-Origin": "*"
+    "Content-Type":
+      "application/json; charset=UTF-8",
+
+    "Access-Control-Allow-Origin":
+      "*"
   });
+
 
   res.end(
     JSON.stringify(data)
@@ -432,8 +770,18 @@ function enviarJSON(res, status, data) {
 }
 
 
-server.listen(PORT, "0.0.0.0", () => {
-  console.log(
-    `Servidor disponibilidad-xpce activo en puerto ${PORT}`
-  );
-});
+// --------------------------------------------------
+// INICIAR SERVIDOR
+// --------------------------------------------------
+
+server.listen(
+  PORT,
+  "0.0.0.0",
+  () => {
+
+    console.log(
+      `Servidor disponibilidad-xpce activo en puerto ${PORT}`
+    );
+
+  }
+);
