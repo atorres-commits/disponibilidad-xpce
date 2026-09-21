@@ -94,6 +94,21 @@ const server = http.createServer(async (req, res) => {
 
       return await procesarSolicitudReserva(req, res);
     }
+        // --------------------------------------------------
+    // CONSULTAR UN ALOJAMIENTO CONCRETO
+    // --------------------------------------------------
+
+    if (url.pathname === "/alojamiento") {
+
+      if (req.method !== "GET") {
+        return enviarJSON(res, 405, {
+          ok: false,
+          error: "Metodo no permitido. Utiliza GET."
+        });
+      }
+
+      return await procesarAlojamientoConcreto(url, res);
+    }
 
     if (
       url.pathname === "/" &&
@@ -530,7 +545,362 @@ const server = http.createServer(async (req, res) => {
 
   }
 });
+// --------------------------------------------------
+// CONSULTAR ALOJAMIENTO CONCRETO
+// --------------------------------------------------
 
+async function procesarAlojamientoConcreto(url, res) {
+
+  try {
+
+    const nombreSolicitado = (
+      url.searchParams.get("alojamiento") || ""
+    ).trim();
+
+    const fechaEntrada = (
+      url.searchParams.get("fecha_entrada") || ""
+    ).trim();
+
+    const fechaSalida = (
+      url.searchParams.get("fecha_salida") || ""
+    ).trim();
+
+    const numeroHuespedes = Number(
+      url.searchParams.get("numero_huespedes")
+    );
+
+
+    if (
+      !nombreSolicitado ||
+      !fechaEntrada ||
+      !fechaSalida ||
+      !numeroHuespedes
+    ) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "Faltan parametros",
+        requeridos: [
+          "alojamiento",
+          "fecha_entrada",
+          "fecha_salida",
+          "numero_huespedes"
+        ]
+      });
+    }
+
+
+    if (
+      !Number.isInteger(numeroHuespedes) ||
+      numeroHuespedes < 1
+    ) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error:
+          "numero_huespedes debe ser un numero entero mayor que 0"
+      });
+    }
+
+
+    if (!process.env.LODGIFY_API_KEY) {
+      return enviarJSON(res, 500, {
+        ok: false,
+        error: "LODGIFY_API_KEY no configurada"
+      });
+    }
+
+
+    const coincidencias =
+      buscarAlojamientoPorNombre(nombreSolicitado);
+
+
+    if (coincidencias.length === 0) {
+      return enviarJSON(res, 404, {
+        ok: false,
+        error: "Alojamiento no encontrado",
+        alojamiento_solicitado: nombreSolicitado
+      });
+    }
+
+
+    if (coincidencias.length > 1) {
+      return enviarJSON(res, 409, {
+        ok: false,
+        error:
+          "El nombre coincide con varios alojamientos",
+        opciones:
+          coincidencias.map(item => item.nombre)
+      });
+    }
+
+
+    const alojamiento = coincidencias[0];
+
+
+    // CAPACIDAD
+
+    if (alojamiento.capacidad < numeroHuespedes) {
+      return enviarJSON(res, 200, {
+        ok: true,
+        nombre: alojamiento.nombre,
+        zona: nombreZona(alojamiento.zona),
+        capacidad: alojamiento.capacidad,
+        numero_huespedes: numeroHuespedes,
+        disponible: false,
+        motivo: "capacidad_insuficiente",
+        mensaje:
+          `El alojamiento tiene capacidad maxima para ${alojamiento.capacidad} huespedes.`
+      });
+    }
+
+
+    const headers = {
+      "X-ApiKey": process.env.LODGIFY_API_KEY,
+      "Accept": "application/json"
+    };
+
+
+    // DISPONIBILIDAD REAL
+
+    const availabilityUrl =
+      `https://api.lodgify.com/v2/availability/${alojamiento.id}` +
+      `?start=${encodeURIComponent(fechaEntrada)}` +
+      `&end=${encodeURIComponent(fechaSalida)}`;
+
+
+    const availabilityResponse = await fetch(
+      availabilityUrl,
+      {
+        method: "GET",
+        headers
+      }
+    );
+
+
+    if (!availabilityResponse.ok) {
+
+      const detalle =
+        await availabilityResponse.text();
+
+      return enviarJSON(res, 502, {
+        ok: false,
+        error:
+          "No se pudo consultar la disponibilidad en Lodgify",
+        status:
+          availabilityResponse.status,
+        detalle
+      });
+    }
+
+
+    const availabilityData =
+      await availabilityResponse.json();
+
+
+    const resultadoDisponibilidad =
+      obtenerDisponibilidad(availabilityData);
+
+
+    if (!resultadoDisponibilidad.disponible) {
+
+      return enviarJSON(res, 200, {
+        ok: true,
+        nombre: alojamiento.nombre,
+        zona: nombreZona(alojamiento.zona),
+        capacidad: alojamiento.capacidad,
+        numero_huespedes: numeroHuespedes,
+        fecha_entrada: fechaEntrada,
+        fecha_salida: fechaSalida,
+        disponible: false,
+        motivo: "sin_disponibilidad",
+        mensaje:
+          "El alojamiento tiene capacidad suficiente, pero no esta disponible para las fechas solicitadas."
+      });
+    }
+
+
+    if (!resultadoDisponibilidad.room_type_id) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        error:
+          "No se pudo obtener el room_type_id del alojamiento"
+      });
+    }
+
+
+    // PRECIO REAL
+
+    const quoteUrl = new URL(
+      `https://api.lodgify.com/v2/quote/${alojamiento.id}`
+    );
+
+
+    quoteUrl.searchParams.set(
+      "arrival",
+      fechaEntrada
+    );
+
+    quoteUrl.searchParams.set(
+      "departure",
+      fechaSalida
+    );
+
+    quoteUrl.searchParams.set(
+      "roomTypes[0].id",
+      String(resultadoDisponibilidad.room_type_id)
+    );
+
+    quoteUrl.searchParams.set(
+      "roomTypes[0].people",
+      String(numeroHuespedes)
+    );
+
+
+    const quoteResponse = await fetch(
+      quoteUrl.toString(),
+      {
+        method: "GET",
+        headers
+      }
+    );
+
+
+    if (!quoteResponse.ok) {
+
+      const detalle =
+        await quoteResponse.text();
+
+      return enviarJSON(res, 502, {
+        ok: false,
+        error:
+          "El alojamiento esta disponible pero no se pudo obtener el presupuesto",
+        status: quoteResponse.status,
+        detalle
+      });
+    }
+
+
+    const quoteData =
+      await quoteResponse.json();
+
+
+    const presupuesto =
+      extraerPresupuesto(quoteData);
+
+
+    return enviarJSON(res, 200, {
+
+      ok: true,
+
+      nombre:
+        alojamiento.nombre,
+
+      zona:
+        nombreZona(alojamiento.zona),
+
+      capacidad:
+        alojamiento.capacidad,
+
+      numero_huespedes:
+        numeroHuespedes,
+
+      fecha_entrada:
+        fechaEntrada,
+
+      fecha_salida:
+        fechaSalida,
+
+      disponible:
+        true,
+
+      precio_total:
+        presupuesto.precio_total,
+
+      limpieza:
+        presupuesto.limpieza,
+
+      moneda:
+        presupuesto.moneda
+    });
+
+
+  } catch (error) {
+
+    return enviarJSON(res, 500, {
+      ok: false,
+      error:
+        "Error al consultar el alojamiento",
+      detalle:
+        error.message
+    });
+  }
+}
+
+
+// --------------------------------------------------
+// BUSCAR ALOJAMIENTO POR NOMBRE
+// --------------------------------------------------
+
+function buscarAlojamientoPorNombre(nombre) {
+
+  const buscadoOriginal =
+    normalizar(nombre);
+
+  const buscado =
+    buscadoOriginal.replace(/^xpce\s+/, "");
+
+  const todos = [];
+
+
+  for (
+    const [zona, alojamientos] of
+    Object.entries(ALOJAMIENTOS)
+  ) {
+
+    for (const alojamiento of alojamientos) {
+
+      todos.push({
+        ...alojamiento,
+        zona
+      });
+    }
+  }
+
+
+  const exactos =
+    todos.filter((alojamiento) => {
+
+      const nombreNormal =
+        normalizar(alojamiento.nombre);
+
+      const nombreSinXpce =
+        nombreNormal.replace(/^xpce\s+/, "");
+
+      return (
+        nombreNormal === buscadoOriginal ||
+        nombreSinXpce === buscado
+      );
+    });
+
+
+  if (exactos.length > 0) {
+    return exactos;
+  }
+
+
+  return todos.filter((alojamiento) => {
+
+    const nombreNormal =
+      normalizar(alojamiento.nombre);
+
+    const nombreSinXpce =
+      nombreNormal.replace(/^xpce\s+/, "");
+
+    return (
+      nombreNormal.includes(buscadoOriginal) ||
+      nombreSinXpce.includes(buscado)
+    );
+  });
+}
 
 // --------------------------------------------------
 // INTERPRETAR DISPONIBILIDAD
