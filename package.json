@@ -1,0 +1,12 @@
+{
+  "name": "disponibilidad-xpce",
+  "version": "1.0.0",
+  "description": "API de disponibilidad para Xperience Malaga Apartments",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
