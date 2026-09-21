@@ -4,63 +4,63 @@ const PORT = process.env.PORT || 10000;
 
 const ALOJAMIENTOS = {
   malaga: [
-    { id: 521198, nombre: "XPCE TEATRO SQUARE MODERNO APARTAMENTO EN CENTRO HISTORICO" },
-    { id: 521199, nombre: "XPCE SOHO MALAGA APARTAMENTO REFORMADO EN BARRIO DE MODA" },
-    { id: 521203, nombre: "XPCE GIBRALFARO GARDENS DESCANSO A POCOS MINUTOS DEL CENTRO" },
-    { id: 535556, nombre: "XPCE CATHEDRAL" },
-    { id: 548059, nombre: "XPCE MUELLE 1" },
-    { id: 548068, nombre: "XPCE MUELLE 2" },
-    { id: 548087, nombre: "XPCE MERCED SQUARE - PICASSO" },
-    { id: 590645, nombre: "XPCE URBAN MALAGA SKYLINE" },
-    { id: 591978, nombre: "XPCE CERVANTES THEATER" },
-    { id: 602510, nombre: "XPCE LUXURY SUITE IN MALAGUETA BEACH" },
-    { id: 615680, nombre: "XPCE URBAN 2 MALAGA SKYLINE" },
-    { id: 623651, nombre: "XPCE URBAN 3 MALAGA SKYLINE" },
-    { id: 623654, nombre: "XPCE URBAN 4 MALAGA SKYLINE" },
-    { id: 630372, nombre: "XPCE URBAN 7 MALAGA SKYLINE" },
-    { id: 630374, nombre: "XPCE URBAN 9 MALAGA SKYLINE" },
-    { id: 632463, nombre: "XPCE URBAN 8 MALAGA SKYLINE" },
-    { id: 632507, nombre: "XPCE URBAN 6 MALAGA SKYLINE" },
-    { id: 634333, nombre: "XPCE SKY TOWER" },
-    { id: 640453, nombre: "XPCE URBAN 10 MALAGA SKYLINE" },
-    { id: 649795, nombre: "XPCE URBAN 12 MALAGA SKYLINE" },
-    { id: 649814, nombre: "XPCE URBAN 13 MALAGA SKYLINE" },
-    { id: 650562, nombre: "XPCE URBAN 14 MALAGA SKYLINE" },
-    { id: 661317, nombre: "XPCE URBAN 15 MALAGA SKYLINE" },
-    { id: 661321, nombre: "XPCE URBAN 16 MALAGA SKYLINE" },
-    { id: 663256, nombre: "XPCE VICTORIA 1" },
-    { id: 663261, nombre: "XPCE VICTORIA 2" },
-    { id: 663267, nombre: "XPCE VICTORIA 3" },
-    { id: 664911, nombre: "XPCE URBAN 17 MALAGA SKYLINE" },
-    { id: 670104, nombre: "XPCE URBAN 11 MALAGA SKYLINE" },
-    { id: 670115, nombre: "XPCE URBAN 18 MALAGA SKYLINE" },
-    { id: 684975, nombre: "XPCE URBAN 19 MALAGA SKYLINE" },
-    { id: 690911, nombre: "XPCE CAPUCHINOS" },
-    { id: 702098, nombre: "XPCE URBAN 20 MALAGA SKYLINE" },
-    { id: 704935, nombre: "XPCE SALAMANCA MARKET 1" },
-    { id: 704952, nombre: "XPCE SALAMANCA MARKET 2" },
-    { id: 704955, nombre: "XPCE SALAMANCA MARKET 3" },
-    { id: 704958, nombre: "XPCE SALAMANCA MARKET 4" },
-    { id: 730407, nombre: "XPCE ALCAZABILLA" },
-    { id: 750387, nombre: "XPCE ANCHA DEL CARMEN" },
-    { id: 765458, nombre: "XPCE URBAN 21 MALAGA SKYLINE" },
-    { id: 806204, nombre: "XPCE CARRETERIAS" },
-    { id: 814437, nombre: "XPCE URBAN 22 MALAGA SKYLINE" },
-    { id: 824740, nombre: "XPCE CARMELITAS" }
+    { id: 521198, nombre: "XPCE TEATRO SQUARE MODERNO APARTAMENTO EN CENTRO HISTORICO", capacidad: 10 },
+    { id: 521199, nombre: "XPCE SOHO MALAGA APARTAMENTO REFORMADO EN BARRIO DE MODA", capacidad: 5 },
+    { id: 521203, nombre: "XPCE GIBRALFARO GARDENS DESCANSO A POCOS MINUTOS DEL CENTRO", capacidad: 6 },
+    { id: 535556, nombre: "XPCE CATHEDRAL", capacidad: 5 },
+    { id: 548059, nombre: "XPCE MUELLE 1", capacidad: 3 },
+    { id: 548068, nombre: "XPCE MUELLE 2", capacidad: 3 },
+    { id: 548087, nombre: "XPCE MERCED SQUARE - PICASSO", capacidad: 8 },
+    { id: 590645, nombre: "XPCE URBAN MALAGA SKYLINE", capacidad: 4 },
+    { id: 591978, nombre: "XPCE CERVANTES THEATER", capacidad: 4 },
+    { id: 602510, nombre: "XPCE LUXURY SUITE IN MALAGUETA BEACH", capacidad: 3 },
+    { id: 615680, nombre: "XPCE URBAN 2 MALAGA SKYLINE", capacidad: 3 },
+    { id: 623651, nombre: "XPCE URBAN 3 MALAGA SKYLINE", capacidad: 4 },
+    { id: 623654, nombre: "XPCE URBAN 4 MALAGA SKYLINE", capacidad: 5 },
+    { id: 630372, nombre: "XPCE URBAN 7 MALAGA SKYLINE", capacidad: 5 },
+    { id: 630374, nombre: "XPCE URBAN 9 MALAGA SKYLINE", capacidad: 5 },
+    { id: 632463, nombre: "XPCE URBAN 8 MALAGA SKYLINE", capacidad: 2 },
+    { id: 632507, nombre: "XPCE URBAN 6 MALAGA SKYLINE", capacidad: 6 },
+    { id: 634333, nombre: "XPCE SKY TOWER", capacidad: 6 },
+    { id: 640453, nombre: "XPCE URBAN 10 MALAGA SKYLINE", capacidad: 4 },
+    { id: 649795, nombre: "XPCE URBAN 12 MALAGA SKYLINE", capacidad: 6 },
+    { id: 649814, nombre: "XPCE URBAN 13 MALAGA SKYLINE", capacidad: 2 },
+    { id: 650562, nombre: "XPCE URBAN 14 MALAGA SKYLINE", capacidad: 6 },
+    { id: 661317, nombre: "XPCE URBAN 15 MALAGA SKYLINE", capacidad: 3 },
+    { id: 661321, nombre: "XPCE URBAN 16 MALAGA SKYLINE", capacidad: 4 },
+    { id: 663256, nombre: "XPCE VICTORIA 1", capacidad: 2 },
+    { id: 663261, nombre: "XPCE VICTORIA 2", capacidad: 2 },
+    { id: 663267, nombre: "XPCE VICTORIA 3", capacidad: 2 },
+    { id: 664911, nombre: "XPCE URBAN 17 MALAGA SKYLINE", capacidad: 2 },
+    { id: 670104, nombre: "XPCE URBAN 11 MALAGA SKYLINE", capacidad: 5 },
+    { id: 670115, nombre: "XPCE URBAN 18 MALAGA SKYLINE", capacidad: 2 },
+    { id: 684975, nombre: "XPCE URBAN 19 MALAGA SKYLINE", capacidad: 2 },
+    { id: 690911, nombre: "XPCE CAPUCHINOS", capacidad: 2 },
+    { id: 702098, nombre: "XPCE URBAN 20 MALAGA SKYLINE", capacidad: 2 },
+    { id: 704935, nombre: "XPCE SALAMANCA MARKET 1", capacidad: 2 },
+    { id: 704952, nombre: "XPCE SALAMANCA MARKET 2", capacidad: 4 },
+    { id: 704955, nombre: "XPCE SALAMANCA MARKET 3", capacidad: 4 },
+    { id: 704958, nombre: "XPCE SALAMANCA MARKET 4", capacidad: 4 },
+    { id: 730407, nombre: "XPCE ALCAZABILLA", capacidad: 8 },
+    { id: 750387, nombre: "XPCE ANCHA DEL CARMEN", capacidad: 4 },
+    { id: 765458, nombre: "XPCE URBAN 21 MALAGA SKYLINE", capacidad: 2 },
+    { id: 806204, nombre: "XPCE CARRETERIAS", capacidad: 6 },
+    { id: 814437, nombre: "XPCE URBAN 22 MALAGA SKYLINE", capacidad: 2 },
+    { id: 824740, nombre: "XPCE CARMELITAS", capacidad: 3 }
   ],
 
   fuengirola: [
-    { id: 742969, nombre: "XPCE JADE TOWER" }
+    { id: 742969, nombre: "XPCE JADE TOWER", capacidad: 4 }
   ],
 
   marbella: [
-    { id: 521200, nombre: "XPCE MARINO 1 JUNTO AL MAR, PUERTO Y CASCO HISTORICO" },
-    { id: 521201, nombre: "XPCE MARINO 2 JUNTO AL MAR, PUERTO Y CASCO HISTORICO" },
-    { id: 521202, nombre: "XPCE DON CARLOS GARDENS PARAISO NATURAL JUNTO AL MAR" },
-    { id: 545404, nombre: "XPCE RODEO BEACH" },
-    { id: 548037, nombre: "XPCE LOS JAZMINES DE NUEVA ANDALUCIA" },
-    { id: 561462, nombre: "XPCE VILLA ARTOLA BEACH" },
-    { id: 649817, nombre: "XPCE GOLDEN BANUS PENTHOUSE - PARKING FREE" }
+    { id: 521200, nombre: "XPCE MARINO 1 JUNTO AL MAR, PUERTO Y CASCO HISTORICO", capacidad: 3 },
+    { id: 521201, nombre: "XPCE MARINO 2 JUNTO AL MAR, PUERTO Y CASCO HISTORICO", capacidad: 3 },
+    { id: 521202, nombre: "XPCE DON CARLOS GARDENS PARAISO NATURAL JUNTO AL MAR", capacidad: 5 },
+    { id: 545404, nombre: "XPCE RODEO BEACH", capacidad: 5 },
+    { id: 548037, nombre: "XPCE LOS JAZMINES DE NUEVA ANDALUCIA", capacidad: 5 },
+    { id: 561462, nombre: "XPCE VILLA ARTOLA BEACH", capacidad: 10 },
+    { id: 649817, nombre: "XPCE GOLDEN BANUS PENTHOUSE - PARKING FREE", capacidad: 5 }
   ]
 };
 
@@ -69,7 +69,6 @@ const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, `http://${req.headers.host}`);
 
-    // Pagina de comprobacion de Render
     if (
       url.pathname === "/" &&
       !url.searchParams.get("zona")
@@ -103,18 +102,41 @@ const server = http.createServer(async (req, res) => {
       url.searchParams.get("fecha_salida") || ""
     ).trim();
 
+    const numeroHuespedes = Number(
+      url.searchParams.get("numero_huespedes")
+    );
+
 
     // PARAMETROS OBLIGATORIOS
 
-    if (!zona || !fechaEntrada || !fechaSalida) {
+    if (
+      !zona ||
+      !fechaEntrada ||
+      !fechaSalida ||
+      !numeroHuespedes
+    ) {
       return enviarJSON(res, 400, {
         ok: false,
         error: "Faltan parametros",
         requeridos: [
           "zona",
           "fecha_entrada",
-          "fecha_salida"
+          "fecha_salida",
+          "numero_huespedes"
         ]
+      });
+    }
+
+
+    // VALIDAR NUMERO DE HUESPEDES
+
+    if (
+      !Number.isInteger(numeroHuespedes) ||
+      numeroHuespedes < 1
+    ) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "numero_huespedes debe ser un numero entero mayor que 0"
       });
     }
 
@@ -142,7 +164,31 @@ const server = http.createServer(async (req, res) => {
     }
 
 
-    const alojamientos = ALOJAMIENTOS[zona];
+    // FILTRAR PRIMERO POR CAPACIDAD
+
+    const alojamientos = ALOJAMIENTOS[zona].filter(
+      alojamiento => alojamiento.capacidad >= numeroHuespedes
+    );
+
+
+    // SI NINGUN APARTAMENTO ADMITE ESE NUMERO DE HUESPEDES
+
+    if (alojamientos.length === 0) {
+      return enviarJSON(res, 200, {
+        ok: true,
+        zona: nombreZona(zona),
+        fecha_entrada: fechaEntrada,
+        fecha_salida: fechaSalida,
+        numero_huespedes: numeroHuespedes,
+        total_disponibles: 0,
+        disponibles: [],
+        consultas_con_error: 0,
+        errores: [],
+        mensaje:
+          "No hay alojamientos en esta zona con capacidad suficiente para el numero de huespedes indicado."
+      });
+    }
+
 
     const headers = {
       "X-ApiKey": process.env.LODGIFY_API_KEY,
@@ -153,14 +199,11 @@ const server = http.createServer(async (req, res) => {
     const disponibles = [];
     const errores = [];
 
-    /*
-     * Consultamos como maximo 3 alojamientos simultaneamente.
-     * En cuanto encontramos 3 disponibles, dejamos de consultar.
-     */
-
     const TAMANO_GRUPO = 3;
     const MAX_RESULTADOS = 3;
 
+
+    // CONSULTAR DISPONIBILIDAD SOLO DE LOS APTOS CON CAPACIDAD SUFICIENTE
 
     for (
       let i = 0;
@@ -221,7 +264,8 @@ const server = http.createServer(async (req, res) => {
 
             return {
               property_id: alojamiento.id,
-              nombre: alojamiento.nombre
+              nombre: alojamiento.nombre,
+              capacidad: alojamiento.capacidad
             };
 
 
@@ -263,6 +307,7 @@ const server = http.createServer(async (req, res) => {
       zona: nombreZona(zona),
       fecha_entrada: fechaEntrada,
       fecha_salida: fechaSalida,
+      numero_huespedes: numeroHuespedes,
       total_disponibles: disponibles.length,
       disponibles: disponibles.slice(0, MAX_RESULTADOS),
       consultas_con_error: errores.length,
@@ -289,23 +334,6 @@ function estaDisponible(data) {
   }
 
   let periodos = [];
-
-  /*
-   * Formato real comprobado en tu API:
-   *
-   * [
-   *   {
-   *     property_id: 742969,
-   *     periods: [
-   *       {
-   *         start: "...",
-   *         end: "...",
-   *         available: 1
-   *       }
-   *     ]
-   *   }
-   * ]
-   */
 
   if (Array.isArray(data)) {
 
