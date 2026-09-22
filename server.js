@@ -86,6 +86,21 @@ const server = http.createServer(async (req, res) => {
     }    
 
     // --------------------------------------------------
+// VERIFICAR RESERVA DE HUESPED
+// --------------------------------------------------
+
+if (url.pathname === "/verificar-reserva") {
+
+  if (req.method !== "GET") {
+    return enviarJSON(res, 405, {
+      ok: false,
+      error: "Metodo no permitido. Utiliza GET."
+    });
+  }
+
+  return await procesarVerificarReserva(url, res);
+}
+    // --------------------------------------------------
     // SOLICITUD DE CONTACTO PARA RESERVA
     // --------------------------------------------------
 
@@ -1600,7 +1615,206 @@ function esperar(ms) {
 // --------------------------------------------------
 // RESPUESTA JSON
 // --------------------------------------------------
+// --------------------------------------------------
+// VERIFICAR RESERVA DE HUESPED
+// --------------------------------------------------
 
+function normalizarNombreReserva(texto) {
+  return String(texto || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+async function procesarVerificarReserva(url, res) {
+
+  try {
+
+    const nombreCliente = (
+      url.searchParams.get("nombre_cliente") || ""
+    ).trim();
+
+    const fechaEntrada = (
+      url.searchParams.get("fecha_entrada") || ""
+    ).trim();
+
+    const fechaSalida = (
+      url.searchParams.get("fecha_salida") || ""
+    ).trim();
+
+    if (!nombreCliente || !fechaEntrada || !fechaSalida) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        reserva_verificada: false,
+        error: "Faltan parametros",
+        requeridos: [
+          "nombre_cliente",
+          "fecha_entrada",
+          "fecha_salida"
+        ]
+      });
+    }
+
+    if (!process.env.LODGIFY_API_KEY) {
+      return enviarJSON(res, 500, {
+        ok: false,
+        reserva_verificada: false,
+        error: "LODGIFY_API_KEY no configurada"
+      });
+    }
+
+    const lodgifyUrl = new URL(
+      "https://api.lodgify.com/v2/reservations/bookings"
+    );
+
+    lodgifyUrl.searchParams.set("page", "1");
+    lodgifyUrl.searchParams.set("size", "50");
+    lodgifyUrl.searchParams.set("stayFilter", "ArrivalDate");
+    lodgifyUrl.searchParams.set(
+      "stayFilterDate",
+      fechaEntrada
+    );
+
+    const response = await fetch(
+      lodgifyUrl.toString(),
+      {
+        method: "GET",
+        headers: {
+          "X-ApiKey":
+            process.env.LODGIFY_API_KEY,
+          "Accept":
+            "application/json"
+        }
+      }
+    );
+
+    if (!response.ok) {
+
+      const detalle =
+        await response.text();
+
+      return enviarJSON(res, 502, {
+        ok: false,
+        reserva_verificada: false,
+        error:
+          "No se pudo consultar Lodgify",
+        status:
+          response.status,
+        detalle
+      });
+    }
+
+    const data = await response.json();
+
+    const reservas =
+      Array.isArray(data.items)
+        ? data.items
+        : [];
+
+    const nombreBuscado =
+      normalizarNombreReserva(
+        nombreCliente
+      );
+
+    const coincidencias =
+      reservas.filter((reserva) => {
+
+        const nombreReserva =
+          normalizarNombreReserva(
+            reserva.guest &&
+            reserva.guest.name
+          );
+
+        return (
+          reserva.status === "Booked" &&
+          reserva.arrival === fechaEntrada &&
+          reserva.departure === fechaSalida &&
+          nombreReserva === nombreBuscado
+        );
+      });
+
+    if (coincidencias.length === 0) {
+      return enviarJSON(res, 200, {
+        ok: true,
+        reserva_verificada: false,
+        motivo: "sin_coincidencia"
+      });
+    }
+
+    if (coincidencias.length > 1) {
+      return enviarJSON(res, 200, {
+        ok: true,
+        reserva_verificada: false,
+        motivo: "coincidencia_ambigua"
+      });
+    }
+
+    const reserva =
+      coincidencias[0];
+
+    let alojamientoEncontrado = null;
+    let zonaEncontrada = null;
+
+    for (
+      const [zona, alojamientos]
+      of Object.entries(ALOJAMIENTOS)
+    ) {
+
+      const encontrado =
+        alojamientos.find(
+          (alojamiento) =>
+            Number(alojamiento.id) ===
+            Number(reserva.property_id)
+        );
+
+      if (encontrado) {
+        alojamientoEncontrado =
+          encontrado;
+        zonaEncontrada =
+          zona;
+        break;
+      }
+    }
+
+    if (!alojamientoEncontrado) {
+      return enviarJSON(res, 200, {
+        ok: true,
+        reserva_verificada: false,
+        motivo:
+          "alojamiento_no_identificado"
+      });
+    }
+
+    return enviarJSON(res, 200, {
+      ok: true,
+      reserva_verificada: true,
+      nombre_cliente:
+        reserva.guest.name,
+      fecha_entrada:
+        reserva.arrival,
+      fecha_salida:
+        reserva.departure,
+      alojamiento:
+        alojamientoEncontrado.nombre,
+      zona:
+        nombreZona(zonaEncontrada)
+    });
+
+  } catch (error) {
+
+    return enviarJSON(res, 500, {
+      ok: false,
+      reserva_verificada: false,
+      error:
+        "Error al verificar la reserva",
+      detalle:
+        error.message
+    });
+  }
+}
 function enviarJSON(res, status, data) {
 
   res.writeHead(status, {
