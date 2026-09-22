@@ -1188,6 +1188,12 @@ async function procesarSolicitudReserva(req, res) {
     .replace(/\s+/g, "")
     .replace(/[()\-]/g, "");
 
+  // Si ARSYS añade un 0 delante de un número español de 9 cifras,
+  // eliminamos únicamente ese cero inicial.
+  if (/^0[6789]\d{8}$/.test(telefono)) {
+    telefono = telefono.substring(1);
+  }
+
   return telefono;
 }
 
