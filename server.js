@@ -69,6 +69,22 @@ const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, `http://${req.headers.host}`);
 
+        // --------------------------------------------------
+    // INFORMACION METEOROLOGICA
+    // --------------------------------------------------
+
+    if (url.pathname === "/tiempo") {
+
+      if (req.method !== "GET") {
+        return enviarJSON(res, 405, {
+          ok: false,
+          error: "Metodo no permitido. Utiliza GET."
+        });
+      }
+
+      return await procesarTiempo(url, res);
+    }    
+
     // --------------------------------------------------
     // SOLICITUD DE CONTACTO PARA RESERVA
     // --------------------------------------------------
@@ -901,7 +917,190 @@ function buscarAlojamientoPorNombre(nombre) {
     );
   });
 }
+// --------------------------------------------------
+// INFORMACION METEOROLOGICA
+// --------------------------------------------------
 
+async function procesarTiempo(url, res) {
+
+  try {
+
+    if (!process.env.WEATHER_API_KEY) {
+      return enviarJSON(res, 500, {
+        ok: false,
+        error: "WEATHER_API_KEY no configurada"
+      });
+    }
+
+    const zonaSolicitada = (
+      url.searchParams.get("zona") || ""
+    ).trim();
+
+    const zona = normalizar(zonaSolicitada);
+
+    const LOCALIDADES_TIEMPO = {
+      malaga: "Malaga, Spain",
+      fuengirola: "Fuengirola, Spain",
+      marbella: "Marbella, Spain"
+    };
+
+    if (!LOCALIDADES_TIEMPO[zona]) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "Zona no valida",
+        zonas_permitidas: [
+          "Malaga",
+          "Fuengirola",
+          "Marbella"
+        ]
+      });
+    }
+
+    const weatherUrl = new URL(
+      "https://api.weatherapi.com/v1/forecast.json"
+    );
+
+    weatherUrl.searchParams.set(
+      "key",
+      process.env.WEATHER_API_KEY
+    );
+
+    weatherUrl.searchParams.set(
+      "q",
+      LOCALIDADES_TIEMPO[zona]
+    );
+
+    weatherUrl.searchParams.set(
+      "days",
+      "3"
+    );
+
+    weatherUrl.searchParams.set(
+      "aqi",
+      "no"
+    );
+
+    weatherUrl.searchParams.set(
+      "alerts",
+      "no"
+    );
+
+    weatherUrl.searchParams.set(
+      "lang",
+      "es"
+    );
+
+    const response = await fetch(
+      weatherUrl.toString()
+    );
+
+    if (!response.ok) {
+
+      const detalle = await response.text();
+
+      return enviarJSON(res, 502, {
+        ok: false,
+        error:
+          "No se pudo consultar la informacion meteorologica",
+        status:
+          response.status,
+        detalle
+      });
+    }
+
+    const data = await response.json();
+
+    const actual = data.current || {};
+
+    const previsiones =
+      data.forecast &&
+      Array.isArray(data.forecast.forecastday)
+        ? data.forecast.forecastday
+        : [];
+
+    const dias = previsiones.map((item) => ({
+      fecha:
+        item.date,
+
+      temperatura_maxima_c:
+        item.day.maxtemp_c,
+
+      temperatura_minima_c:
+        item.day.mintemp_c,
+
+      temperatura_media_c:
+        item.day.avgtemp_c,
+
+      estado:
+        item.day.condition
+          ? item.day.condition.text
+          : null,
+
+      probabilidad_lluvia:
+        item.day.daily_chance_of_rain,
+
+      precipitacion_mm:
+        item.day.totalprecip_mm,
+
+      viento_maximo_kmh:
+        item.day.maxwind_kph
+    }));
+
+    return enviarJSON(res, 200, {
+
+      ok: true,
+
+      zona:
+        nombreZona(zona),
+
+      ubicacion:
+        data.location
+          ? data.location.name
+          : nombreZona(zona),
+
+      actualizado:
+        actual.last_updated || null,
+
+      actual: {
+        temperatura_c:
+          actual.temp_c,
+
+        sensacion_termica_c:
+          actual.feelslike_c,
+
+        estado:
+          actual.condition
+            ? actual.condition.text
+            : null,
+
+        humedad:
+          actual.humidity,
+
+        viento_kmh:
+          actual.wind_kph,
+
+        direccion_viento:
+          actual.wind_dir,
+
+        precipitacion_mm:
+          actual.precip_mm
+      },
+
+      previsión:
+        dias
+    });
+
+  } catch (error) {
+
+    return enviarJSON(res, 500, {
+      ok: false,
+      error:
+        "Error al consultar el tiempo",
+      detalle:
+        error.message
+    });
+  }
+}
 // --------------------------------------------------
 // INTERPRETAR DISPONIBILIDAD
 // --------------------------------------------------
