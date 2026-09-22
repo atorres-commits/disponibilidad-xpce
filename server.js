@@ -1,4 +1,5 @@
 const http = require("http");
+const URBAN_DATA = require("./urban_data.json");
 
 const PORT = process.env.PORT || 10000;
 
@@ -115,7 +116,68 @@ if (url.pathname === "/verificar-administrador") {
 
   return procesarVerificarAdministrador(url, res);
 }
-    // --------------------------------------------------
+   // --------------------------------------------------
+// INFORMACION ESTRUCTURADA DE ALOJAMIENTO URBAN
+// --------------------------------------------------
+
+if (url.pathname === "/informacion-alojamiento") {
+  if (req.method !== "GET") {
+    return enviarJSON(res, 405, {
+      ok: false,
+      error: "Metodo no permitido. Utiliza GET."
+    });
+  }
+
+  const alojamiento = String(
+    url.searchParams.get("alojamiento") || ""
+  ).trim();
+
+  if (!alojamiento) {
+    return enviarJSON(res, 400, {
+      ok: false,
+      error: "Falta el alojamiento"
+    });
+  }
+
+  const buscado = normalizar(alojamiento)
+    .replace(/^xpce /, "")
+    .trim();
+
+  const coincidencias = URBAN_DATA.filter((ficha) => {
+    const nombre = normalizar(ficha.nombre || "")
+      .replace(/^xpce /, "")
+      .trim();
+
+    return nombre === buscado ||
+           nombre.includes(buscado) ||
+           buscado.includes(nombre);
+  });
+
+  if (coincidencias.length === 0) {
+    return enviarJSON(res, 404, {
+      ok: false,
+      encontrado: false,
+      error: "Alojamiento no encontrado"
+    });
+  }
+
+  if (coincidencias.length > 1) {
+    return enviarJSON(res, 409, {
+      ok: false,
+      encontrado: false,
+      error: "Alojamiento ambiguo",
+      opciones: coincidencias.map(
+        (ficha) => ficha.nombre
+      )
+    });
+  }
+
+  return enviarJSON(res, 200, {
+    ok: true,
+    encontrado: true,
+    alojamiento: coincidencias[0]
+  });
+} // --------------------------------------------------
     // SOLICITUD DE CONTACTO PARA RESERVA
     // --------------------------------------------------
 
