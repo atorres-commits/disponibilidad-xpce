@@ -143,7 +143,7 @@ if (url.pathname === "/informacion-alojamiento") {
     .replace(/^xpce /, "")
     .trim();
 
-  const coincidencias = URBAN_DATA.filter((ficha) => {
+  const coincidencias = URBAN_DATA.urban.filter((ficha) => {
     const nombre = normalizar(ficha.nombre || "")
       .replace(/^xpce /, "")
       .trim();
