@@ -101,6 +101,21 @@ if (url.pathname === "/verificar-reserva") {
   return await procesarVerificarReserva(url, res);
 }
     // --------------------------------------------------
+// VERIFICAR ACCESO DE ADMINISTRADOR
+// --------------------------------------------------
+
+if (url.pathname === "/verificar-administrador") {
+  if (req.method !== "GET") {
+    return enviarJSON(res, 405, {
+      ok: false,
+      autorizado: false,
+      error: "Metodo no permitido. Utiliza GET."
+    });
+  }
+
+  return procesarVerificarAdministrador(url, res);
+}
+    // --------------------------------------------------
     // SOLICITUD DE CONTACTO PARA RESERVA
     // --------------------------------------------------
 
@@ -1812,6 +1827,56 @@ async function procesarVerificarReserva(url, res) {
         "Error al verificar la reserva",
       detalle:
         error.message
+    });
+  }
+}
+// --------------------------------------------------
+// VERIFICAR ACCESO DE ADMINISTRADOR
+// --------------------------------------------------
+
+function procesarVerificarAdministrador(url, res) {
+
+  try {
+
+    if (!process.env.ADMIN_ACCESS_KEY) {
+      return enviarJSON(res, 500, {
+        ok: false,
+        autorizado: false,
+        error: "ADMIN_ACCESS_KEY no configurada"
+      });
+    }
+
+    const clave = String(
+      url.searchParams.get("clave") || ""
+    ).trim();
+
+    if (!clave) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        autorizado: false,
+        error: "Falta la clave"
+      });
+    }
+
+    if (clave !== process.env.ADMIN_ACCESS_KEY) {
+      return enviarJSON(res, 200, {
+        ok: true,
+        autorizado: false
+      });
+    }
+
+    return enviarJSON(res, 200, {
+      ok: true,
+      autorizado: true
+    });
+
+  } catch (error) {
+
+    return enviarJSON(res, 500, {
+      ok: false,
+      autorizado: false,
+      error: "Error al verificar administrador",
+      detalle: error.message
     });
   }
 }
