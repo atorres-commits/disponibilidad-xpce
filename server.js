@@ -1121,9 +1121,9 @@ async function procesarSolicitudReserva(req, res) {
       body.email || ""
     ).trim();
 
-    const telefono = String(
-      body.telefono || ""
-    ).trim();
+    const telefono = normalizarTelefono(
+  body.telefono
+);
 
     const alojamiento = String(
       body.alojamiento || ""
@@ -1175,6 +1175,21 @@ async function procesarSolicitudReserva(req, res) {
         campos: faltan
       });
     }
+    function normalizarTelefono(valor) {
+
+  if (Array.isArray(valor)) {
+    valor = valor.join("");
+  }
+
+  let telefono = String(valor || "").trim();
+
+  telefono = telefono
+    .replace(/,/g, "")
+    .replace(/\s+/g, "")
+    .replace(/[()\-]/g, "");
+
+  return telefono;
+}
 
     if (!emailValido(email)) {
       return enviarJSON(res, 400, {
