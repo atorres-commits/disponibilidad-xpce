@@ -1,0 +1,383 @@
+{
+  "version": "2026-09-23",
+  "seguridad": {
+    "credenciales_acceso_incluidas": false,
+    "contrasenas_wifi_incluidas": false
+  },
+  "malaga": [
+    {
+      "nombre": "XPCE ALCAZABILLA",
+      "alias_voz": "Alcazabilla",
+      "direccion": "Calle Pozo del Rey 3, Málaga",
+      "planta": 3,
+      "letra": null,
+      "dormitorios": 3,
+      "banos": 2,
+      "distribucion_descanso": [
+        "2 camas de matrimonio",
+        "2 camas individuales",
+        "1 sofá cama en el salón"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Alcazaba"
+        ]
+      },
+      "vivienda": "Única vivienda por planta",
+      "ascensor": true,
+      "observacion_ascensor": "Pequeño tramo de escaleras para acceder al ascensor",
+      "balcones": 2
+    },
+    {
+      "nombre": "XPCE ANCHA DEL CARMEN",
+      "alias_voz": "Ancha del Carmen",
+      "direccion": "Calle Ancha del Carmen, Málaga",
+      "planta": 2,
+      "letra": "B",
+      "dormitorios": 2,
+      "banos": 1,
+      "distribucion_descanso": [
+        "2 camas de matrimonio Queen Size",
+        "1 sofá cama en el salón"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Salitre"
+        ]
+      },
+      "ascensor": true,
+      "balcones": true,
+      "terraza": true
+    },
+    {
+      "nombre": "XPCE CAPUCHINOS",
+      "alias_voz": "Capuchinos",
+      "direccion": "Carrera de Capuchinos 43, Málaga",
+      "planta": 1,
+      "letra": "B",
+      "dormitorios": 0,
+      "banos": 1,
+      "distribucion_descanso": [
+        "1 sofá cama"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Atlántida"
+        ]
+      },
+      "tipo": "Estudio",
+      "balcon": true
+    },
+    {
+      "nombre": "XPCE CARMELITAS",
+      "alias_voz": "Carmelitas",
+      "direccion": "Calle Álvarez 12, Málaga",
+      "planta": 2,
+      "letra": "A",
+      "dormitorios": 1,
+      "banos": 1,
+      "distribucion_descanso": [
+        "2 camas de matrimonio Queen Size",
+        "2 sofás cama: uno en el salón y otro en la planta superior"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Las Delicias"
+        ]
+      },
+      "distribucion": "Dormitorio principal y planta superior diáfana",
+      "ascensor": false
+    },
+    {
+      "nombre": "XPCE CARRETERIAS",
+      "alias_voz": "Carreterías",
+      "direccion": "Plaza de San Francisco 8, Málaga",
+      "planta": 3,
+      "letra": "D",
+      "dormitorios": 3,
+      "banos": 2,
+      "distribucion_descanso": [
+        "Dormitorio principal: 1 cama de matrimonio",
+        "Dormitorio 2: 1 cama de matrimonio",
+        "Dormitorio 3: 1 cama de matrimonio"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Tejón y Rodríguez",
+          "Parking Granados"
+        ]
+      },
+      "ascensor": true
+    },
+    {
+      "nombre": "XPCE CATHEDRAL",
+      "alias_voz": "Cathedral",
+      "direccion": "Calle Fresca 10, Málaga",
+      "planta": 2,
+      "letra": "A",
+      "dormitorios": 2,
+      "banos": 2,
+      "distribucion_descanso": [
+        "2 camas de matrimonio",
+        "1 sofá cama en el salón"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Plaza de la Marina",
+          "Parking Granados"
+        ]
+      },
+      "ascensor": false
+    },
+    {
+      "nombre": "XPCE CERVANTES",
+      "alias_voz": "Cervantes",
+      "direccion": "Calle San Juan de Letrán 15, Málaga",
+      "planta": 2,
+      "letra": null,
+      "dormitorios": 2,
+      "banos": 1,
+      "distribucion_descanso": [
+        "2 camas de matrimonio Queen Size",
+        "1 sofá cama en el salón"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Alcazaba"
+        ]
+      },
+      "vivienda": "Única vivienda por planta",
+      "ascensor": false
+    },
+    {
+      "nombre": "XPCE GIBRALFARO",
+      "alias_voz": "Gibralfaro Gardens",
+      "direccion": "Calle Ventaja Alta 22, Málaga",
+      "planta": "Baja",
+      "letra": null,
+      "dormitorios": 3,
+      "banos": 2,
+      "distribucion_descanso": [
+        "3 camas de matrimonio",
+        "1 sofá cama en el salón"
+      ],
+      "aparcamiento": {
+        "incluido": true,
+        "numero": null,
+        "sotano": null,
+        "descripcion": "Zona delimitada con líneas amarillas",
+        "instrucciones": "La ubicación concreta se comunica al huésped por email, WhatsApp o mensajería del canal de reserva",
+        "acceso": "Para acceder al parking es necesario recoger primero el mando situado dentro del apartamento"
+      },
+      "zona_exterior_privada": [
+        "Jardín",
+        "Piscina",
+        "Barbacoa de obra",
+        "Pérgola con mesa de comedor",
+        "Casita de juegos infantil"
+      ]
+    },
+    {
+      "nombre": "XPCE LUXURY SUITE MALAGUETA",
+      "alias_voz": "Marítimo / Luxury Suite in Malagueta Beach",
+      "direccion": "Calle Pintor Martínez Virel 2, Málaga",
+      "planta": 2,
+      "letra": null,
+      "dormitorios": 1,
+      "banos": 1,
+      "distribucion_descanso": [
+        "1 cama de matrimonio",
+        "1 sofá cama extragrande en el salón"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Cervantes"
+        ]
+      },
+      "puerta": "6",
+      "ascensor": true,
+      "plataforma_elevadora": true
+    },
+    {
+      "nombre": "XPCE MERCED SQUARE",
+      "alias_voz": "Merced",
+      "direccion": "Calle Pedro de Molina 6, Málaga",
+      "planta": 2,
+      "letra": null,
+      "dormitorios": 3,
+      "banos": 2,
+      "distribucion_descanso": [
+        "3 camas de matrimonio",
+        "2 camas individuales",
+        "1 sofá cama en el salón"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Alcazaba",
+          "Parking Atlántida"
+        ]
+      },
+      "puerta": "3",
+      "capacidad": 8,
+      "ascensor": false
+    },
+    {
+      "nombre": "XPCE MUELLE 1",
+      "alias_voz": "Muelle 1",
+      "direccion": "Calle San Nicolás 15, Málaga",
+      "planta": 11,
+      "letra": "C",
+      "dormitorios": 1,
+      "banos": 1,
+      "distribucion_descanso": [
+        "1 cama de matrimonio",
+        "1 sofá cama en el salón"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Muelle Uno",
+          "Parking Cervantes"
+        ]
+      }
+    },
+    {
+      "nombre": "XPCE MUELLE 2",
+      "alias_voz": "Muelle 2",
+      "direccion": "Calle San Nicolás 15, Málaga",
+      "planta": 11,
+      "letra": "B",
+      "dormitorios": 1,
+      "banos": 1,
+      "distribucion_descanso": [
+        "1 cama de matrimonio",
+        "1 sofá cama en el salón"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Muelle Uno",
+          "Parking Cervantes"
+        ]
+      }
+    },
+    {
+      "nombre": "XPCE SOHO",
+      "alias_voz": "Soho",
+      "direccion": "Alameda de Colón 32, Málaga",
+      "planta": 7,
+      "letra": "D",
+      "dormitorios": 3,
+      "banos": 1,
+      "distribucion_descanso": [
+        "2 camas dobles",
+        "2 camas individuales"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Alemania"
+        ]
+      },
+      "ascensor": true,
+      "plataforma_elevadora": true
+    },
+    {
+      "nombre": "XPCE TEATRO SQUARE",
+      "alias_voz": "Teatro",
+      "direccion": "Plaza del Teatro 4, Edificio Teatro Principal, Málaga",
+      "planta": 4,
+      "letra": "A",
+      "dormitorios": 4,
+      "banos": 2,
+      "distribucion_descanso": [
+        "Dormitorio principal: 1 cama de matrimonio",
+        "Dormitorio 2: 2 camas individuales",
+        "Dormitorio 3: 2 camas individuales",
+        "Dormitorio 4: 1 cama de matrimonio",
+        "Salón: 1 sofá cama"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Tejón y Rodríguez",
+          "Parking Granados"
+        ]
+      },
+      "ascensor": true,
+      "plataforma_elevadora": true
+    },
+    {
+      "nombre": "XPCE VICTORIA 1",
+      "alias_voz": "Victoria 1",
+      "direccion": "Calle Lagunillas 48, Málaga",
+      "planta": 1,
+      "letra": "B",
+      "dormitorios": 0,
+      "banos": 1,
+      "distribucion_descanso": [
+        "1 sofá cama"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Atlántida",
+          "Aparcamiento La Alcazaba"
+        ]
+      },
+      "tipo": "Estudio",
+      "balcon": false
+    },
+    {
+      "nombre": "XPCE VICTORIA 2",
+      "alias_voz": "Victoria 2",
+      "direccion": "Calle Lagunillas 48, Málaga",
+      "planta": 1,
+      "letra": "D",
+      "dormitorios": 0,
+      "banos": 1,
+      "distribucion_descanso": [
+        "1 sofá cama"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Atlántida",
+          "Aparcamiento La Alcazaba"
+        ]
+      },
+      "tipo": "Estudio",
+      "balcon": true
+    },
+    {
+      "nombre": "XPCE VICTORIA 3",
+      "alias_voz": "Victoria 3",
+      "direccion": "Calle Lagunillas 48, Málaga",
+      "planta": 2,
+      "letra": "D",
+      "dormitorios": 0,
+      "banos": 1,
+      "distribucion_descanso": [
+        "1 sofá cama"
+      ],
+      "aparcamiento": {
+        "incluido": false,
+        "publico_cercano": [
+          "Parking Atlántida",
+          "Aparcamiento La Alcazaba"
+        ]
+      },
+      "tipo": "Estudio",
+      "balcon": true
+    }
+  ]
+}
