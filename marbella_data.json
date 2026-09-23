@@ -1,0 +1,161 @@
+{
+  "version": "2026-09-24",
+  "seguridad": {
+    "credenciales_acceso_incluidas": false,
+    "contrasenas_wifi_incluidas": false
+  },
+  "marbella": [
+    {
+      "nombre": "XPCE DON CARLOS GARDENS",
+      "alias_voz": "Don Carlos Gardens",
+      "direccion": "Avenida Jardines de las Golondrinas, Urbanización Jardines de Don Carlos, Bloque 10, Portal 10, planta baja, Elviria, Marbella (Málaga)",
+      "apartamento": "1001",
+      "planta": "Baja",
+      "bloque": "10",
+      "portal": "10",
+      "dormitorios": 2,
+      "banos": 2,
+      "distribucion_descanso": [
+        "1 cama de matrimonio",
+        "2 camas individuales",
+        "1 sofá cama"
+      ],
+      "ascensor": true,
+      "terraza": "Terraza acristalada con sistema Lumon y salida al jardín",
+      "zonas_comunes": [
+        "3 piscinas",
+        "jardines tropicales",
+        "sauna",
+        "gimnasio"
+      ],
+      "aparcamiento": {
+        "incluido": true,
+        "tipo": "privado",
+        "plaza": "1010"
+      }
+    },
+    {
+      "nombre": "XPCE GOLDEN BANUS PENTHOUSE",
+      "alias_voz": "Golden Banús",
+      "direccion": "Las Adelfas 6, planta 4, puerta A, Nueva Andalucía, Marbella (Málaga)",
+      "planta": 4,
+      "puerta": "A",
+      "apartamento": "4A",
+      "dormitorios": 2,
+      "banos": 1,
+      "distribucion_descanso": [
+        "2 camas de matrimonio",
+        "1 sofá cama"
+      ],
+      "terraza": "Terraza privada",
+      "ascensor": true,
+      "observacion_ascensor": "El ascensor llega hasta la tercera planta; después hay que subir un tramo de escaleras.",
+      "aparcamiento": {
+        "incluido": true,
+        "tipo": "privado",
+        "plaza": "25",
+        "ubicacion": "Urbanización colindante, Calle Los Tilos"
+      }
+    },
+    {
+      "nombre": "XPCE LOS JAZMINES",
+      "alias_voz": "Jazmines",
+      "direccion": "Calle Los Jamines, Agrupadas 4, Casa 2, Nueva Andalucía, Marbella (Málaga)",
+      "acceso_vivienda": "A pie de calle",
+      "dormitorios": 2,
+      "banos": 2,
+      "distribucion_descanso": [
+        "2 camas de matrimonio",
+        "1 sofá cama doble"
+      ],
+      "terraza": "Terraza con vistas al jardín",
+      "zonas_comunes": [
+        "piscina comunitaria",
+        "jardín"
+      ],
+      "aparcamiento": {
+        "incluido": true,
+        "tipo": "privado",
+        "ubicacion": "Frente a la puerta del apartamento"
+      }
+    },
+    {
+      "nombre": "XPCE MARINO 1",
+      "alias_voz": "Marino 1",
+      "direccion": "Calle Juan Ruiz Muñoz 4, Portal Marino 1, planta 4, apartamento 206, Marbella (Málaga)",
+      "portal": "Marino 1",
+      "planta": 4,
+      "apartamento": "206",
+      "tipo": "Estudio",
+      "banos": 1,
+      "distribucion_descanso": [
+        "1 cama de matrimonio",
+        "1 sofá cama"
+      ],
+      "ascensor": true,
+      "observacion_ascensor": "El edificio dispone de dos ascensores.",
+      "aparcamiento": {
+        "incluido": true,
+        "tipo": "asignado",
+        "ubicacion": "Sótano de un edificio cercano"
+      }
+    },
+    {
+      "nombre": "XPCE MARINO 2",
+      "alias_voz": "Marino 2",
+      "direccion": "Calle Juan Ruiz Muñoz 2, Portal Marino 2, planta 4, apartamento 207, Marbella (Málaga)",
+      "portal": "Marino 2",
+      "planta": 4,
+      "apartamento": "207",
+      "tipo": "Estudio",
+      "banos": 1,
+      "distribucion_descanso": [
+        "1 cama de matrimonio",
+        "1 sofá cama"
+      ],
+      "ascensor": true,
+      "observacion_ascensor": "El edificio dispone de dos ascensores.",
+      "aparcamiento": {
+        "incluido": true,
+        "tipo": "Parking Indigo",
+        "plaza": "Cualquier plaza libre"
+      }
+    },
+    {
+      "nombre": "XPCE RODEO BEACH",
+      "alias_voz": "Rodeo Beach",
+      "direccion": "Urbanización Fuentes del Rodeo 225, apartamento 40, Puerto Banús, Marbella (Málaga)",
+      "apartamento": "40",
+      "dormitorios": 2,
+      "banos": 2,
+      "distribucion_descanso": [
+        "2 camas de matrimonio",
+        "1 sofá cama"
+      ],
+      "terraza": "Terraza con vistas al jardín",
+      "zonas_comunes": [
+        "piscina",
+        "jardines",
+        "pista de tenis"
+      ],
+      "aparcamiento": {
+        "incluido": true,
+        "tipo": "privado",
+        "plaza": "No numerada; utilizar una plaza libre"
+      }
+    },
+    {
+      "nombre": "XPCE VILLA ARTOLA BEACH",
+      "alias_voz": "Artola",
+      "direccion": "Calle del Serbal 64, Artola Baja, Marbella (Málaga), CP 29604",
+      "equipamiento_ocio": [
+        "raquetas y pelotas de pádel"
+      ],
+      "observacion_padel": "La pista de pádel no tiene focos para jugar de noche.",
+      "acceso_playa": "Acceso directo hacia la playa de las dunas de Cabopino.",
+      "normas": [
+        "A partir de las 23:00 se debe apagar la música y reducir el tono de voz en la zona exterior."
+      ]
+    }
+  ]
+}
