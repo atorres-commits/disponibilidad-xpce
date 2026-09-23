@@ -1,6 +1,6 @@
 const http = require("http");
 const URBAN_DATA = require("./urban_data.json");
-
+const MALAGA_DATA = require("./malaga_data.json");
 const PORT = process.env.PORT || 10000;
 
 const ALOJAMIENTOS = {
