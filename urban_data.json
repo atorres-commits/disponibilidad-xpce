@@ -1,6 +1,7 @@
 {
-  "version": "2026-09-23",
+  "version": "2.0-corregida",
   "fuente": "INFORMACION DE TODOS LOS APARTAMENTOS URBAN.pdf + reglas operativas actuales indicadas por Xperience",
+  "criterio": "Datos específicos solo cuando constan de forma explícita en la ficha; reglas operativas actuales prevalecen sobre instrucciones históricas.",
   "urban": [
     {
       "urban": 1,
@@ -13,14 +14,13 @@
       "dormitorios": 2,
       "banos": 2,
       "distribucion_descanso": [
-        "Capacidad de descanso distribuida en una cama de matrimonio (Queen) y dos camas individuales de 90 cm.",
-        "Ropa de cama (sábanas y edredones), toallas y productos de higiene básica (gel y champú) incluidos."
+        "Capacidad de descanso distribuida en una cama de matrimonio (Queen) y dos camas individuales de 90 cm."
       ],
       "aparcamiento": {
         "incluido": true,
         "numero": 234,
         "sotano": "-1",
-        "acceso": "El acceso y salida del garaje se realiza mediante el uso de una llave magnética sobre el sensor de apertura."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": null,
@@ -29,6 +29,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -36,7 +37,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Información General del Alojamiento\nApartamento de dos dormitorios y dos baños situado en la planta 21 de las Urban Sky Towers (Paseo de Martiricos).\nCapacidad de descanso distribuida en una cama de matrimonio (Queen) y dos camas individuales de 90 cm.\nUbicación estratégica junto al estadio de fútbol La Rosaleda, a unos 13 minutos a pie del centro histórico de Málaga.\nServicio de conserjería disponible las 24 horas del día.\nEquipamiento y Comodidades\nCocina totalmente integrada y equipada con lavadora, lavavajillas, horno, microondas, tostadora, cafetera de cápsulas Nespresso, hervidor de agua (kettle) y batidora.\nDisponibilidad de plancha, tabla de planchar y secador de pelo.\nRopa de cama (sábanas y edredones), toallas y productos de higiene básica (gel y champú) incluidos.\nSmart TV con acceso a plataformas de contenido (requiere uso de cuentas personales).\nConexión WiFi disponible en todo el alojamiento.\nSensores de humo instalados para seguridad de los huéspedes.\nCuna y trona disponibles bajo petición previa para estancias con bebés.\nZonas Comunes e Instalaciones\nPiscina con terraza situada en la planta 30 del edificio. El acceso requiere el uso de llave magnética y reserva de horario previa.\nGimnasio y zona de coworking ubicados en la planta del hall de entrada. El acceso requiere el uso de llave magnética y reserva de horario previa.\nEstá estrictamente prohibido transitar por las zonas comunes del edificio sin camiseta o con ropa mojada.\nAparcamiento\nPlaza de aparcamiento privada y gratuita asignada en el sótano -1 (número 234).\nEl acceso y salida del garaje se realiza mediante el uso de una llave magnética sobre el sensor de apertura.\nInstrucciones de Entrada y Salida\nEs obligatorio realizar el registro online de los huéspedes antes de la llegada.\nCheck-out: Se deben apagar todas las luces, el aire acondicionado y los electrodomésticos. Las llaves deben dejarse sobre la mesa del salón (no entregarlas en recepción ni dejarlas en el buzón).\nDurante los meses de julio y agosto no se ofrecen servicios de entrada temprana (early check-in) ni salida tardía (late check-out).\nGestión de Residuos y Entorno\nLos contenedores de basura se encuentran situados frente a la Torre Norte (junto al hotel Hilton), cruzando la carretera.\nSupermercado Mercadona disponible a 80 metros del edificio.\nParada de taxis y opciones de alquiler de bicicletas en las inmediaciones.\nTeléfonos de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 Policía Local: 092 Emergencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -66,7 +66,7 @@
         "incluido": true,
         "numero": 274,
         "sotano": "-2",
-        "acceso": "Llaves: En el interior del apartamento se encuentra un juego de llaves que incluye la del portal, el apartamento y la llave magnética para garaje y zonas comunes."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "Urbansky17",
@@ -75,6 +75,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -82,7 +83,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Información General y Ubicación\nEl alojamiento se encuentra en el edificio Urban Sky Towers, situado en el Paseo de Martiricos, Málaga.\nUbicación en la planta 17, con vistas panorámicas de la ciudad.\nSituado a aproximadamente 13 minutos a pie del centro histórico de Málaga, siguiendo la ribera del río Guadalmedina.\nLocalización próxima al estadio de fútbol La Rosaleda y a un supermercado Mercadona (80 metros).\nEl edificio cuenta con servicio de conserjería disponible las 24 horas.\nDistribución y Equipamiento\nApartamento de un dormitorio con cama doble tamaño Queen y un sofá cama en el salón.\nCocina completa integrada en el salón, equipada con horno, microondas, lavavajillas, tostadora, cafetera de cápsulas Nespresso, hervidor de agua (kettle) y batidora.\nLos cubiertos se encuentran habitualmente en el cajón situado debajo del horno.\nEquipamiento de limpieza y colada: lavadora, plancha, tabla de planchar y secador de pelo.\nClimatización mediante aire acondicionado.\nEntretenimiento y conectividad: Smart TV con acceso a aplicaciones de streaming (no se proporcionan cuentas personales) y conexión Wi-Fi (Red:\nUrbansky17).\nDisponibilidad de cuna y trona bajo petición previa.\nSe proporcionan toallas, sábanas, edredones y artículos de aseo básico (gel y champú).\nEl apartamento cuenta con sensores de humo para seguridad.\nServicios y Zonas Comunes\nPiscina: Ubicada en la planta 30 del edificio. Requiere reserva previa. Es obligatorio el uso de la llave magnética negra para el acceso.\nLavandería: Existe una zona común con secadoras en la planta baja, junto a la conserjería.\nAparcamiento: El apartamento incluye una plaza de aparcamiento asignada (número 274) situada en el sótano -2. El acceso se realiza mediante la llave magnética sobre el lector correspondiente.\nNormas de Convivencia y Uso Uso de zonas comunes: Según las normas de la comunidad, está prohibido circular por el interior del edificio sin camiseta o salir mojado de la zona de piscina hacia las áreas comunes.\nGestión de residuos: Los contenedores de basura se encuentran frente al edificio de la Torre Norte (junto al hotel), cruzando la carretera. No se debe dejar basura dentro del apartamento al salir.\nProcedimientos de Entrada y Salida\nLlaves: En el interior del apartamento se encuentra un juego de llaves que incluye la del portal, el apartamento y la llave magnética para garaje y zonas comunes.\nCheck-out: Se debe realizar apagando luces, aire acondicionado y electrodomésticos. Las llaves deben dejarse sobre la mesa del salón.\nRestricción de llaves: No se deben dejar las llaves en la recepción, en el buzón ni en el bombín de la puerta por fuera.\nEn los meses de julio y agosto no se ofrecen servicios de entrada temprana (early check-in) o salida tardía (late check-out).\nInformación de Emergencia\nNúmero general de emergencias: 112.\nPolicía Nacional: 091.\nPolicía Local: 092.\nEmergencias Sanitarias: 061.\nBomberos: 080.",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -112,7 +112,7 @@
         "incluido": true,
         "numero": 32,
         "sotano": "-1",
-        "acceso": "Para acceder al garaje con el vehículo, es necesario pasar la llave magnética redonda negra sobre el sensor con el símbolo de WiFi."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "XPCEURBAN3",
@@ -121,6 +121,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -128,7 +129,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Información General y Ubicación\nEl alojamiento se encuentra en el edificio Urban Sky Towers, Paseo de Martiricos 40, Málaga (Planta 20).\nUbicación estratégica junto al estadio de fútbol La Rosaleda, a 13 minutos a pie del centro histórico y a 20 minutos en coche del aeropuerto.\nEl edificio cuenta con servicio de conserjería disponible las 24 horas.\nDistribución y Equipamiento\nApartamento de dos dormitorios, dos baños y cocina completa integrada al salón.\nCapacidad de pernoctación: dos camas dobles y un sofá en el salón.\nEquipamiento de cocina: Lavavajillas, horno, microondas, cafetera Nespresso, hervidor de agua (kettle), batidora y tostadora. Los cubiertos suelen encontrarse en el cajón debajo del horno.\nLavandería y cuidado personal: Lavadora, secador de pelo, plancha y tabla de planchar.\nTextiles: Se proporcionan sábanas, toallas y edredones o fundas nórdicas.\nEntretenimiento y conectividad: Smart TV con Netflix (requiere cuenta propia del huésped). Conexión WiFi disponible (Red: XPCEURBAN3 / Clave:\nXperienceMalaga2025).\nEquipamiento infantil: Cuna y trona disponibles bajo petición previa.\nSeguridad: El apartamento dispone de sensores de humo.\nInstalaciones y Zonas Comunes Piscina: Situada en la planta 30. El acceso requiere el uso de la llave magnética negra.\nNormas de piscina: Está prohibido circular por las zonas comunes del edificio sin camiseta o con el cuerpo mojado.\nLavandería comunitaria: Existen secadoras en la planta baja junto a la conserjería (consultar disponibilidad de uso).\nOtros servicios: El complejo dispone de ludoteca para los residentes y huéspedes.\nAparcamiento\nEl apartamento incluye una plaza de parking privada (número 32) situada en el sótano -1.\nPara acceder al garaje con el vehículo, es necesario pasar la llave magnética redonda negra sobre el sensor con el símbolo de WiFi.\nProtocolos de Entrada y Salida\nEntrada (Check-in): Disponible a partir de las 15:00h mediante código de acceso de seis cifras. Se requiere registro online previo. El servicio de asistencia está disponible hasta las 22:00h.\nLlaves: Al llegar, el huésped encontrará en el interior un juego de llaves físicas y la llave magnética para zonas comunes y garaje.\nSalida (Check-out): Antes de salir, se deben apagar luces, climatización y electrodomésticos, y retirar la basura.\nEntrega de llaves: Las llaves deben dejarse sobre la mesa del salón. No deben entregarse en recepción ni dejarse en el buzón.\nRestricciones temporales: Durante los meses de julio y agosto no se ofrecen servicios de early check-in ni late check-out.\nServicios del Entorno Supermercado: Mercadona ubicado a aproximadamente 80 metros del edificio.\nGestión de residuos: Los contenedores de basura se encuentran frente a la Torre Norte (Hotel Hilton), cruzando la carretera.\nEmergencias: Teléfono general de emergencias (112), Policía Nacional (091), Policía Local (092), Emergencias Sanitarias (061).\nRecomendaciones de Gastronomía y Ocio Restaurantes en el centro: La Reserva 12, Refectorium, Casa Antonio, Mesón Santiago Sedeño, Rincón Catedral, Uvedoble, La Cosmopolita, La Medusa, El Trillo, La Cepa y Lo Güeno.\nPescados y Mariscos: El Balneario, La Pérgola del Mediterráneo, Espigones, Las Palmeras y Hermanos Alba.\nCocina internacional y especialidades: Óleo (en el CAC), La Sole de Bodega El Pimpi, Takumi (japonés) y Rocío Sushi y Tapas.\nOcio nocturno: Sala Gold, Theatro Club Málaga y Liceo",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -152,14 +152,13 @@
       "dormitorios": 2,
       "banos": 2,
       "distribucion_descanso": [
-        "Dispone de una cama de matrimonio, dos camas individuales y un sofá cama en el salón.",
-        "Disponibilidad de ropa de cama, toallas, edredones y almohadas."
+        "Dispone de una cama de matrimonio, dos camas individuales y un sofá cama en el salón."
       ],
       "aparcamiento": {
         "incluido": true,
         "numero": 37,
         "sotano": "-1",
-        "acceso": "En el interior del apartamento se encuentra un juego de llaves físicas y una llave magnética negra para el acceso al portal, garaje y zonas comunes."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "XPCE URBAN 4",
@@ -168,6 +167,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -175,7 +175,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Ubicación y Accesos\nEl apartamento se encuentra en la planta 21 (letra I) de las Torres Urban Sky, en Paseo de Martiricos 40, Málaga.\nUbicado junto al estadio de fútbol La Rosaleda y a unos 13 minutos a pie del centro histórico.\nDispone de servicio de conserjería disponible las 24 horas del día.\nDistribución y Capacidad\nConsta de dos dormitorios, dos baños completos y una cocina integrada en el salón.\nDispone de una cama de matrimonio, dos camas individuales y un sofá cama en el salón.\nEquipamiento del Apartamento\nCocina equipada con lavadora, lavavajillas, horno, microondas, cafetera de cápsulas Nespresso, hervidor de agua (kettle), batidora y tostadora.\nDisponibilidad de ropa de cama, toallas, edredones y almohadas.\nArtículos de aseo (gel y champú) y secador de pelo incluidos.\nPlancha y tabla de planchar disponibles.\nSmart TV con Netflix (el huésped debe utilizar su propia cuenta).\nSensores de humo instalados para seguridad.\nCuna y trona disponibles bajo petición previa.\nConectividad\nConexión WiFi disponible. Red: XPCE URBAN 4 / Clave: XPCEurban24.\nInstrucciones de Entrada (Check-in)\nEs obligatorio completar el registro online de los huéspedes antes de la llegada.\nLa entrada al apartamento está permitida a partir de las 15:00 h.\nEl servicio de asistencia para dudas en la llegada está disponible hasta las 22:00 h.\nEn el interior del apartamento se encuentra un juego de llaves físicas y una llave magnética negra para el acceso al portal, garaje y zonas comunes.\nAparcamiento\nIncluye una plaza de aparcamiento gratuita (nº 37) en el sótano -1.\nPara la apertura de las puertas del parking, se debe pasar la llave magnética negra sobre el sensor con el símbolo de WiFi.\nZonas Comunes y Servicios del Edificio\nLavandería: Hay secadoras disponibles en la planta baja, junto a la conserjería (se requiere aviso previo para su uso).\nSupermercado: Existe un Mercadona situado a unos 80 metros del edificio.\nNormas de Estancia y Gestión de Residuos\nEstá prohibido circular por las zonas comunes del edificio sin camiseta o estando mojado tras el uso de la piscina.\nLos contenedores de basura se encuentran cruzando la carretera, frente al edificio de la Torre Norte (hotel Hilton).\nDurante los meses de julio y agosto no se ofrecen servicios de entrada temprana (early check-in) ni salida tardía (late check-out).\nInstrucciones de Salida (Check-out)\nLas llaves deben dejarse sobre la mesa del salón. Bajo ningún concepto deben entregarse en recepción ni dejarse en el buzón.\nAntes de salir, el huésped debe apagar luces, aire acondicionado y electrodomésticos, y retirar la basura acumulada.\nSe solicita enviar un mensaje al completar la salida para coordinar el servicio de limpieza.\nTeléfonos de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 / Policía Local: 092 Emergencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -206,7 +205,7 @@
         "incluido": true,
         "numero": 341,
         "sotano": "-2",
-        "acceso": "Dentro del apartamento se encuentra un juego de llaves físico que incluye la llave del portal y la llave magnética (circular negra) necesaria para el garaje y las zonas comunes."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "HUAWEI-5G-j9gW",
@@ -215,6 +214,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -222,7 +222,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Información General y Ubicación\nEl alojamiento es un apartamento de tres dormitorios y dos baños situado en la planta 15 (letra K) de las torres Urban Sky en Málaga, junto al estadio de fútbol La Rosaleda.\nUbicación: Paseo de Martiricos, 40, Málaga.\nSe encuentra a unos 13 minutos a pie del centro histórico mediante un paseo por la ribera del río Guadalmedina.\nLa distancia al aeropuerto de Málaga es de aproximadamente 20 minutos en coche.\nEl edificio cuenta con servicio de conserjería disponible las 24 horas.\nDistribución y Capacidad\nEl apartamento dispone de tres dormitorios configurados con una cama doble y tres camas individuales.\nCuenta con un sofá cama adicional en el salón.\nDispone de dos baños completos y una cocina integrada al salón-comedor.\nEquipamiento y Servicios\nCocina totalmente equipada con: lavadora, lavavajillas, horno, microondas, tostadora, cafetera de cápsulas Nespresso, hervidor de agua (kettle) y batidora.\nLos cubiertos se encuentran habitualmente en el cajón situado debajo del horno.\nComodidades incluidas: sábanas, toallas, edredones o fundas nórdicas, almohadas, gel y champú.\nAccesorios: secador de pelo, plancha y tabla de planchar.\nEntretenimiento: Smart TV con acceso a aplicaciones de streaming (el usuario debe utilizar su propia cuenta; no se proporciona usuario para Netflix).\nClimatización: Aire acondicionado centralizado.\nSeguridad: El apartamento está equipado con sensores de humo.\nCuna y trona disponibles bajo petición previa.\nConexión Wi-Fi de alta velocidad disponible en todo el alojamiento. Red:\nHUAWEI-5G-j9gW | Contraseña: f3eAZ3wW Existe la posibilidad de gestionar un servicio de transporte (transfer) desde o hacia el aeropuerto bajo petición previa.\nInstrucciones de Entrada (Check-in)\nEs obligatorio completar el registro online de todos los huéspedes antes de la llegada.\nSe solicita a los huéspedes informar sobre su horario previsto de llegada con antelación.\nLa entrada al apartamento está permitida a partir de las 15:00 h.\nDentro del apartamento se encuentra un juego de llaves físico que incluye la llave del portal y la llave magnética (circular negra) necesaria para el garaje y las zonas comunes.\nEl servicio de asistencia para dudas durante la entrada está disponible hasta las 22:00 h.\nInstrucciones de Salida (Check-out)\nLa salida debe realizarse antes de las 11:00 h (salvo acuerdo previo).\nAntes de salir, se debe verificar que todas las luces, el aire acondicionado y los electrodomésticos estén apagados.\nLa basura debe ser retirada y depositada en los contenedores situados frente a la Torre Norte (junto al hotel Hilton), cruzando la carretera.\nLas llaves deben dejarse sobre la mesa del salón. No deben dejarse en la recepción ni en el buzón.\nSe solicita enviar un mensaje al finalizar la estancia para coordinar el servicio de limpieza.\nDurante los meses de julio y agosto no se ofrecen servicios de entrada temprana o salida tardía (early check-in/late check-out).\nEn caso de necesitar consigna de equipaje tras el check-out, existen servicios externos especializados en el centro de la ciudad.\nAparcamiento\nEl apartamento incluye una plaza de aparcamiento gratuita (número 341) situada en el sótano -2.\nPara acceder al parking con el vehículo, tanto para entrar como para salir, es necesario pasar la llave magnética sobre el sensor identificado con el símbolo de Wi-Fi.\nNormativa de piscina: Está prohibido circular por las zonas comunes del edificio (pasillos, ascensores, hall) si se está mojado o sin camiseta.\nLavandería: Existe una zona con secadoras en la planta baja, junto a la conserjería. Su uso debe ser notificado previamente.\nLudoteca: Espacio de recreación infantil disponible dentro de las instalaciones del edificio.\nEntorno y Recomendaciones\nSupermercados: Hay un establecimiento Mercadona justo al lado del edificio (aproximadamente 80 metros).\nRestauración en el Centro Histórico: La Reserva 12, Refectorium, Casa Antonio, Mesón Santiago Sedeño, Rincón Catedral, Uvedoble, La Cosmopolita, La Medusa, El Trillo, La Cepa y Lo Güeno.\nPescados y Mariscos: El Balneario, La Pérgola del Mediterráneo, Espigones, Las Palmeras y Hermanos Alba.\nCocina Japonesa y Fusión: Óleo (en el CAC), La Sole de Bodega El Pimpi, Takumi y Rocío Sushi y Tapas.\nOcio nocturno: Sala Gold, Theatro Club Málaga y LICEO.\nEmergencias Teléfono de emergencias general: 112.\nPolicía Nacional: 091 / Policía Local: 092.\nGuardia Civil: 062.\nEmergencias Sanitarias: 061.\nBomberos: 080.",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -252,7 +251,7 @@
         "incluido": true,
         "numero": 348,
         "sotano": "-2",
-        "acceso": "Para la apertura de las puertas del parking, tanto de entrada como de salida, se debe utilizar la llave magnética redonda de color negro sobre el sensor identificado con el símbolo de WiFi."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": null,
@@ -261,6 +260,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -268,7 +268,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Descripción y Ubicación\nEl alojamiento XPCE Urban 6 Málaga Skyline es un apartamento de tres dormitorios y dos baños con cocina integrada al salón, ubicado en la planta 15 (letra J) de las Urban Sky Towers.\nSe encuentra en el Paseo de Martiricos 40, Málaga, situado junto al estadio de fútbol La Rosaleda.\nLa ubicación permite llegar al centro histórico en aproximadamente 13 minutos a pie mediante un paseo por la ribera del río Guadalmedina.\nLa distancia al aeropuerto de Málaga es de aproximadamente 20 minutos en coche.\nEl apartamento dispone de una capacidad de pernocta distribuida en una cama de matrimonio, tres camas individuales y un sofá cama.\nEquipamiento del Apartamento\nCocina totalmente equipada con horno, microondas, lavavajillas, lavadora, cafetera de cápsulas Nespresso, hervidor de agua (kettle), tostadora y batidora.\nLos cubiertos se encuentran habitualmente en un cajón específico situado debajo del horno.\nDispone de plancha, tabla de planchar, secador de pelo y sensores de humo por seguridad.\nSe proporcionan toallas, sábanas, edredones o fundas nórdicas, almohadas, así como gel y champú de cortesía.\nCuenta con Smart TV con acceso a aplicaciones de streaming (el huésped debe utilizar su propia cuenta de usuario).\nExiste disponibilidad de cuna y trona bajo petición previa antes de la llegada.\nConexión WiFi de alta velocidad disponible en todo el alojamiento.\nProcedimientos de Entrada y Salida\nEl proceso de registro (check-in) requiere completar un registro online obligatorio antes de la llegada.\nEl servicio de asistencia para la entrada está disponible hasta las 22:00 h.\nDurante los meses de julio y agosto no se ofrecen servicios de entrada anticipada (early check-in) ni salida tardía (late check-out).\nPara la salida (check-out), los huéspedes deben apagar luces, aire acondicionado y electrodomésticos, y dejar las llaves sobre la mesa del salón.\nSe agradece el envío de un mensaje en el momento de la salida para coordinar el servicio de limpieza.\nBajo ninguna circunstancia se deben dejar las llaves en el buzón ni en la recepción del edificio.\nZonas Comunes y Servicios del Edificio\nEl edificio cuenta con servicio de conserjería disponible las 24 horas.\nLudoteca: El complejo dispone de una zona infantil para el uso de los residentes y huéspedes.\nLavandería: Existe una zona de secadoras en la planta baja, junto a la conserjería (consultar condiciones de uso).\nServicio de transfer: Posibilidad de gestionar traslados al aeropuerto o puntos de interés bajo solicitud.\nAparcamiento\nEl apartamento incluye una plaza de aparcamiento gratuita asignada con el número 348, situada en el sótano -2.\nPara la apertura de las puertas del parking, tanto de entrada como de salida, se debe utilizar la llave magnética redonda de color negro sobre el sensor identificado con el símbolo de WiFi.\nNormas de Convivencia y Residuos La basura debe depositarse en los contenedores situados frente al edificio de la Torre Norte (Hotel Hilton), cruzando la carretera.\nDentro del apartamento se encuentra un juego de llaves que incluye la llave del portal, la del apartamento y la llave magnética para las zonas comunes y el garaje.\nInformación de Interés y Emergencias\nSupermercado: Existe un establecimiento Mercadona a unos 80 metros del edificio.\nTeléfonos de emergencia: 112 (Emergencias nacional), 091 (Policía Nacional), 092 (Policía Local), 062 (Guardia Civil), 061 (Emergencias Sanitarias) y 080 (Bomberos).\nRecomendaciones Gastronómicas y Ocio Restaurantes de cocina local en el centro: La Reserva 12, Refectorium, Casa Antonio, Mesón Santiago Sedeño, Rincón Catedral, Uvedoble, La Cosmopolita, La Medusa, El Trillo, La Cepa y Lo Güeno.\nEspecialidades de pescado y marisco: El Balneario, La Pérgola del Mediterráneo, Hermanos Alba y los chiringuitos de Pedregalejo (Espigones y Las Palmeras).\nCocina internacional y de fusión: Óleo (en el CAC), La Sole de Bodega El Pimpi, Takumi y Rocío Sushi y Tapas.\nOcio nocturno: Sala Gold, Theatro Club Málaga y LICEO.",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -298,7 +297,7 @@
         "incluido": true,
         "numero": 28,
         "sotano": "-1",
-        "acceso": "Dentro del alojamiento encontrará un juego de llaves físicas para el portal y una llave magnética redonda para el garaje y las zonas comunes."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "XPCE URBAN 7",
@@ -307,6 +306,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -314,7 +314,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Información General y Ubicación\nEl apartamento se encuentra en el edificio Urban Sky Towers (Paseo de Martiricos), en la planta 19.\nUbicación privilegiada junto al estadio de fútbol La Rosaleda, a 13 minutos a pie del centro histórico de Málaga por la ribera del río Guadalmedina.\nLa distancia aproximada al aeropuerto de Málaga es de 20 minutos en coche.\nLa propiedad consta de dos dormitorios con camas de matrimonio, dos baños y cocina integrada al salón.\nLlegada y Salida (Check-in y Check-out) Es obligatorio realizar el registro de huéspedes (check-in online) antes de la llegada.\nLa entrada al apartamento está disponible a partir de las 15:00 h mediante un código de acceso de seis cifras.\nEl servicio de asistencia al huésped está disponible hasta las 22:00 h para cualquier duda durante la llegada.\nDentro del alojamiento encontrará un juego de llaves físicas para el portal y una llave magnética redonda para el garaje y las zonas comunes.\nInstrucciones de salida: se debe revisar que luces, aire acondicionado y electrodomésticos queden apagados; las llaves deben dejarse sobre la mesa del salón.\nEstá estrictamente prohibido dejar las llaves en la recepción del edificio o en el buzón.\nDurante los meses de julio y agosto no se ofrecen servicios de entrada temprana (early check-in) ni salida tardía (late check-out).\nEquipamiento y Servicios\nCocina totalmente equipada con horno, microondas, lavavajillas, tostadora, cafetera Nespresso, hervidor de agua (kettle) y batidora.\nEn algunos casos, los cubiertos se encuentran en el cajón ubicado directamente debajo del horno.\nDispone de lavadora, plancha, tabla de planchar y secador de pelo.\nSe proporcionan toallas, sábanas, edredones, almohadas, gel y champú para la estancia.\nSmart TV disponible con acceso a Netflix (el huésped debe utilizar su propia cuenta).\nCuna y trona disponibles bajo petición previa antes de la llegada.\nConexión Wifi: Red \"XPCE URBAN 7\" con contraseña \"XperienceMalaga24\".\nSensores de humo instalados para mayor seguridad.\nAparcamiento\nEl apartamento incluye una plaza de aparcamiento gratuita asignada con el número 28, situada en el sótano -1.\nPara la apertura de las puertas del parking (entrada y salida), se debe pasar la llave magnética redonda sobre el sensor identificado con el símbolo de wifi.\nZonas Comunes y Normativa\nLavandería: existen secadoras de uso común en la planta baja, junto a conserjería (se requiere aviso previo para su uso).\nServicio de conserjería disponible las 24 horas del día.\nNormas de convivencia: está prohibido circular sin camiseta por las zonas comunes del edificio o transitar por el interior del mismo si se está mojado tras el uso de la piscina.\nSuministros y Entorno Supermercado: un establecimiento Mercadona se encuentra a escasos 80 metros del edificio.\nGestión de residuos: los contenedores de basura están situados frente a la Torre Norte (Hotel Hilton), cruzando la carretera.\nTeléfonos de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 Policía Local: 092 Emergencias Sanitarias: 061 Bomberos: 080 Guardia Civil: 062",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -344,7 +343,7 @@
         "incluido": true,
         "numero": 382,
         "sotano": "-2",
-        "acceso": "Para la entrada y salida del parking con vehículo, es necesario pasar la llave magnética redonda negra sobre el sensor identificado con el símbolo de Wi-Fi."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "XPCE URBAN 8",
@@ -353,6 +352,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -360,7 +360,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Información General y Ubicación\nEl apartamento XPCE Urban 8 Málaga Skyline se encuentra en la planta 19 de las Urban Sky Towers (Paseo de Martiricos, 40).\nLa ubicación permite llegar al centro histórico de la ciudad en aproximadamente 13 minutos a pie a través de un paseo por la ribera del río Guadalmedina.\nEl edificio se sitúa junto al estadio de fútbol La Rosaleda.\nExiste un supermercado Mercadona a escasos 80 metros del edificio.\nEquipamiento del Apartamento\nDistribución: Un dormitorio con cama doble, salón con sofá, cocina integrada y un baño.\nCocina: Equipada con lavavajillas, horno, microondas, tostadora, cafetera de cápsulas Nespresso, hervidor de agua (kettle), batidora y menaje completo. Los cubiertos se encuentran en el primer cajón debajo del horno.\nLavandería y limpieza: Dispone de lavadora, plancha, tabla de planchar y secador de pelo.\nTextiles: Se proporcionan sábanas, toallas, almohadas y edredones o fundas nórdicas.\nAseo: Se incluye gel y champú de cortesía.\nEntretenimiento y conectividad: Smart TV con acceso a Netflix (requiere cuenta propia del cliente).\nEquipamiento infantil: Cuna y trona disponibles bajo petición previa.\nSeguridad: El apartamento cuenta con sensores de humo instalados.\nConexión Wi-Fi: Red disponible bajo el nombre \"XPCE URBAN 8\".\nZonas Comunes y Servicios del Edificio\nLavandería comunitaria: Existe una sala con secadoras en la planta baja, junto a la conserjería.\nConserjería: Servicio disponible las 24 horas del día.\nOtros servicios: El edificio cuenta con ludoteca y terraza.\nAparcamiento\nEl apartamento incluye una plaza de aparcamiento asignada (número 382) situada en el sótano -2.\nPara la entrada y salida del parking con vehículo, es necesario pasar la llave magnética redonda negra sobre el sensor identificado con el símbolo de Wi-Fi.\nInstrucciones de Entrada (Check-in)\nEl registro de viajeros debe realizarse obligatoriamente de forma online antes de la llegada.\nAsistencia: Existe servicio de asistencia para dudas sobre el acceso hasta las 22:00 h.\nLlaves: En el interior del apartamento se encuentra un juego de llaves físico que incluye la llave del portal, del apartamento y la llave magnética para zonas comunes y garaje.\nInstrucciones de Salida (Check-out)\nLas llaves deben dejarse sobre la mesa del salón. No deben dejarse en la recepción ni en el buzón.\nAntes de salir, es necesario apagar luces, aire acondicionado y electrodomésticos.\nGestión de residuos: La basura debe ser retirada por los huéspedes antes de su salida. Los contenedores se encuentran frente a la Torre Norte (Hotel Hilton), cruzando la carretera.\nDurante los meses de julio y agosto, no se ofrecen servicios de entrada temprana (early check-in) ni salida tardía (late check-out).\nNormas de Convivencia\nUso de zonas comunes: Está prohibido circular por el interior del edificio sin camiseta o salir mojado de la zona de piscina hacia las áreas comunes.\nInformación Práctica y Emergencias\nTeléfono genérico de emergencias: 112.\nPolicía Nacional: 091 / Policía Local: 092.\nEmergencias Sanitarias: 061 / Bomberos: 080.\nConsigna de equipaje: Existen diversos servicios de almacenamiento de equipaje (luggage storage) en la ciudad para después del check-out.",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -390,7 +389,7 @@
         "incluido": true,
         "numero": 99,
         "sotano": "-1",
-        "acceso": "Llaves: En el interior del apartamento encontrará un juego de llaves que incluye la llave del portal y la llave magnética redonda para garaje y zonas comunes."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "MIWIFI_bxGz",
@@ -399,6 +398,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -406,7 +406,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Información General y Ubicación\nEl apartamento XPCE Urban 9 Málaga Skyline se encuentra en Paseo de Martiricos 40, Málaga (Edificio Urban Sky Towers), planta 18, letra I.\nUbicación estratégica junto al estadio de fútbol La Rosaleda, a 13 minutos a pie del centro histórico (paseo por la ribera del río Guadalmedina) y a 20 minutos en coche del aeropuerto.\nLa vivienda cuenta con dos dormitorios, dos baños completos y una cocina integrada al salón.\nDisposición de camas: dispone de dos camas dobles y un sofá en el salón.\nEl edificio ofrece servicios premium que incluyen conserjería 24 horas, piscina con terraza, gimnasio, zona de coworking y ludoteca.\nEquipamiento de la Vivienda Cocina totalmente equipada con horno, microondas, lavavajillas, lavadora, cafetera Nespresso, tostadora, hervidor de agua (kettle) y batidora.\nLos cubiertos se encuentran habitualmente en un cajón específico situado debajo del horno.\nComodidades incluidas: toallas, sábanas, edredones, almohadas, gel, champú y secador de pelo.\nEquipamiento de limpieza y planchado: plancha y tabla de planchar.\nEntretenimiento y seguridad: Smart TV con acceso a Netflix (requiere cuenta propia de los huéspedes) y sensores de humo instalados.\nDisponibilidad de cuna y trona bajo petición previa antes de la llegada.\nConexión Wi-Fi: Red \"MIWIFI_bxGz\" con contraseña \"4ufF6b7U\".\nNormas de la piscina: Está estrictamente prohibido circular por las zonas comunes del edificio con el torso descubierto o con la ropa mojada.\nLavandería: Existe una zona con secadoras en la planta baja junto a la conserjería; es necesario avisar previamente para su uso.\nGestión de residuos: Los contenedores de basura se encuentran frente al edificio de la Torre Norte (Hotel Hilton), cruzando la carretera.\nServicio de asistencia: Disponible para dudas sobre la llegada hasta las 22:00 h.\nLlaves: En el interior del apartamento encontrará un juego de llaves que incluye la llave del portal y la llave magnética redonda para garaje y zonas comunes.\nCheck-out: Antes de salir, se deben apagar luces, aire acondicionado y electrodomésticos. La basura debe ser retirada y las llaves deben dejarse sobre la mesa del salón.\nRestricción de llaves: No se deben dejar las llaves en la recepción ni en el buzón.\nPolíticas estacionales: Durante los meses de julio y agosto no se ofrecen servicios de entrada temprana (early check-in) ni salida tardía (late check-out).\nAparcamiento y Traslados La plaza de aparcamiento asignada es la número 99, ubicada en el sótano -1.\nPara entrar y salir del parking con el vehículo, se debe pasar la llave magnética negra sobre el sensor identificado con el símbolo de Wi-Fi.\nExiste la posibilidad de contratar servicio de transfer desde o hacia el aeropuerto bajo petición previa.\nServicios Cercanos y Recomendaciones Supermercado: Mercadona situado a escasos 80 metros del edificio.\nRestaurantes en el centro histórico: La Reserva 12, Refectorium, Casa Antonio, Mesón Santiago Sedeño, Rincón Catedral, Uvedoble, La Cosmopolita, La Medusa, El Trillo, La Cepa y Lo Güeno.\nPescados y mariscos: El Balneario, La Pérgola del Mediterráneo, Espigones, Las Palmeras y Hermanos Alba.\nOpciones de cocina japonesa: Óleo (en el CAC), La Sole de Bodega El Pimpi, Takumi y Rocío Sushi y Tapas.\nOcio nocturno: Sala Gold, Theatro Club Málaga y LICEO.\nEmergencias Teléfono de emergencias general: 112.\nCuerpos de seguridad: Policía Nacional (091), Policía Local (092) y Guardia Civil (062).\nEmergencias sanitarias: 061.\nBomberos: 080.",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -436,7 +435,7 @@
         "incluido": true,
         "numero": 527,
         "sotano": "-2",
-        "acceso": "Dentro del apartamento se encuentra un juego de llaves físico que incluye la llave del portal, del apartamento y la llave magnética para zonas comunes y garaje."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "XPCE URBAN 10",
@@ -445,6 +444,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -452,7 +452,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Ubicación y Descripción General El apartamento, denominado XPCE Urban 10 Málaga Skyline, se encuentra en las Urban Sky Towers, en el Paseo de Martiricos 40, Málaga.\nLa propiedad se sitúa en la planta 22, letra A, y ofrece vistas panorámicas de la ciudad.\nUbicación estratégica a aproximadamente 13 minutos a pie del centro histórico de Málaga, mediante un paseo por la ribera del río Guadalmedina.\nSe encuentra situado junto al estadio de fútbol La Rosaleda.\nLa distancia aproximada al aeropuerto es de 20 minutos en coche.\nDistribución y Capacidad\nEl apartamento cuenta con dos dormitorios y dos baños.\nDistribución de camas: una cama de matrimonio y dos camas individuales.\nEl salón dispone de un sofá para mayor comodidad de los huéspedes.\nCocina completa integrada al salón-comedor.\nEquipamiento y Servicios\nCocina totalmente equipada con: lavadora, lavavajillas, horno, microondas, tostadora, cafetera de cápsulas Nespresso, hervidor de agua (kettle) y batidora.\nLos cubiertos se encuentran habitualmente en el cajón situado debajo del horno.\nClimatización mediante aire acondicionado.\nEntretenimiento: Smart TV con acceso a Netflix (requiere cuenta propia del huésped).\nRopa de hogar: Se proporcionan toallas, sábanas, edredones o fundas nórdicas y almohadas.\nArtículos de aseo: Gel, champú y secador de pelo.\nOtros: Plancha y tabla de planchar.\nSeguridad: El apartamento dispone de sensores de humo.\nDisponibilidad de cuna y trona bajo petición previa.\nAcceso y Check-in\nEl registro (check-in) se realiza de forma online mediante el enlace enviado previamente por correo electrónico o mensajería.\nLa entrada al apartamento es a partir de las 15:00 h mediante un código de acceso de seis cifras enviado el día de llegada.\nEl servicio de asistencia para la llegada está disponible hasta las 22:00 h.\nDentro del apartamento se encuentra un juego de llaves físico que incluye la llave del portal, del apartamento y la llave magnética para zonas comunes y garaje.\nAparcamiento\nEl apartamento incluye una plaza de aparcamiento gratuita (N.º 527) situada en el sótano -2.\nPara la apertura de las puertas del parking, se debe pasar la llave magnética redonda sobre el sensor con el símbolo de Wi-Fi.\nZonas Comunes y Servicios del Edificio\nPiscina: Situada en la planta 30. El acceso requiere el uso de la llave magnética.\nNormativa de piscina: Está prohibido circular por las zonas comunes del edificio sin camiseta o estando mojado.\nLudoteca: Espacio disponible dentro de las instalaciones de Urban Sky.\nLavandería: Existe una zona con secadoras en la planta baja, junto a conserjería.\nSe debe consultar o avisar para su uso.\nConserjería: El edificio dispone de servicio de conserjería las 24 horas.\nNormas de la Casa y Check-out Horario de salida (Check-out): Se debe realizar antes de la hora estipulada.\nInstrucciones de salida: Apagar luces, aire acondicionado y electrodomésticos.\nDejar las llaves sobre la mesa del salón.\nSe recomienda enviar un mensaje tras la salida para facilitar la coordinación del servicio de limpieza.\nNo se deben dejar las llaves en la recepción ni en el buzón.\nDurante los meses de julio y agosto no se ofrecen servicios de entrada temprana (early check-in) ni salida tardía (late check-out).\nGestión de residuos: Los contenedores de basura se encuentran frente al edificio de la Torre Norte (Hotel Hilton), cruzando la carretera.\nConectividad\nRed Wi-Fi: XPCE URBAN 10.\nContraseña: XperienceMalaga25.\nEntorno y Recomendaciones\nSupermercados: Hay un establecimiento Mercadona a escasos 80 metros del edificio.\nRestauración recomendada en el centro: La Reserva 12, Refectorium, Casa Antonio, Mesón Santiago Sedeño, Rincón Catedral, Uvedoble, La Cosmopolita, La Medusa, El Trillo, La Cepa y Lo Güeno.\nRestaurantes de pescado y marisco: El Balneario, La Pérgola del Mediterráneo, Espigones, Las Palmeras y Hermanos Alba.\nOpciones de cocina japonesa: Óleo (en el CAC), La Sole de Bodega El Pimpi, Takumi y Rocío Sushi y Tapas.\nOcio nocturno: Sala Gold, Theatro Club Málaga y LICEO.\nContactos de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 Policía Local: 092 Guardia Civil: 062 Emergencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -482,7 +481,7 @@
         "incluido": true,
         "numero": 528,
         "sotano": "-2",
-        "acceso": "El acceso al parking se realiza mediante una llave magnética redonda negra que se debe pasar por el sensor (identificado con un símbolo similar al del Wi-Fi)."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "MOVISTAR_9000",
@@ -491,6 +490,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -498,7 +498,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Ubicación y Entorno El apartamento se encuentra en las Urban Sky Towers, situado en el Paseo de Martiricos 40 (Málaga), planta 20, letra H.\nUbicación privilegiada junto al estadio de fútbol La Rosaleda.\nDistancia aproximada de 13 minutos a pie del centro histórico de Málaga, mediante un paseo por la ribera del río Guadalmedina.\nTrayecto de aproximadamente 20 minutos en coche hasta el aeropuerto.\nSupermercado Mercadona situado a escasos 80 metros del edificio.\nDistribución y Capacidad\nVivienda de dos dormitorios y dos baños.\nCocina completa integrada en el salón-comedor.\nConfiguración de camas: una cama de matrimonio Queen size, dos camas individuales y un sofá cama en el salón.\nEquipamiento y Servicios\nClimatización mediante aire acondicionado.\nEquipamiento de cocina: horno, microondas, lavavajillas, tostadora, cafetera de cápsulas Nespresso, hervidor de agua (kettle) y batidora.\nOrganización: los cubiertos se encuentran habitualmente en el cajón ubicado debajo del horno.\nLavandería: el apartamento dispone de lavadora. Existe un servicio adicional de secadoras en la planta baja, junto a la conserjería.\nComodidades incluidas: plancha, tabla de planchar, secador de pelo, toallas, sábanas, edredones y artículos de aseo (gel y champú).\nEntretenimiento: Smart TV con acceso a aplicaciones de streaming (requiere cuenta propia del huésped).\nSeguridad: la vivienda cuenta con sensores de humo.\nServicio para familias: disponibilidad de cuna y trona bajo petición previa.\nConexión Wi-Fi de alta velocidad: Red \"MOVISTAR_9000\" | Clave:\n\"iecEjVggeU79pA9ec39o\".\nServicio de conserjería disponible las 24 horas en el edificio.\nInstrucciones de Entrada (Check-in)\nEl acceso al apartamento se realiza a partir de las 15:00 h.\nEs obligatorio realizar el registro online de todos los huéspedes mediante el enlace facilitado antes de la llegada.\nEl sistema de acceso es mediante código numérico de seis cifras, enviado el día de la llegada por correo electrónico o mensajería.\nDentro del apartamento se encuentra un juego de llaves físico para el acceso al portal, garaje y zonas comunes.\nEl servicio de asistencia para la llegada está disponible hasta las 22:00 h.\nInstrucciones de Salida (Check-out)\nEl horario de salida es hasta las 11:00 h.\nAntes de salir, se deben apagar todas las luces, el aire acondicionado y los electrodomésticos.\nSe debe retirar la basura del apartamento y depositarla en los contenedores exteriores.\nLas llaves deben dejarse sobre la mesa del salón. No se deben dejar en la recepción ni en el buzón.\nSe ruega notificar la salida mediante un mensaje para coordinar el servicio de limpieza.\nTras el check-out, existen diversos servicios externos de consigna de equipaje (luggage storage) disponibles en el centro de la ciudad.\nAparcamiento\nEl apartamento incluye una plaza de aparcamiento gratuita (número 528) situada en el sótano -2 del edificio.\nEl acceso al parking se realiza mediante una llave magnética redonda negra que se debe pasar por el sensor (identificado con un símbolo similar al del Wi-Fi).\nNormativa de vestimenta: está estrictamente prohibido transitar por las zonas comunes del edificio sin camiseta o con ropa mojada.\nGestión de residuos: los contenedores de basura se encuentran frente a la Torre Norte (Hotel Hilton), cruzando la carretera.\nRecomendaciones y Gastronomía Restaurantes destacados en el centro: La Reserva 12, Refectorium, Casa Antonio, Mesón Santiago Sedeño, Rincón Catedral, Uvedoble, La Cosmopolita, La Medusa, El Trillo, La Cepa y Lo Güeno.\nEspecialidades en pescado y marisco: El Balneario, La Pérgola del Mediterráneo, Espigones, Las Palmeras y Hermanos Alba.\nCocina internacional y japonesa: Óleo (en el CAC), Takumi, La Sole de Bodega El Pimpi y Rocío Sushi y Tapas.\nOpciones de ocio nocturno: Sala Gold, Theatro Club Málaga y Liceo.\nServicios externos: posibilidad de gestionar traslados al aeropuerto (transfer), alquiler de coches y alquiler de bicicletas bajo consulta.\nTeléfonos de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 Policía Local: 092 Guardia Civil: 062 Emergencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -528,7 +527,7 @@
         "incluido": true,
         "numero": 362,
         "sotano": "-2",
-        "acceso": "Acceso al parking mediante llave magnética redonda (aproximar al sensor con el símbolo wifi)."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "URBAN 12",
@@ -537,6 +536,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -544,7 +544,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Ubicación y Entorno El apartamento se encuentra en el edificio Urban Sky Towers, situado en el Paseo de Martiricos 40, Málaga (Planta 14, Apartamento J).\nUbicación estratégica junto al estadio de fútbol La Rosaleda.\nDistancia aproximada de 13 minutos a pie del centro histórico de la ciudad, siguiendo la ribera del río Guadalmedina.\nTiempo estimado de trayecto al aeropuerto de 20 minutos en coche.\nDistribución y Capacidad\nVivienda de tres dormitorios y dos baños completos.\nCocina íntegramente equipada e integrada en el salón-comedor.\nConfiguración de descanso: una cama de matrimonio, tres camas individuales y un sofá cama en el salón.\nEquipamiento del Apartamento\nClimatización mediante aire acondicionado y calefacción.\nCocina completa: horno, microondas, lavavajillas, tostadora, cafetera de cápsulas Nespresso, hervidor de agua (kettle) y batidora.\nLos cubiertos se encuentran habitualmente en el cajón situado bajo el horno.\nLavadora, plancha y tabla de planchar disponibles en la vivienda.\nBaños equipados con secador de pelo, gel y champú.\nTextiles de hogar: toallas, sábanas, almohadas y fundas nórdicas incluidas.\nEntretenimiento: Smart TV con acceso a plataformas de streaming (uso con cuenta propia del huésped).\nSeguridad: el apartamento cuenta con sensores de humo.\nCuna y trona disponibles bajo petición previa para estancias con bebés.\nConectividad y WiFi\nConexión WiFi de alta velocidad disponible en todo el alojamiento.\nNombre de la red: URBAN 12.\nContraseña: XperienceMalaga25\nZonas Comunes y Servicios del Edificio\nPiscina con terraza panorámica situada en la planta 30 (acceso con llave magnética).\nGimnasio y zona de coworking ubicados en la planta del hall de entrada (acceso con llave magnética).\nLudoteca (sala de juegos) disponible en las instalaciones.\nServicio de conserjería operativo las 24 horas.\nLavandería comunitaria con secadoras en la planta baja, disponible bajo solicitud previa.\nAparcamiento\nPlaza de aparcamiento privada asignada número 362, situada en el sótano -2 del edificio.\nAcceso al parking mediante llave magnética redonda (aproximar al sensor con el símbolo wifi).\nInstrucciones de Entrada y Registro Es obligatorio realizar el registro online de todos los huéspedes antes de la llegada.\nHorario de entrada (Check-in) a partir de las 15:00 h.\nServicio de asistencia al huésped disponible hasta las 22:00 h.\nEn el interior de la vivienda se encuentra un juego de llaves físicas para el acceso al portal y uso de zonas comunes/parking.\nNormas de Estancia y Convivencia\nDurante los meses de julio y agosto no se ofrecen servicios de entrada temprana (early check-in) ni salida tardía (late check-out).\nProhibido transitar por las zonas comunes del edificio con el torso descubierto o con ropa mojada tras el uso de la piscina.\nGestión de residuos: los contenedores de basura se encuentran situados frente a la Torre Norte (Hotel Hilton), cruzando la carretera.\nInstrucciones de Salida Apagar todas las luces, el aire acondicionado y los electrodomésticos antes de salir.\nRetirar la basura y depositarla en los contenedores correspondientes.\nDejar las llaves de la vivienda y del parking sobre la mesa del salón.\nSe ruega comunicar la salida definitiva para facilitar la coordinación del servicio de limpieza.\nInformación de Emergencia y Utilidad Supermercado Mercadona situado a 80 metros del edificio.\nServicio de transporte (transfer) al aeropuerto disponible bajo solicitud previa.\nTeléfono de emergencias generales: 112.\nPolicía Nacional: 091 / Policía Local: 092.\nEmergencias Sanitarias: 061 / Bomberos: 080.\nGuardia Civil: 062.",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -572,7 +571,7 @@
         "incluido": true,
         "numero": 236,
         "sotano": "-1",
-        "acceso": "Dentro del alojamiento se encuentra un juego de llaves que incluye la llave del portal, del apartamento y una llave magnética para el garaje y las zonas comunes."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "MIWIFI_2G_ETPs",
@@ -581,6 +580,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -588,7 +588,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Ubicación y Entorno El apartamento se encuentra en las Urban Sky Towers, situadas en el Paseo de Martiricos de Málaga, junto al estadio de fútbol La Rosaleda.\nLa distancia al centro histórico es de aproximadamente 13 minutos a pie, realizando un paseo por la ribera del río Guadalmedina.\nEl tiempo estimado de trayecto al aeropuerto es de 20 minutos en coche.\nExiste un supermercado Mercadona a escasos 80 metros del edificio.\nInstrucciones de Check-in y Registro Es obligatorio realizar el registro online de los huéspedes a través del enlace facilitado antes de la llegada.\nDentro del alojamiento se encuentra un juego de llaves que incluye la llave del portal, del apartamento y una llave magnética para el garaje y las zonas comunes.\nSe solicita informar con antelación sobre el horario previsto de llegada para coordinar la entrega de llaves.\nInstrucciones de Check-out\nAntes de salir, es necesario revisar que todas las luces, el aire acondicionado y los electrodomésticos queden apagados.\nLos huéspedes deben retirar la basura y depositarla en los contenedores situados frente a la Torre Norte (Hotel Hilton), cruzando la carretera.\nLas llaves deben dejarse sobre la mesa del salón. No se deben dejar en la recepción ni en el buzón.\nSe agradece el envío de un mensaje confirmando la salida para coordinar el servicio de limpieza.\nDurante los meses de julio y agosto no se ofrece la posibilidad de salida tardía (late check-out) ni entrada temprana (early check-in).\nEquipamiento del Apartamento\nCocina totalmente equipada con horno, microondas, lavavajillas, lavadora, cafetera de cápsulas Nespresso, hervidor de agua (kettle), tostadora, batidora y menaje completo.\nEn caso de no localizar los cubiertos, estos pueden encontrarse en un cajón específico situado bajo el horno.\nEl alojamiento dispone de sábanas, toallas, edredones, almohadas, secador de pelo, gel y champú.\nCuenta con plancha, tabla de planchar, sensores de humo y Smart TV (acceso a aplicaciones mediante cuenta propia del huésped).\nDisponibilidad de cuna y trona bajo petición previa antes de la estancia.\nZonas Comunes y Normativa del Edificio Piscina: Situada en la planta 30. Requiere reserva previa y el uso de la llave magnética negra para el acceso.\nGimnasio y Coworking: Situados en la planta del hall de entrada. Requieren reserva previa y acceso con llave magnética.\nNormas de vestimenta: Está prohibido circular por las zonas comunes del edificio sin camiseta o con la ropa mojada tras el uso de la piscina.\nLavandería: Existe una zona de secadoras en la planta baja, junto a la conserjería, disponible bajo petición.\nEl edificio cuenta con servicio de conserjería las 24 horas.\nParking\nEl apartamento incluye una plaza de aparcamiento gratuita (número 236) situada en el sótano -1.\nPara la apertura de las puertas del garaje es necesario utilizar la llave magnética redonda sobre el sensor identificado con el símbolo de wifi.\nConectividad\nEl apartamento dispone de conexión Wifi. Nombre de la red:\nMIWIFI_2G_ETPs. Contraseña: vtYYmHT4.\nRecomendaciones Locales Restaurantes en el centro histórico: La Reserva 12, Refectorium, Casa Antonio, Mesón Santiago Sedeño, Rincón Catedral, Uvedoble, La Cosmopolita, La Medusa, El Trillo, La Cepa y Lo Güeno.\nRestaurantes de pescado y mariscos: El Balneario, La Pérgola del Mediterráneo, Espigones, Las Palmeras y Hermanos Alba.\nOpciones de cocina fusión e internacional: Óleo (en el CAC), La Sole de Bodega El Pimpi, Takumi y Rocío Sushi y Tapas.\nOcio nocturno y discotecas: Sala Gold, Theatro Club Málaga y LICEO.\nTeléfonos y Servicios de Emergencia Emergencias generales: 112 Policía Nacional: 091 / Policía Local: 092 Emergencias Sanitarias: 061 Bomberos: 080 Guardia Civil: 062",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -616,7 +615,7 @@
         "incluido": true,
         "numero": 516,
         "sotano": "-2",
-        "acceso": "Dentro del apartamento se encuentra un juego de llaves físicas que incluye la llave del portal, del apartamento y la llave magnética para el garaje y las zonas comunes."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "DIGIFIBRA-EPRh",
@@ -625,6 +624,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -632,7 +632,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Información General y Ubicación\nEl apartamento (XPCE Urban 14 Málaga Skyline) se encuentra en un complejo residencial moderno (Urban Sky), ubicado en Paseo de Martiricos, 40.\nCuenta con tres dormitorios, dos baños y cocina integrada en el salón.\nSituado junto al estadio de fútbol La Rosaleda, a unos 13 minutos a pie del centro histórico mediante un paseo por la ribera del río Guadalmedina.\nEl trayecto al aeropuerto de Málaga es de aproximadamente 20 minutos en coche.\nHay un supermercado Mercadona disponible a escasos 80 metros del edificio.\nProceso de Llegada (Check-in)\nEs obligatorio realizar el registro online de los huéspedes antes de la llegada.\nEl horario de entrada (check-in) es a partir de las 15:00 h.\nDurante los meses de julio y agosto no se ofrece servicio de entrada anticipada (early check-in).\nEl servicio de asistencia y atención al cliente está disponible hasta las 22:00 h.\nDentro del apartamento se encuentra un juego de llaves físicas que incluye la llave del portal, del apartamento y la llave magnética para el garaje y las zonas comunes.\nSe ofrece servicio de cuna y trona bajo petición previa.\nZonas Comunes y Servicios del Edificio\nEl edificio dispone de conserjería operativa las 24 horas.\nPiscina: Situada en la planta 30. El acceso requiere el uso de la llave magnética.\nNo es necesario reservar horario.\nNormas de la piscina: Está prohibido transitar por las zonas comunes del edificio sin camiseta o estando mojado.\nLavandería: Existe una zona con secadoras en la planta baja, junto a la conserjería.\nLudoteca: El complejo dispone de un espacio dedicado para el ocio infantil.\nEquipamiento del Apartamento\nDormitorios y baño: Provistos de sábanas, toallas, edredones o fundas nórdicas, almohadas, gel, champú y secador de pelo.\nCocina: Totalmente equipada con lavavajillas, horno, microondas, cafetera Nespresso, hervidor de agua (kettle), tostadora, batidora y lavadora.\nOrganización de cocina: Los cubiertos se encuentran habitualmente en el cajón situado bajo el horno.\nOtros utensilios: Plancha y tabla de planchar disponibles.\nTecnología y seguridad: Smart TV (requiere cuenta propia para plataformas de streaming) y sensores de humo.\nConexión WiFi: Red \"DIGIFIBRA-EPRh\" con contraseña \"UAGdSkZZ69zy\".\nPlaza de Aparcamiento La estancia incluye una plaza de aparcamiento gratuita (número 516) situada en el sótano -2 del edificio.\nPara acceder al parking con el vehículo, se debe pasar la llave magnética sobre el sensor identificado con el símbolo de wifi.\nNormas de Estancia y Mantenimiento Gestión de residuos: Los contenedores de basura se encuentran frente a la Torre Norte, cruzando la carretera.\nProhibiciones: No se permite fumar ni realizar actividades que perturben la convivencia en el edificio.\nProceso de Salida (Check-out)\nEl día de salida, los huéspedes deben apagar las luces, el aire acondicionado y los electrodomésticos.\nDurante los meses de julio y agosto no se ofrece servicio de salida tardía (late check-out).\nSe debe retirar la basura acumulada y dejar las llaves sobre la mesa del salón.\nEstá terminantemente prohibido dejar las llaves en la recepción del edificio o en el buzón.\nSe recomienda enviar un mensaje a la propiedad confirmando la salida para coordinar el servicio de limpieza.\nTeléfonos de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 Policía Local: 092 Guardia Civil: 062 Emergencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -660,7 +659,7 @@
         "incluido": true,
         "numero": 372,
         "sotano": "-2",
-        "acceso": "Para acceder al parking con el vehículo, es necesario pasar la llave magnética redonda de color negro por el sensor con el símbolo de wifi."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "Livebox6-8310",
@@ -669,6 +668,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -676,7 +676,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Ubicación y Entorno El apartamento se encuentra en las Urban Sky Towers, ubicadas en el Paseo de Martiricos 40, Málaga (Planta 23, letra M).\nLa ubicación es céntrica, situada junto al estadio de fútbol La Rosaleda.\nEl centro histórico de la ciudad se encuentra a unos 13 minutos a pie, siguiendo la ribera del río Guadalmedina.\nEl aeropuerto de Málaga está situado a aproximadamente 20 minutos en coche.\nExiste un supermercado Mercadona a 80 metros del edificio.\nAcceso y Aparcamiento\nEl alojamiento incluye una plaza de aparcamiento privada (número 372) situada en el sótano -2.\nPara acceder al parking con el vehículo, es necesario pasar la llave magnética redonda de color negro por el sensor con el símbolo de wifi.\nEl acceso al edificio y al apartamento requiere un registro previo online obligatorio para todos los huéspedes.\nLa entrada al apartamento se realiza mediante un código de acceso de seis cifras que se activa a partir de las 15:00 h.\nDentro de la vivienda se encuentra un juego de llaves físicas para el portal y una llave magnética para las zonas comunes y el garaje.\nNormas de Estancia y Convivencia\nEl servicio de asistencia para dudas durante la llegada está disponible hasta las 22:00 h.\nEstá estrictamente prohibido circular por las zonas comunes del edificio sin camiseta o con el cuerpo mojado al salir de la piscina.\nNo se permite la realización de fiestas ni actividades que perturben el descanso de los vecinos.\nDurante los meses de julio y agosto no se ofrecen servicios de entrada temprana (early check-in) ni salida tardía (late check-out).\nEquipamiento y Servicios\nConexión Wifi: Red \"Livebox6-8310\" con contraseña \"b5E3Qr5tJNAd\".\nLa cocina está totalmente equipada con lavavajillas, horno, microondas, tostadora, cafetera Nespresso, hervidor de agua (kettle) y batidora.\nEl salón cuenta con Smart TV con aplicación de Netflix (el huésped debe usar su propia cuenta).\nDispone de lavadora, plancha, tabla de planchar y secador de pelo.\nSe proporcionan toallas, sábanas, edredones, gel y champú.\nBajo petición previa, se puede facilitar cuna y trona para bebés.\nEl edificio cuenta con servicio de conserjería disponible las 24 horas.\nLavandería: Existe una zona con secadoras en la planta baja, junto a la conserjería (consultar condiciones de uso).\nGestión de Residuos\nLos contenedores de basura se encuentran situados frente al edificio de la Torre Norte (Hotel Hilton), cruzando la carretera.\nSe ruega no dejar bolsas de basura en el interior del apartamento ni en los pasillos comunes al finalizar la estancia.\nProcedimiento de Salida (Check-out) El horario estándar de salida es antes de las 11:00 h.\nAntes de salir, se deben apagar todas las luces, el aire acondicionado y los electrodomésticos.\nLas llaves deben dejarse sobre la mesa del salón.\nNo se deben dejar las llaves en la recepción del edificio ni en el buzón.\nSe recomienda avisar mediante un mensaje una vez se haya abandonado la propiedad para coordinar el servicio de limpieza.\nInformación de Emergencia\nEmergencias general: 112 Policía Nacional: 091 Policía Local: 092 Urgencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -698,13 +697,13 @@
       "planta": 24,
       "letra": "G",
       "dormitorios": null,
-      "banos": "y",
+      "banos": null,
       "distribucion_descanso": [],
       "aparcamiento": {
         "incluido": true,
         "numero": 41,
         "sotano": "-1",
-        "acceso": "En el interior del apartamento se encuentra un juego de llaves físico que incluye la llave del portal, de la vivienda y una llave magnética redonda para las zonas comunes y el garaje."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "Livebox6-E150",
@@ -713,6 +712,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -720,7 +720,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Información General y Ubicación\nEl apartamento XPCE Urban 16 Málaga Skyline está ubicado en el Paseo de Martiricos 40, edificio Urban Sky Towers, Planta 24, Letra G, Málaga.\nLa ubicación se encuentra junto al estadio de fútbol La Rosaleda.\nDistancia al centro histórico: 13 minutos a pie a través de la ribera del río Guadalmedina.\nDistancia al aeropuerto: 20 minutos en coche.\nEl edificio cuenta con servicio de conserjería disponible las 24 horas.\nCheck-in y Acceso\nEl horario de entrada es a partir de las 15:00 h.\nEs obligatorio realizar el registro online de los huéspedes previamente a través del enlace facilitado.\nEn el interior del apartamento se encuentra un juego de llaves físico que incluye la llave del portal, de la vivienda y una llave magnética redonda para las zonas comunes y el garaje.\nEl servicio de asistencia para la llegada está disponible hasta las 22:00 h.\nNo se ofrece servicio de check-in temprano o check-out tardío durante los meses de julio y agosto.\nAparcamiento\nEl apartamento incluye una plaza de aparcamiento gratuita situada en el sótano 1, número 41.\nPara abrir la puerta del garaje (entrada y salida), se debe pasar la llave magnética redonda negra por el sensor identificado con el símbolo de wifi.\nEquipamiento del Apartamento\nDormitorios y Baño: Toallas, sábanas, edredones o fundas nórdicas, almohadas, gel, champú y secador de pelo.\nCocina: Lavadora, lavavajillas, horno, microondas, tostadora, cafetera de cápsulas Nespresso, hervidor de agua (kettle) y batidora.\nOtros: Plancha y tabla de planchar, sensores de humo y Smart TV (acceso a plataformas como Netflix disponible con la cuenta propia del cliente).\nFamilias: Disponibilidad de cuna y trona bajo petición previa.\nClimatización: El apartamento dispone de sistema de aire acondicionado.\nConectividad\nRed Wifi: Livebox6-E150 Clave Wifi: sLFFRf7m6M76\nZonas Comunes y Normas de Uso\nNormas de Piscina: Está prohibido circular por las zonas comunes del edificio estando mojado o sin camiseta.\nLudoteca: El edificio dispone de zona infantil.\nLavandería: Existe una zona común con secadoras en la planta baja junto a la conserjería (sujeto a aviso previo para su uso).\nNormas y Check-out El día de la salida, las llaves deben dejarse sobre la mesa del salón. Está estrictamente prohibido dejarlas en recepción o en el buzón.\nAntes de salir, asegúrese de apagar las luces, el aire acondicionado y los electrodomésticos.\nGestión de residuos: La basura debe depositarse en los contenedores situados frente a la Torre Norte (Hotel Hilton), cruzando la carretera.\nSe ruega informar mediante un mensaje una vez que se haya abandonado la vivienda para coordinar el servicio de limpieza.\nEntorno y Servicios Cercanos\nSupermercado: Mercadona situado a escasos 80 metros del edificio.\nGastronomía en el Centro: La Reserva 12, Refectorium, Casa Antonio, Mesón Santiago Sedeño, Rincón Catedral, Uvedoble, La Cosmopolita, La Medusa, El Trillo, La Cepa y Lo Güeno.\nPescados y Mariscos: El Balneario, La Pérgola del Mediterráneo, Espigones, Las Palmeras y Hermanos Alba.\nCocina Japonesa y Fusión: Óleo (en el CAC), La Sole de Bodega El Pimpi, Takumi y Rocío Sushi y Tapas.\nOcio nocturno: Sala Gold, Theatro Club Málaga y Liceo.\nTeléfonos de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 Policía Local: 092 Guardia Civil: 062 Emergencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -743,14 +742,12 @@
       "letra": "C",
       "dormitorios": 1,
       "banos": 1,
-      "distribucion_descanso": [
-        "Se proporciona ropa de cama, toallas, edredones o fundas nórdicas y almohadas."
-      ],
+      "distribucion_descanso": [],
       "aparcamiento": {
         "incluido": true,
         "numero": 376,
         "sotano": "-2",
-        "acceso": "En el interior del apartamento se encuentra un juego de llaves físico que incluye la llave del portal y la llave magnética redonda para el garaje y zonas comunes."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "Livebox6-5290",
@@ -759,6 +756,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -766,7 +764,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Ubicación y Entorno El apartamento \"Urban 17 Málaga Skyline\" se encuentra en la planta 21 (letra C) de las Urban Sky Towers, situadas en el Paseo de Martiricos (Málaga), junto al estadio de fútbol La Rosaleda.\nLa ubicación permite llegar al centro histórico en aproximadamente 13 minutos a pie mediante un paseo por la ribera del río Guadalmedina.\nExiste un supermercado Mercadona situado a escasos 80 metros del edificio.\nEl aeropuerto de Málaga se encuentra a unos 20 minutos en coche.\nEquipamiento del Apartamento\nLa vivienda dispone de un dormitorio, un baño y cocina completa integrada al salón.\nLa cocina está equipada con lavadora, lavavajillas, horno, microondas, cafetera de cápsulas Nespresso, hervidor de agua (kettle), batidora y tostadora.\nSe proporciona ropa de cama, toallas, edredones o fundas nórdicas y almohadas.\nEl equipamiento incluye gel, champú, secador de pelo, plancha y tabla de planchar.\nDispone de Smart TV con acceso a Netflix (requiere cuenta propia del cliente).\nSe puede solicitar cuna y trona bajo petición previa para la coordinación con el servicio de limpieza.\nEl apartamento cuenta con sensores de humo para mayor seguridad.\nInstrucciones de Entrada (Check-in)\nEs obligatorio realizar el registro online (check-in) a través del enlace facilitado antes de la llegada.\nLa entrada está disponible a partir de las 15:00 h. El servicio de asistencia para dudas está operativo hasta las 22:00 h.\nEn el interior del apartamento se encuentra un juego de llaves físico que incluye la llave del portal y la llave magnética redonda para el garaje y zonas comunes.\nInstrucciones de Salida (Check-out)\nLa salida debe realizarse comprobando que las luces, el aire acondicionado y los electrodomésticos queden apagados.\nLas llaves deben dejarse sobre la mesa del salón. No se deben dejar en la recepción ni en el buzón.\nSe ruega retirar la basura antes de abandonar el alojamiento.\nSe recomienda enviar un mensaje al completar la salida para facilitar la coordinación del servicio de limpieza.\nAparcamiento\nEl apartamento incluye una plaza de aparcamiento gratuita (nº 376) situada en el sótano -2.\nPara la apertura de las puertas del parking, tanto a la entrada como a la salida, se debe utilizar la llave magnética redonda sobre el sensor identificado con el símbolo de wifi.\nZonas Comunes y Servicios del Edificio\nConserjería: El edificio dispone de servicio de conserjería disponible las 24 horas.\nLavandería: Existe una sala con secadoras en la planta baja, junto a conserjería.\nSe recomienda consultar o avisar para su uso.\nOtros servicios: El edificio cuenta con ludoteca y terraza.\nNormas de Convivencia\nEstá prohibido circular por las zonas comunes del edificio (pasillos, ascensores, hall) sin camiseta o con la ropa mojada tras el uso de la piscina.\nConexión Wifi Nombre de la red: Livebox6-5290 Clave: Q5DbQ4CFPcSv\nGestión de Residuos\nLos contenedores de basura se encuentran ubicados frente al edificio de la Torre Norte (Hotel Hilton), cruzando la carretera.\nRecomendaciones Gastronómicas y Ocio Restaurantes en el Centro: La Reserva 12, Refectorium, Casa Antonio, Mesón Santiago Sedeño, Rincón Catedral, Uvedoble, La Cosmopolita, La Medusa, El Trillo, La Cepa y Lo Güeno.\nPescados y Mariscos: El Balneario, La Pérgola del Mediterráneo, Espigones, Las Palmeras y Hermanos Alba.\nCocina Japonesa: Óleo (en el CAC), La Sole de Bodega El Pimpi, Takumi y Rocío Sushi y Tapas.\nOcio nocturno: Sala Gold, Theatro Club Málaga y LICEO.\nInformación de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 Policía Local: 092 Guardia Civil: 062 Emergencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -788,13 +785,13 @@
       "planta": 22,
       "letra": "D",
       "dormitorios": null,
-      "banos": "y",
+      "banos": null,
       "distribucion_descanso": [],
       "aparcamiento": {
         "incluido": true,
         "numero": 280,
         "sotano": "-2",
-        "acceso": "Llaves: En el interior del apartamento se encuentra un juego de llaves físicas para el portal y el apartamento, además de la llave magnética para zonas comunes y garaje."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": null,
@@ -803,6 +800,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -810,7 +808,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Ubicación y Entorno Dirección: Paseo de Martiricos 40, Málaga (Edificio Urban Sky Towers, Planta 22, letra D).\nUbicación estratégica junto al estadio de fútbol La Rosaleda.\nDistancia al centro histórico: aproximadamente 13 minutos a pie por la ribera del río Guadalmedina.\nDistancia al aeropuerto de Málaga: 20 minutos en coche.\nSupermercado más cercano: Mercadona, situado a unos 80 metros del edificio.\nInstrucciones de Check-in\nEntrada (Check-in): Disponible a partir de las 15:00 h.\nRegistro de huéspedes: Es obligatorio completar el registro online antes de la llegada.\nAsistencia: Servicio de asistencia disponible hasta las 22:00 h para cualquier consulta técnica o de acceso.\nLlaves: En el interior del apartamento se encuentra un juego de llaves físicas para el portal y el apartamento, además de la llave magnética para zonas comunes y garaje.\nInstrucciones de Check-out\nSalida (Check-out): Se deben dejar todas las llaves sobre la mesa del salón.\nNormas de salida: Apagar luces, aire acondicionado y electrodomésticos antes de abandonar la vivienda.\nGestión de residuos: Se debe retirar la basura antes de la salida.\nRestricción de entrega de llaves: No se deben depositar las llaves en la recepción ni en el buzón bajo ninguna circunstancia.\nComunicación: Se agradece enviar un mensaje tras la salida para coordinar el servicio de limpieza.\nAparcamiento\nPlaza de aparcamiento privada: Número 280, situada en el sótano -2.\nAcceso al parking: Se utiliza la llave magnética redonda negra sobre el sensor con el símbolo de red inalámbrica.\nZonas Comunes y Servicios del Edificio\nConserjería: Servicio de atención disponible las 24 horas.\nInstrucciones de piscina: Está terminantemente prohibido circular mojado o sin camiseta por los pasillos y áreas compartidas del edificio tras su uso.\nGimnasio, Coworking y Ludoteca: Situados en la planta del hall de entrada.\nLavandería: Zona de secadoras disponible en la planta baja, junto a conserjería (bajo petición).\nEquipamiento del Apartamento\nClimatización: Aire acondicionado y calefacción.\nCocina completa: Equipada con horno, microondas, lavavajillas, tostadora, batidora y hervidor de agua (kettle).\nCafetera: Máquina de cápsulas Nespresso.\nLavandería: Lavadora, plancha y tabla de planchar.\nHigiene y baño: Secador de pelo, toallas, sábanas, gel y champú.\nBebés: Cuna y trona disponibles bajo petición previa.\nTecnología: Smart TV (acceso a aplicaciones mediante cuenta propia del huésped) y conexión Wifi.\nSeguridad: Sensores de humo instalados.\nGestión de Residuos\nContenedores de basura: Ubicados frente al edificio de la Torre Norte (Hotel Hilton), cruzando la carretera.\nContactos de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 Policía Local: 092 Guardia Civil: 062 Emergencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -840,7 +837,7 @@
         "incluido": true,
         "numero": 7,
         "sotano": "-1",
-        "acceso": "En el interior del apartamento se encuentra un juego de llaves que incluye la llave del portal, la del apartamento y una llave magnética redonda negra para zonas comunes y garaje."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": "MIWIFI_KhzF",
@@ -849,6 +846,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -856,7 +854,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Información General El apartamento XPCE URBAN 19 MÁLAGA SKYLINE se ubica en el edificio Urban Sky Towers, Paseo de Martiricos 40, planta 18, letra C, junto al estadio de fútbol La Rosaleda.\nLa vivienda consta de un dormitorio, un baño y cocina completa integrada al salón.\nEl centro histórico de Málaga se encuentra a unos 13 minutos a pie siguiendo la ribera del río Guadalmedina.\nEl edificio cuenta con servicio de conserjería disponible las 24 horas.\nExiste un supermercado Mercadona a unos 80 metros del edificio.\nEquipamiento y Servicios\nDormitorio con cama de matrimonio Queen size y sofá en el salón.\nCocina totalmente equipada con horno, microondas, lavavajillas, tostadora, cafetera de cápsulas Nespresso, hervidor de agua (kettle), batidora y menaje completo (los cubiertos suelen estar en el cajón debajo del horno).\nDispone de lavadora, plancha, tabla de planchar y secador de pelo.\nConexión WiFi disponible (Red: MIWIFI_KhzF / Clave: fftRXRzf).\nSmart TV con acceso a Netflix (el huésped debe utilizar su propia cuenta).\nSe proporcionan toallas, sábanas, edredones o fundas nórdicas, almohadas, gel y champú.\nCuna y trona disponibles bajo petición previa.\nSistema de seguridad con sensores de humo instalados.\nInstrucciones de Acceso y Aparcamiento El check-in requiere un registro online previo obligatorio.\nLa entrada está permitida a partir de las 15:00 h. El servicio de asistencia técnica y dudas está disponible hasta las 22:00 h.\nEn el interior del apartamento se encuentra un juego de llaves que incluye la llave del portal, la del apartamento y una llave magnética redonda negra para zonas comunes y garaje.\nEl apartamento incluye una plaza de aparcamiento gratuita (Plaza nº 7, Sótano 1).\nPara entrar y salir del parking con el coche, se debe pasar la llave magnética sobre el sensor con el símbolo de WiFi.\nNormas de piscina: Está estrictamente prohibido circular por las zonas comunes del edificio sin camiseta o estando mojado.\nLavandería: Hay secadoras disponibles en una sala junto a la conserjería (planta baja). Es necesario avisar a la propiedad para su uso.\nGestión de residuos: Los contenedores de basura se encuentran frente a la Torre Norte (Hotel Hilton), cruzando la carretera.\nInstrucciones de Salida (Check-out)\nLa salida debe realizarse siguiendo las instrucciones de apagado de luces, aire acondicionado y electrodomésticos.\nEs obligatorio retirar la basura del apartamento antes de salir.\nLas llaves deben dejarse sobre la mesa del salón. Bajo ningún concepto deben dejarse en la recepción ni en el buzón.\nSe solicita enviar un mensaje al anfitrión tras abandonar la vivienda para coordinar el servicio de limpieza.\nDurante los meses de julio y agosto no se ofrecen servicios de early check-in ni late check-out.\nTeléfonos de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 Policía Local: 092 Urgencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -877,16 +874,16 @@
       "direccion": "Paseo de Martiricos 40, Málaga",
       "planta": null,
       "letra": null,
-      "dormitorios": "Alojamiento",
-      "banos": null,
+      "dormitorios": 1,
+      "banos": 1,
       "distribucion_descanso": [
-        "Equipamiento del Alojamiento Dormitorio con cama de matrimonio tamaño Queen Size y salón con sofá."
+        "Dormitorio con cama de matrimonio tamaño Queen Size y salón con sofá."
       ],
       "aparcamiento": {
         "incluido": true,
         "numero": 37,
         "sotano": "-1",
-        "acceso": "Dentro del alojamiento se encuentra un juego de llaves físico que incluye la llave del portal, del apartamento y una llave magnética redonda para las zonas comunes y el garaje."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": null,
@@ -895,6 +892,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -902,7 +900,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Ubicación y Entorno El alojamiento se encuentra en las Urban Sky Towers, situadas en el Paseo de Martiricos, junto al estadio de fútbol La Rosaleda.\nLa ubicación permite llegar al centro histórico de Málaga en aproximadamente 13 minutos a pie a través de un paseo por la ribera del río Guadalmedina.\nExiste un supermercado Mercadona situado a escasos 80 metros del edificio.\nAcceso y Check-in\nEs obligatorio realizar el registro online de todos los huéspedes antes de la llegada.\nDentro del alojamiento se encuentra un juego de llaves físico que incluye la llave del portal, del apartamento y una llave magnética redonda para las zonas comunes y el garaje.\nEl edificio cuenta con servicio de conserjería disponible las 24 horas.\nEquipamiento del Alojamiento Dormitorio con cama de matrimonio tamaño Queen Size y salón con sofá.\nCocina totalmente equipada con horno, microondas, lavavajillas, cafetera Nespresso, hervidor de agua (kettle), tostadora y batidora.\nDispone de lavadora dentro del apartamento.\nEquipamiento de planchado: plancha y tabla de planchar.\nBaño equipado con secador de pelo, gel y champú.\nClimatización y Smart TV (el acceso a plataformas de streaming requiere cuenta propia del huésped).\nSe proporcionan sábanas, toallas, almohadas y edredones o fundas nórdicas.\nDisponibilidad de cuna y trona bajo petición previa.\nSensores de humo instalados para seguridad.\nZonas Comunes y Servicios del Edificio\nLavandería: Existe una zona de secadoras en la planta baja, junto a la conserjería.\nOtras instalaciones: El complejo cuenta con ludoteca y terraza.\nAparcamiento\nEl alojamiento incluye una plaza de aparcamiento privada situada en el sótano -1 (plaza número 37).\nPara la apertura de las puertas del garaje, tanto de entrada como de salida, se debe pasar la llave magnética redonda por el sensor identificado con el símbolo de Wi-Fi.\nNormas de Convivencia\nEstá prohibido circular por las zonas comunes del edificio sin camiseta o con la ropa mojada tras el uso de la piscina.\nNo se permite el check-in temprano (early check-in) ni el check-out tardío (late check-out) durante los meses de julio y agosto.\nGestión de Residuos\nLos contenedores de basura se encuentran frente al edificio de la Torre Norte (junto al hotel), cruzando la carretera.\nCheck-out y Salida Antes de salir, se debe verificar que todas las luces, el aire acondicionado y los electrodomésticos estén apagados.\nEs responsabilidad del huésped retirar la basura acumulada.\nLas llaves deben dejarse sobre la mesa del salón.\nBajo ningún concepto se deben dejar las llaves en la recepción ni en el buzón.\nTeléfonos de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 Policía Local: 092 Emergencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -924,7 +921,7 @@
       "planta": 18,
       "letra": "L",
       "dormitorios": 1,
-      "banos": null,
+      "banos": 1,
       "distribucion_descanso": [
         "Apartamento de un dormitorio con cama Queen Size, sofá en el salón y cocina completa integrada."
       ],
@@ -932,7 +929,7 @@
         "incluido": true,
         "numero": 127,
         "sotano": "-1",
-        "acceso": "Llaves: En el interior del apartamento encontrará un juego físico que incluye la llave del portal, de la vivienda y una llave magnética negra para el acceso al garaje y las zonas comunes."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": null,
@@ -941,6 +938,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -948,7 +946,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Descripción del Alojamiento\nNombre del alojamiento: XPCE Urban 21 Málaga Skyline.\nSituado en la planta 18 (Apartamento L) de las Urban Sky Towers (Paseo de Martiricos, 40), junto al estadio La Rosaleda.\nApartamento de un dormitorio con cama Queen Size, sofá en el salón y cocina completa integrada.\nUbicación estratégica a aproximadamente 13 minutos a pie del centro histórico de Málaga, siguiendo la ribera del río Guadalmedina.\nRegistro obligatorio: Es necesario completar el registro online de todos los viajeros antes de la llegada a través del enlace facilitado.\nLlaves: En el interior del apartamento encontrará un juego físico que incluye la llave del portal, de la vivienda y una llave magnética negra para el acceso al garaje y las zonas comunes.\nAsistencia: Se ofrece servicio de asistencia para dudas relacionadas con la entrada hasta las 22:00 h.\nEquipamiento y Comodidades\nCocina: Totalmente equipada con lavavajillas, horno, microondas, cafetera de cápsulas Nespresso, hervidor de agua (kettle), tostadora, batidora y menaje completo.\nNota sobre menaje: En este modelo de apartamento, los cubiertos pueden encontrarse en un cajón oculto o inferior bajo el horno.\nCuidado de la ropa: Dispone de lavadora, plancha y tabla de planchar. Existe un servicio de secadoras comunitarias en la planta baja, junto a la conserjería.\nBaño: Incluye secador de pelo, toallas, gel y champú.\nClimatización y Seguridad: Aire acondicionado en las estancias y sensores de humo instalados.\nConectividad y Entretenimiento: Dispone de conexión WiFi de alta velocidad.\nSmart TV con acceso a aplicaciones (el huésped debe utilizar sus propias cuentas de usuario).\nInfantiles: Cuna y trona disponibles bajo petición previa antes de la llegada.\nGimnasio, Coworking y Ludoteca: Ubicados en la planta del hall de entrada.\nConserjería: El edificio cuenta con servicio de vigilancia y atención en recepción las 24 horas.\nNormativa de convivencia: Según las normas del edificio, está prohibido circular sin camiseta o con ropa mojada por las zonas comunes interiores.\nServicios adicionales: Disponibilidad de servicio de transfer al aeropuerto o estación bajo petición y reserva.\nAparcamiento\nPlaza asignada: El apartamento incluye una plaza de aparcamiento numerada (127) situada en el sótano -1.\nAcceso: Para abrir el portón del garaje, se debe pasar la llave magnética redonda sobre el sensor identificado con el símbolo de WiFi.\nGestión de Residuos\nLos contenedores de basura se encuentran situados frente al edificio de la Torre Norte (junto al hotel Hilton), cruzando la carretera.\nInstrucciones de Salida (Check-out)\nProcedimiento: El check-out debe realizarse antes de la hora estipulada. Las llaves deben dejarse sobre la mesa del salón. No deben entregarse en recepción ni depositarse en el buzón.\nRevisión final: Se ruega apagar las luces, el aire acondicionado y los electrodomésticos, además de retirar la basura acumulada.\nComunicación: Se agradece enviar un mensaje al completar la salida para coordinar el servicio de limpieza.\nInformación del Entorno y Recomendaciones Supermercado: Un establecimiento Mercadona se encuentra a escasos 80 metros del edificio.\nOcio y servicios: La zona cuenta con opciones cercanas de alquiler de bicicletas, consignas de equipaje en el centro y diversas actividades turísticas.\nGastronomía recomendada:\no Cocina local: La Reserva 12, Refectorium, Casa Antonio, La Cosmopolita, Uvedoble.\no Pescados y Mariscos: El Balneario, La Pérgola del Mediterráneo, Hermanos Alba, Espigones (Pedregalejo).\no Cocina Internacional/Fusión: Óleo (en el CAC), Takumi, Rocío Sushi y Tapas.\nVida nocturna: Sala Gold, Theatro Club Málaga y Liceo.\nTeléfonos de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 Policía Local: 092 Emergencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
@@ -970,15 +967,15 @@
       "planta": 19,
       "letra": null,
       "dormitorios": 1,
-      "banos": null,
+      "banos": 1,
       "distribucion_descanso": [
-        "Distribución: Apartamento de un dormitorio con cama Queen Size, salón con sofá y cocina integrada."
+        "Apartamento de un dormitorio con cama Queen Size, salón con sofá y cocina integrada."
       ],
       "aparcamiento": {
         "incluido": true,
         "numero": null,
         "sotano": "-1",
-        "acceso": "Gestión de llaves: En el interior de la vivienda encontrará un juego físico para el portal y el apartamento, además de una llave magnética negra para el garaje y las zonas comunes."
+        "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
       "wifi": {
         "red": null,
@@ -987,6 +984,7 @@
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
         "hora_maxima_checkin": "22:00, salvo acuerdo expreso distinto con Xperience Málaga Apartments.",
+        "registro_online": "Obligatorio antes de la llegada.",
         "zonas_comunes": "Requieren reserva previa de día y hora. El huésped debe contactar con Xperience Málaga Apartments para tramitarla.",
         "edificio": "Edificio residencial de 30 plantas; no es un hotel y viven residentes.",
         "fiestas": false,
@@ -994,7 +992,6 @@
         "ruido_desde": "23:00",
         "codigos_acceso": "MARIA no facilita códigos personales de acceso."
       },
-      "detalle_confirmado": "Información General del Alojamiento\nNombre del alojamiento: XPCE Urban 22 Málaga Skyline.\nUbicación: Planta 19 de las Urban Sky Towers (Paseo de Martiricos), junto al estadio La Rosaleda.\nDistribución: Apartamento de un dormitorio con cama Queen Size, salón con sofá y cocina integrada.\nSituación: Localizado a unos 13 minutos a pie del centro histórico de Málaga, siguiendo la ribera del río Guadalmedina.\nRegistro de viajeros: Es obligatorio completar el registro online de todos los huéspedes antes de la llegada.\nGestión de llaves: En el interior de la vivienda encontrará un juego físico para el portal y el apartamento, además de una llave magnética negra para el garaje y las zonas comunes.\nAsistencia: Servicio de atención para dudas sobre la entrada disponible hasta las 22:00 h.\nEquipamiento y Comodidades\nCocina: Equipada con lavavajillas, horno, microondas, cafetera de cápsulas Nespresso, hervidor de agua, tostadora, batidora y menaje completo.\nNota de menaje: Los cubiertos suelen encontrarse en un cajón oculto o inferior situado bajo el horno.\nCuidado de la ropa: Dispone de lavadora, plancha y tabla de planchar en la vivienda. Existen secadoras comunitarias en la planta baja junto a conserjería.\nBaño: Incluye secador de pelo, toallas, gel y champú.\nClimatización y seguridad: Sistema de aire acondicionado y sensores de humo instalados.\nConectividad: Conexión WiFi de alta velocidad y Smart TV (el acceso a aplicaciones requiere el uso de cuentas personales del huésped).\nEquipamiento infantil: Cuna y trona disponibles bajo petición previa.\nZonas Comunes y Servicios del Edificio\nInstrucciones de convivencia: Está prohibido circular sin camiseta o con ropa mojada por las zonas comunes interiores del edificio.\nGimnasio, Coworking y Ludoteca: Situados en la planta del hall de entrada.\nConserjería: El edificio dispone de vigilancia y atención en recepción las 24 horas.\nServicios externos: Posibilidad de contratar servicio de traslado (transfer) al aeropuerto o estación bajo petición.\nAparcamiento\nPlaza asignada: El apartamento dispone de una plaza de aparcamiento numerada en el sótano -1.\nAcceso al garaje: Para abrir el portón, se debe pasar la llave magnética sobre el sensor identificado con el símbolo de WiFi.\nGestión de Residuos\nUbicación de contenedores: Se encuentran frente al edificio de la Torre Norte (junto al hotel Hilton), cruzando la carretera.\nInstrucciones de Salida (Check-out)\nHorario y procedimiento: El check-out debe realizarse antes de la hora estipulada dejando las llaves sobre la mesa del salón. No deben dejarse en recepción ni en el buzón.\nRevisión final: Se solicita apagar luces, climatización y electrodomésticos, así como retirar la basura.\nComunicación: Se ruega avisar mediante un mensaje una vez se haya abandonado la vivienda para coordinar la limpieza.\nEntorno y Recomendaciones\nSupermercados: Mercadona situado a 80 metros del edificio.\nGastronomía local: La Reserva 12, Refectorium, Casa Antonio, La Cosmopolita, Uvedoble.\nPescados y mariscos: El Balneario, La Pérgola del Mediterráneo, Hermanos Alba, Espigones (Pedregalejo).\nCocina internacional/fusión: Óleo (CAC), Takumi, Rocío Sushi y Tapas.\nOcio nocturno: Sala Gold, Theatro Club Málaga y Liceo.\nTeléfonos de Emergencia\nEmergencias generales: 112 Policía Nacional: 091 Policía Local: 092 Emergencias Sanitarias: 061 Bomberos: 080",
       "zonas_comunes_actuales": {
         "piscina": "Planta 30. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
         "gimnasio_y_coworking": "Planta del hall de entrada. Requiere reserva previa de día y hora gestionada por Xperience Málaga Apartments.",
