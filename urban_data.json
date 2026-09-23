@@ -1,7 +1,7 @@
 {
-  "version": "2.0-corregida",
-  "fuente": "INFORMACION DE TODOS LOS APARTAMENTOS URBAN.pdf + reglas operativas actuales indicadas por Xperience",
-  "criterio": "Datos específicos solo cuando constan de forma explícita en la ficha; reglas operativas actuales prevalecen sobre instrucciones históricas.",
+  "version": "2026-09-23-definitiva-urban-1-22",
+  "fuente": "INFORMACION DE TODOS LOS APARTAMENTOS URBAN.pdf + reglas operativas actuales indicadas por Xperience + confirmaciones directas de Antonio Torres (23/09/2026)",
+  "criterio": "Datos estructurados verificados contra fichas de conocimiento y completados con confirmaciones directas de Antonio Torres. Reglas operativas actuales prevalecen sobre textos históricos. Contraseñas Wi-Fi excluidas del JSON público.",
   "urban": [
     {
       "urban": 1,
@@ -10,11 +10,12 @@
       "alias_voz": "Urban 1",
       "direccion": "Paseo de Martiricos 40, Málaga",
       "planta": 21,
-      "letra": null,
+      "letra": "E",
       "dormitorios": 2,
       "banos": 2,
       "distribucion_descanso": [
-        "Capacidad de descanso distribuida en una cama de matrimonio (Queen) y dos camas individuales de 90 cm."
+        "Una cama de matrimonio Queen",
+        "Dos camas individuales de 90 cm"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -56,11 +57,12 @@
       "alias_voz": "Urban 2",
       "direccion": "Paseo de Martiricos 40, Málaga",
       "planta": 17,
-      "letra": null,
+      "letra": "F",
       "dormitorios": 1,
-      "banos": null,
+      "banos": 1,
       "distribucion_descanso": [
-        "Apartamento de un dormitorio con cama doble tamaño Queen y un sofá cama en el salón."
+        "Una cama de matrimonio Queen",
+        "Un sofá cama en el salón"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -102,11 +104,12 @@
       "alias_voz": "Urban 3",
       "direccion": "Paseo de Martiricos 40, Málaga",
       "planta": 20,
-      "letra": null,
+      "letra": "I",
       "dormitorios": 2,
       "banos": 2,
       "distribucion_descanso": [
-        "Capacidad de pernoctación: dos camas dobles y un sofá en el salón."
+        "Dos camas dobles",
+        "Sofá en el salón (no confirmado como sofá cama)"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -116,7 +119,7 @@
       },
       "wifi": {
         "red": "XPCEURBAN3",
-        "clave": "XperienceMalaga2025"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -152,7 +155,9 @@
       "dormitorios": 2,
       "banos": 2,
       "distribucion_descanso": [
-        "Dispone de una cama de matrimonio, dos camas individuales y un sofá cama en el salón."
+        "Una cama de matrimonio",
+        "Dos camas individuales",
+        "Un sofá cama en el salón"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -162,7 +167,7 @@
       },
       "wifi": {
         "red": "XPCE URBAN 4",
-        "clave": "XPCEurban24"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -198,8 +203,9 @@
       "dormitorios": 3,
       "banos": 2,
       "distribucion_descanso": [
-        "El apartamento dispone de tres dormitorios configurados con una cama doble y tres camas individuales.",
-        "Cuenta con un sofá cama adicional en el salón."
+        "Una cama doble",
+        "Tres camas individuales",
+        "Un sofá cama en el salón"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -209,7 +215,7 @@
       },
       "wifi": {
         "red": "HUAWEI-5G-j9gW",
-        "clave": "f3eAZ3wW"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -245,7 +251,9 @@
       "dormitorios": 3,
       "banos": 2,
       "distribucion_descanso": [
-        "El apartamento dispone de una capacidad de pernocta distribuida en una cama de matrimonio, tres camas individuales y un sofá cama."
+        "Una cama de matrimonio",
+        "Tres camas individuales",
+        "Un sofá cama"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -287,11 +295,11 @@
       "alias_voz": "Urban 7",
       "direccion": "Paseo de Martiricos 40, Málaga",
       "planta": 19,
-      "letra": null,
+      "letra": "I",
       "dormitorios": 2,
       "banos": 2,
       "distribucion_descanso": [
-        "La propiedad consta de dos dormitorios con camas de matrimonio, dos baños y cocina integrada al salón."
+        "Dos camas de matrimonio"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -301,7 +309,7 @@
       },
       "wifi": {
         "red": "XPCE URBAN 7",
-        "clave": "XperienceMalaga24"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -333,11 +341,12 @@
       "alias_voz": "Urban 8",
       "direccion": "Paseo de Martiricos 40, Málaga",
       "planta": 19,
-      "letra": null,
+      "letra": "L",
       "dormitorios": 1,
       "banos": 1,
       "distribucion_descanso": [
-        "Distribución: Un dormitorio con cama doble, salón con sofá, cocina integrada y un baño."
+        "Una cama doble",
+        "Sofá en el salón (no confirmado como sofá cama)"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -383,7 +392,8 @@
       "dormitorios": 2,
       "banos": 2,
       "distribucion_descanso": [
-        "Disposición de camas: dispone de dos camas dobles y un sofá en el salón."
+        "Dos camas dobles",
+        "Sofá en el salón (no confirmado como sofá cama)"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -393,7 +403,7 @@
       },
       "wifi": {
         "red": "MIWIFI_bxGz",
-        "clave": "4ufF6b7U"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -429,7 +439,9 @@
       "dormitorios": 2,
       "banos": 2,
       "distribucion_descanso": [
-        "Distribución de camas: una cama de matrimonio y dos camas individuales."
+        "Una cama de matrimonio",
+        "Dos camas individuales",
+        "Sofá en el salón (no confirmado como sofá cama)"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -439,7 +451,7 @@
       },
       "wifi": {
         "red": "XPCE URBAN 10",
-        "clave": "XperienceMalaga25"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -475,7 +487,9 @@
       "dormitorios": 2,
       "banos": 2,
       "distribucion_descanso": [
-        "Configuración de camas: una cama de matrimonio Queen size, dos camas individuales y un sofá cama en el salón."
+        "Una cama de matrimonio Queen size",
+        "Dos camas individuales",
+        "Un sofá cama en el salón"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -485,7 +499,7 @@
       },
       "wifi": {
         "red": "MOVISTAR_9000",
-        "clave": "iecEjVggeU79pA9ec39o"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -521,7 +535,9 @@
       "dormitorios": 3,
       "banos": 2,
       "distribucion_descanso": [
-        "Configuración de descanso: una cama de matrimonio, tres camas individuales y un sofá cama en el salón."
+        "Una cama de matrimonio",
+        "Tres camas individuales",
+        "Un sofá cama en el salón"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -531,7 +547,7 @@
       },
       "wifi": {
         "red": "URBAN 12",
-        "clave": "XperienceMalaga25"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -561,12 +577,14 @@
       "property_id": 649814,
       "nombre": "XPCE URBAN 13 MALAGA SKYLINE",
       "alias_voz": "Urban 13",
-      "direccion": "Paseo de Martiricos 40, Málaga",
-      "planta": null,
-      "letra": null,
-      "dormitorios": null,
-      "banos": null,
-      "distribucion_descanso": [],
+      "direccion": "Paseo de Martiricos 30, Málaga",
+      "planta": 2,
+      "letra": "N",
+      "dormitorios": 1,
+      "banos": 1,
+      "distribucion_descanso": [
+        "Una cama de matrimonio"
+      ],
       "aparcamiento": {
         "incluido": true,
         "numero": 236,
@@ -575,7 +593,7 @@
       },
       "wifi": {
         "red": "MIWIFI_2G_ETPs",
-        "clave": "vtYYmHT4"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -598,7 +616,8 @@
         "centro_historico": "Aproximadamente 13 minutos a pie, cuando así consta en la ficha.",
         "mercadona": "Aproximadamente 80 metros del edificio, cuando así consta en la ficha.",
         "residuos": "Contenedores frente a la Torre Norte, junto al hotel Hilton, cruzando la carretera."
-      }
+      },
+      "torre": "Sur"
     },
     {
       "urban": 14,
@@ -606,11 +625,16 @@
       "nombre": "XPCE URBAN 14 MALAGA SKYLINE",
       "alias_voz": "Urban 14",
       "direccion": "Paseo de Martiricos 40, Málaga",
-      "planta": null,
-      "letra": null,
+      "planta": 16,
+      "letra": "J",
       "dormitorios": 3,
       "banos": 2,
-      "distribucion_descanso": [],
+      "distribucion_descanso": [
+        "Dormitorio principal: una cama de matrimonio",
+        "Dormitorio 2: dos camas individuales",
+        "Dormitorio 3: una cama individual",
+        "Salón: un sofá cama"
+      ],
       "aparcamiento": {
         "incluido": true,
         "numero": 516,
@@ -619,7 +643,7 @@
       },
       "wifi": {
         "red": "DIGIFIBRA-EPRh",
-        "clave": "UAGdSkZZ69zy"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -652,9 +676,11 @@
       "direccion": "Paseo de Martiricos 40, Málaga",
       "planta": 23,
       "letra": "M",
-      "dormitorios": null,
-      "banos": null,
-      "distribucion_descanso": [],
+      "dormitorios": 1,
+      "banos": 1,
+      "distribucion_descanso": [
+        "Dormitorio principal: una cama de matrimonio"
+      ],
       "aparcamiento": {
         "incluido": true,
         "numero": 372,
@@ -663,7 +689,7 @@
       },
       "wifi": {
         "red": "Livebox6-8310",
-        "clave": "b5E3Qr5tJNAd"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -696,9 +722,12 @@
       "direccion": "Paseo de Martiricos 40, Málaga",
       "planta": 24,
       "letra": "G",
-      "dormitorios": null,
-      "banos": null,
-      "distribucion_descanso": [],
+      "dormitorios": 2,
+      "banos": 2,
+      "distribucion_descanso": [
+        "Dormitorio principal: una cama de matrimonio",
+        "Dormitorio 2: dos camas individuales"
+      ],
       "aparcamiento": {
         "incluido": true,
         "numero": 41,
@@ -707,7 +736,7 @@
       },
       "wifi": {
         "red": "Livebox6-E150",
-        "clave": "sLFFRf7m6M76"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -742,7 +771,9 @@
       "letra": "C",
       "dormitorios": 1,
       "banos": 1,
-      "distribucion_descanso": [],
+      "distribucion_descanso": [
+        "Dormitorio principal: una cama de matrimonio"
+      ],
       "aparcamiento": {
         "incluido": true,
         "numero": 376,
@@ -751,7 +782,7 @@
       },
       "wifi": {
         "red": "Livebox6-5290",
-        "clave": "Q5DbQ4CFPcSv"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -784,9 +815,11 @@
       "direccion": "Paseo de Martiricos 40, Málaga",
       "planta": 22,
       "letra": "D",
-      "dormitorios": null,
-      "banos": null,
-      "distribucion_descanso": [],
+      "dormitorios": 1,
+      "banos": 1,
+      "distribucion_descanso": [
+        "Una cama de matrimonio"
+      ],
       "aparcamiento": {
         "incluido": true,
         "numero": 280,
@@ -831,7 +864,8 @@
       "dormitorios": 1,
       "banos": 1,
       "distribucion_descanso": [
-        "Dormitorio con cama de matrimonio Queen size y sofá en el salón."
+        "Una cama de matrimonio Queen size",
+        "Sofá en el salón (no confirmado como sofá cama)"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -841,7 +875,7 @@
       },
       "wifi": {
         "red": "MIWIFI_KhzF",
-        "clave": "fftRXRzf"
+        "clave": null
       },
       "reglas_operativas_actuales": {
         "checkin": "Presencial. Un miembro del equipo de Xperience Málaga Apartments acompaña al huésped el primer día hasta el apartamento.",
@@ -872,12 +906,13 @@
       "nombre": "XPCE URBAN 20 MALAGA SKYLINE",
       "alias_voz": "Urban 20",
       "direccion": "Paseo de Martiricos 40, Málaga",
-      "planta": null,
-      "letra": null,
+      "planta": 22,
+      "letra": "F",
       "dormitorios": 1,
       "banos": 1,
       "distribucion_descanso": [
-        "Dormitorio con cama de matrimonio tamaño Queen Size y salón con sofá."
+        "Una cama de matrimonio Queen Size",
+        "Sofá en el salón (no confirmado como sofá cama)"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -923,7 +958,8 @@
       "dormitorios": 1,
       "banos": 1,
       "distribucion_descanso": [
-        "Apartamento de un dormitorio con cama Queen Size, sofá en el salón y cocina completa integrada."
+        "Una cama Queen Size",
+        "Sofá en el salón (no confirmado como sofá cama)"
       ],
       "aparcamiento": {
         "incluido": true,
@@ -965,15 +1001,16 @@
       "alias_voz": "Urban 22",
       "direccion": "Paseo de Martiricos 40, Málaga",
       "planta": 19,
-      "letra": null,
+      "letra": "C",
       "dormitorios": 1,
       "banos": 1,
       "distribucion_descanso": [
-        "Apartamento de un dormitorio con cama Queen Size, salón con sofá y cocina integrada."
+        "Una cama Queen Size",
+        "Sofá en el salón (no confirmado como sofá cama)"
       ],
       "aparcamiento": {
         "incluido": true,
-        "numero": null,
+        "numero": 128,
         "sotano": "-1",
         "acceso": "Acceso al garaje mediante la llave magnética del alojamiento sobre el sensor de apertura, según la ficha del apartamento."
       },
