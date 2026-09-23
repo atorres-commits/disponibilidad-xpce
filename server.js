@@ -280,10 +280,12 @@ if (url.pathname === "/informacion-alojamiento-malaga") {
   });
 }
    // --------------------------------------------------
-// INFORMACION ESTRUCTURADA DE ALOJAMIENTO URBAN
+// INFORMACION ESTRUCTURADA UNIVERSAL DE ALOJAMIENTOS
+// URBAN + MALAGA + MARBELLA
 // --------------------------------------------------
 
 if (url.pathname === "/informacion-alojamiento") {
+
   if (req.method !== "GET") {
     return enviarJSON(res, 405, {
       ok: false,
@@ -303,18 +305,92 @@ if (url.pathname === "/informacion-alojamiento") {
   }
 
   const buscado = normalizar(alojamiento)
-    .replace(/^xpce /, "")
+    .replace(/^xpce\s+/, "")
     .trim();
 
-  const coincidencias = URBAN_DATA.urban.filter((ficha) => {
-    const nombre = normalizar(ficha.nombre || "")
-      .replace(/^xpce /, "")
+  const listaUrban =
+    URBAN_DATA && Array.isArray(URBAN_DATA.urban)
+      ? URBAN_DATA.urban
+      : [];
+
+  const listaMalaga =
+    Array.isArray(MALAGA_DATA)
+      ? MALAGA_DATA
+      : (
+          MALAGA_DATA && Array.isArray(MALAGA_DATA.malaga)
+            ? MALAGA_DATA.malaga
+            : []
+        );
+
+  const listaMarbella =
+    Array.isArray(MARBELLA_DATA)
+      ? MARBELLA_DATA
+      : (
+          MARBELLA_DATA && Array.isArray(MARBELLA_DATA.marbella)
+            ? MARBELLA_DATA.marbella
+            : []
+        );
+
+  const todasLasFichas = [
+    ...listaUrban.map((ficha) => ({
+      ...ficha,
+      zona_datos: "urban"
+    })),
+    ...listaMalaga.map((ficha) => ({
+      ...ficha,
+      zona_datos: "malaga"
+    })),
+    ...listaMarbella.map((ficha) => ({
+      ...ficha,
+      zona_datos: "marbella"
+    }))
+  ];
+
+  const prepararNombre = (valor) =>
+    normalizar(valor || "")
+      .replace(/^xpce\s+/, "")
       .trim();
 
-    return nombre === buscado ||
-           nombre.includes(buscado) ||
-           buscado.includes(nombre);
+  // Primero buscamos coincidencia exacta por nombre o alias.
+  const exactas = todasLasFichas.filter((ficha) => {
+    const nombre = prepararNombre(ficha.nombre);
+    const alias = prepararNombre(ficha.alias_voz);
+
+    return (
+      nombre === buscado ||
+      alias === buscado
+    );
   });
+
+  let coincidencias = exactas;
+
+  // Si no existe coincidencia exacta, permitimos nombres largos de Lodgify.
+  // Ejemplo:
+  // "XPCE DON CARLOS GARDENS PARAISO NATURAL JUNTO AL MAR"
+  // puede encontrar la ficha "XPCE DON CARLOS GARDENS".
+  if (coincidencias.length === 0) {
+
+    coincidencias = todasLasFichas.filter((ficha) => {
+      const nombre = prepararNombre(ficha.nombre);
+      const alias = prepararNombre(ficha.alias_voz);
+
+      const coincideNombre =
+        nombre &&
+        (
+          nombre.includes(buscado) ||
+          buscado.includes(nombre)
+        );
+
+      const coincideAlias =
+        alias &&
+        (
+          alias.includes(buscado) ||
+          buscado.includes(alias)
+        );
+
+      return coincideNombre || coincideAlias;
+    });
+  }
 
   if (coincidencias.length === 0) {
     return enviarJSON(res, 404, {
@@ -330,7 +406,7 @@ if (url.pathname === "/informacion-alojamiento") {
       encontrado: false,
       error: "Alojamiento ambiguo",
       opciones: coincidencias.map(
-        (ficha) => ficha.nombre
+        (ficha) => ficha.alias_voz || ficha.nombre
       )
     });
   }
@@ -340,31 +416,7 @@ if (url.pathname === "/informacion-alojamiento") {
     encontrado: true,
     alojamiento: coincidencias[0]
   });
-} // --------------------------------------------------
-    // SOLICITUD DE CONTACTO PARA RESERVA
-    // --------------------------------------------------
-
-    if (url.pathname === "/solicitud-reserva") {
-
-      if (req.method === "OPTIONS") {
-        res.writeHead(204, {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "POST, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type"
-        });
-
-        return res.end();
-      }
-
-      if (req.method !== "POST") {
-        return enviarJSON(res, 405, {
-          ok: false,
-          error: "Metodo no permitido. Utiliza POST."
-        });
-      }
-
-      return await procesarSolicitudReserva(req, res);
-    }
+}
         // --------------------------------------------------
     // CONSULTAR UN ALOJAMIENTO CONCRETO
     // --------------------------------------------------
