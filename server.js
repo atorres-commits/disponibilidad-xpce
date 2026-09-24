@@ -71,6 +71,32 @@ const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, `http://${req.headers.host}`);
 
+    // --------------------------------------------------
+// SOLICITUD DE CONTACTO PARA RESERVA
+// --------------------------------------------------
+
+if (url.pathname === "/solicitud-reserva") {
+
+  if (req.method === "OPTIONS") {
+    res.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    });
+
+    return res.end();
+  }
+
+  if (req.method !== "POST") {
+    return enviarJSON(res, 405, {
+      ok: false,
+      error: "Metodo no permitido. Utiliza POST."
+    });
+  }
+
+  return await procesarSolicitudReserva(req, res);
+}
+
         // --------------------------------------------------
     // INFORMACION METEOROLOGICA
     // --------------------------------------------------
