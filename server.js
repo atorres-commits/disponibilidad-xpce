@@ -1656,8 +1656,7 @@ async function procesarSolicitudReserva(req, res) {
    if (!nombreCompleto) faltan.push("nombre_completo");
 if (!email) faltan.push("email");
 if (!telefono) faltan.push("telefono");
-    }
-
+    
     if (faltan.length > 0) {
       return enviarJSON(res, 400, {
         ok: false,
