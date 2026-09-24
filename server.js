@@ -1805,7 +1805,213 @@ const html = `
   }
 }
 
+// --------------------------------------------------
+// ENVIAR INCIDENCIA DE HUESPED - RESEND
+// --------------------------------------------------
 
+async function procesarIncidencia(req, res) {
+
+  try {
+
+    if (!process.env.RESEND_API_KEY) {
+      return enviarJSON(res, 500, {
+        ok: false,
+        error: "RESEND_API_KEY no configurada"
+      });
+    }
+
+    const body = await leerJSON(req);
+
+    const nombreCompleto = String(
+      body.nombre_completo || ""
+    ).trim();
+
+    const alojamiento = String(
+      body.alojamiento || ""
+    ).trim();
+
+    const fechaEntrada = String(
+      body.fecha_entrada || ""
+    ).trim();
+
+    const fechaSalida = String(
+      body.fecha_salida || ""
+    ).trim();
+
+    const telefono = String(
+      body.telefono || ""
+    ).trim();
+
+    const descripcionIncidencia = String(
+      body.descripcion_incidencia || ""
+    ).trim();
+
+    const urgente =
+      body.urgente === true ||
+      String(body.urgente || "").toLowerCase() === "true";
+
+    const materialVisual = String(
+      body.material_visual || ""
+    ).trim();
+
+    const faltan = [];
+
+    if (!nombreCompleto) {
+      faltan.push("nombre_completo");
+    }
+
+    if (!alojamiento) {
+      faltan.push("alojamiento");
+    }
+
+    if (!descripcionIncidencia) {
+      faltan.push("descripcion_incidencia");
+    }
+
+    if (faltan.length > 0) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "Faltan datos obligatorios",
+        campos: faltan
+      });
+    }
+
+    const ahora = new Date();
+
+    const fechaHoraAviso =
+      new Intl.DateTimeFormat(
+        "es-ES",
+        {
+          timeZone: "Europe/Madrid",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        }
+      ).format(ahora);
+
+    const clasificacion =
+      urgente ? "URGENTE" : "NO URGENTE";
+
+    const asunto =
+      urgente
+        ? `INCIDENCIA URGENTE - ${alojamiento} - ${nombreCompleto}`
+        : `INCIDENCIA - ${alojamiento} - ${nombreCompleto}`;
+
+    const texto = [
+      "Nueva incidencia comunicada por un huesped",
+      "",
+      `Clasificacion: ${clasificacion}`,
+      `Fecha y hora del aviso: ${fechaHoraAviso}`,
+      "",
+      `Huesped: ${nombreCompleto}`,
+      `Alojamiento: ${alojamiento}`,
+      `Fecha de entrada: ${fechaEntrada || "No indicada"}`,
+      `Fecha de salida: ${fechaSalida || "No indicada"}`,
+      `Telefono de contacto: ${telefono || "No indicado"}`,
+      "",
+      "Descripcion de la incidencia:",
+      descripcionIncidencia,
+      "",
+      `Foto o video: ${materialVisual || "Pendiente / no indicado"}`,
+      "",
+      "Se ha indicado al huesped que puede enviar fotografia o video por WhatsApp al +34 690 011 043 o, si no puede utilizar WhatsApp, a traves del canal donde realizo la reserva."
+    ].join("\n");
+
+    const html = `
+      <h2>${urgente ? "INCIDENCIA URGENTE" : "Nueva incidencia"}</h2>
+
+      <p><strong>Clasificación:</strong> ${escaparHTML(clasificacion)}</p>
+      <p><strong>Fecha y hora del aviso:</strong> ${escaparHTML(fechaHoraAviso)}</p>
+
+      <hr>
+
+      <p><strong>Huésped:</strong> ${escaparHTML(nombreCompleto)}</p>
+      <p><strong>Alojamiento:</strong> ${escaparHTML(alojamiento)}</p>
+      <p><strong>Fecha de entrada:</strong> ${escaparHTML(fechaEntrada || "No indicada")}</p>
+      <p><strong>Fecha de salida:</strong> ${escaparHTML(fechaSalida || "No indicada")}</p>
+      <p><strong>Teléfono de contacto:</strong> ${escaparHTML(telefono || "No indicado")}</p>
+
+      <hr>
+
+      <p><strong>Descripción de la incidencia:</strong></p>
+      <p>${escaparHTML(descripcionIncidencia)}</p>
+
+      <p><strong>Foto o vídeo:</strong> ${escaparHTML(materialVisual || "Pendiente / no indicado")}</p>
+
+      <hr>
+
+      <p>Se ha indicado al huésped que puede enviar fotografía o vídeo por WhatsApp al +34 690 011 043 o, si no puede utilizar WhatsApp, a través del canal donde realizó la reserva.</p>
+    `;
+
+    const resendResponse = await fetch(
+      "https://api.resend.com/emails",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          from: "Xperience Malaga Apartments <hola@xpce.es>",
+          to: [
+            "hola@xpce.es"
+          ],
+          subject: asunto,
+          text: texto,
+          html
+        })
+      }
+    );
+
+    const resendTexto =
+      await resendResponse.text();
+
+    let resendData = null;
+
+    try {
+      resendData =
+        resendTexto
+          ? JSON.parse(resendTexto)
+          : {};
+    } catch {
+      resendData = {
+        raw: resendTexto
+      };
+    }
+
+    if (!resendResponse.ok) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        error: "Resend no pudo enviar la incidencia",
+        status: resendResponse.status,
+        detalle: resendData
+      });
+    }
+
+    return enviarJSON(res, 200, {
+      ok: true,
+      mensaje: "Incidencia enviada correctamente",
+      urgente,
+      clasificacion,
+      fecha_hora_aviso: fechaHoraAviso,
+      email_id:
+        resendData && resendData.id
+          ? resendData.id
+          : null
+    });
+
+  } catch (error) {
+
+    return enviarJSON(res, 500, {
+      ok: false,
+      error: "No se pudo enviar la incidencia",
+      detalle: error.message
+    });
+  }
+}
 function leerJSON(req) {
 
   return new Promise((resolve, reject) => {
