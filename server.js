@@ -1653,25 +1653,9 @@ async function procesarSolicitudReserva(req, res) {
 
     const faltan = [];
 
-    if (!nombreCompleto) faltan.push("nombre_completo");
-    if (!email) faltan.push("email");
-    if (!telefono) faltan.push("telefono");
-    if (!alojamiento) faltan.push("alojamiento");
-    if (!fechaEntrada) faltan.push("fecha_entrada");
-    if (!fechaSalida) faltan.push("fecha_salida");
-
-    if (
-      !Number.isInteger(numeroHuespedes) ||
-      numeroHuespedes < 1
-    ) {
-      faltan.push("numero_huespedes");
-    }
-
-    if (
-      !Number.isFinite(precioTotal) ||
-      precioTotal < 0
-    ) {
-      faltan.push("precio_total");
+   if (!nombreCompleto) faltan.push("nombre_completo");
+if (!email) faltan.push("email");
+if (!telefono) faltan.push("telefono");
     }
 
     if (faltan.length > 0) {
