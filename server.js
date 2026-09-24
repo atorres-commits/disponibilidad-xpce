@@ -1694,38 +1694,26 @@ if (!telefono) faltan.push("telefono");
     }
 
     const asunto =
-      `Solicitud de reserva - ${alojamiento} - ${nombreCompleto}`;
+  `Solicitud de reserva - ${nombreCompleto}`;
 
-    const texto = [
-      "Nueva solicitud de contacto para tramitar una reserva",
-      "",
-      `Cliente: ${nombreCompleto}`,
-      `Email: ${email}`,
-      `Telefono: ${telefono}`,
-      "",
-      `Alojamiento: ${alojamiento}`,
-      `Fecha de entrada: ${fechaEntrada}`,
-      `Fecha de salida: ${fechaSalida}`,
-      `Numero de huespedes: ${numeroHuespedes}`,
-      `Precio total informado: ${precioTotal.toFixed(2)} EUR`,
-      "",
-      "El cliente ha solicitado que el equipo de Xperience Malaga Apartments contacte con el para ayudarle a tramitar la reserva."
-    ].join("\n");
+const texto = [
+  "Nueva solicitud de contacto para tramitar una reserva",
+  "",
+  `Cliente: ${nombreCompleto}`,
+  `Email: ${email}`,
+  `Telefono: ${telefono}`,
+  "",
+  "El cliente ha solicitado que el equipo de Xperience Malaga Apartments contacte con el para ayudarle a tramitar la reserva."
+].join("\n");
 
-    const html = `
-      <h2>Nueva solicitud de contacto para reserva</h2>
-      <p><strong>Cliente:</strong> ${escaparHTML(nombreCompleto)}</p>
-      <p><strong>Email:</strong> ${escaparHTML(email)}</p>
-      <p><strong>Telefono:</strong> ${escaparHTML(telefono)}</p>
-      <hr>
-      <p><strong>Alojamiento:</strong> ${escaparHTML(alojamiento)}</p>
-      <p><strong>Fecha de entrada:</strong> ${escaparHTML(fechaEntrada)}</p>
-      <p><strong>Fecha de salida:</strong> ${escaparHTML(fechaSalida)}</p>
-      <p><strong>Numero de huespedes:</strong> ${numeroHuespedes}</p>
-      <p><strong>Precio total informado:</strong> ${precioTotal.toFixed(2)} EUR</p>
-      <hr>
-      <p>El cliente ha solicitado que el equipo de Xperience Malaga Apartments contacte con el para ayudarle a tramitar la reserva.</p>
-    `;
+const html = `
+  <h2>Nueva solicitud de contacto para reserva</h2>
+  <p><strong>Cliente:</strong> ${escaparHTML(nombreCompleto)}</p>
+  <p><strong>Email:</strong> ${escaparHTML(email)}</p>
+  <p><strong>Telefono:</strong> ${escaparHTML(telefono)}</p>
+  <hr>
+  <p>El cliente ha solicitado que el equipo de Xperience Malaga Apartments contacte con el para ayudarle a tramitar la reserva.</p>
+`;
 
     const resendResponse = await fetch(
       "https://api.resend.com/emails",
