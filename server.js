@@ -121,6 +121,32 @@ if (url.pathname === "/enviar-incidencia") {
 
   return await procesarIncidencia(req, res);
 }
+    // --------------------------------------------------
+// SOLICITUD DE HORARIO ESPECIAL
+// EARLY CHECK-IN / LATE CHECK-OUT
+// --------------------------------------------------
+
+if (url.pathname === "/solicitud-horario") {
+
+  if (req.method === "OPTIONS") {
+    res.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    });
+
+    return res.end();
+  }
+
+  if (req.method !== "POST") {
+    return enviarJSON(res, 405, {
+      ok: false,
+      error: "Metodo no permitido. Utiliza POST."
+    });
+  }
+
+  return await procesarSolicitudHorario(req, res);
+}
         // --------------------------------------------------
     // INFORMACION METEOROLOGICA
     // --------------------------------------------------
@@ -2033,6 +2059,214 @@ async function procesarIncidencia(req, res) {
     return enviarJSON(res, 500, {
       ok: false,
       error: "No se pudo enviar la incidencia",
+      detalle: error.message
+    });
+  }
+}
+// --------------------------------------------------
+// SOLICITUD DE HORARIO ESPECIAL - RESEND
+// --------------------------------------------------
+
+async function procesarSolicitudHorario(req, res) {
+
+  try {
+
+    if (!process.env.RESEND_API_KEY) {
+      return enviarJSON(res, 500, {
+        ok: false,
+        error: "RESEND_API_KEY no configurada"
+      });
+    }
+
+    const body = await leerJSON(req);
+
+    const nombreCompleto = String(
+      body.nombre_completo || ""
+    ).trim();
+
+    const alojamiento = String(
+      body.alojamiento || ""
+    ).trim();
+
+    const fechaEntrada = String(
+      body.fecha_entrada || ""
+    ).trim();
+
+    const fechaSalida = String(
+      body.fecha_salida || ""
+    ).trim();
+
+    const telefono = String(
+      body.telefono || ""
+    ).trim();
+
+    const tipoSolicitud = String(
+      body.tipo_solicitud || ""
+    ).trim();
+
+    const horaSolicitada = String(
+      body.hora_solicitada || ""
+    ).trim();
+
+    const faltan = [];
+
+    if (!nombreCompleto) faltan.push("nombre_completo");
+    if (!alojamiento) faltan.push("alojamiento");
+    if (!fechaEntrada) faltan.push("fecha_entrada");
+    if (!fechaSalida) faltan.push("fecha_salida");
+    if (!telefono) faltan.push("telefono");
+    if (!tipoSolicitud) faltan.push("tipo_solicitud");
+    if (!horaSolicitada) faltan.push("hora_solicitada");
+
+    if (faltan.length > 0) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "Faltan datos obligatorios",
+        campos: faltan
+      });
+    }
+
+    const tipoNormalizado =
+      tipoSolicitud.toLowerCase();
+
+    const tipoValido =
+      tipoNormalizado === "early_checkin" ||
+      tipoNormalizado === "late_checkout";
+
+    if (!tipoValido) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "tipo_solicitud no valido",
+        valores_permitidos: [
+          "early_checkin",
+          "late_checkout"
+        ]
+      });
+    }
+
+    const ahora = new Date();
+
+    const fechaHoraAviso =
+      new Intl.DateTimeFormat(
+        "es-ES",
+        {
+          timeZone: "Europe/Madrid",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        }
+      ).format(ahora);
+
+    const etiqueta =
+      tipoNormalizado === "early_checkin"
+        ? "EARLY CHECK-IN"
+        : "LATE CHECK-OUT";
+
+    const asunto =
+      `${etiqueta} - ${alojamiento} - ${nombreCompleto}`;
+
+    const texto = [
+      "Nueva solicitud de horario especial",
+      "",
+      `Tipo: ${etiqueta}`,
+      `Fecha y hora del aviso: ${fechaHoraAviso}`,
+      "",
+      `Huesped: ${nombreCompleto}`,
+      `Alojamiento: ${alojamiento}`,
+      `Fecha de entrada: ${fechaEntrada}`,
+      `Fecha de salida: ${fechaSalida}`,
+      `Telefono de contacto: ${telefono}`,
+      `Hora solicitada: ${horaSolicitada}`,
+      "",
+      "IMPORTANTE: esta solicitud NO esta autorizada automaticamente.",
+      "Debe revisarse la disponibilidad y autorizarse expresamente por el equipo de Xperience Malaga Apartments."
+    ].join("\n");
+
+    const html = `
+      <h2>Nueva solicitud de horario especial</h2>
+
+      <p><strong>Tipo:</strong> ${escaparHTML(etiqueta)}</p>
+      <p><strong>Fecha y hora del aviso:</strong> ${escaparHTML(fechaHoraAviso)}</p>
+
+      <hr>
+
+      <p><strong>Huésped:</strong> ${escaparHTML(nombreCompleto)}</p>
+      <p><strong>Alojamiento:</strong> ${escaparHTML(alojamiento)}</p>
+      <p><strong>Fecha de entrada:</strong> ${escaparHTML(fechaEntrada)}</p>
+      <p><strong>Fecha de salida:</strong> ${escaparHTML(fechaSalida)}</p>
+      <p><strong>Teléfono de contacto:</strong> ${escaparHTML(telefono)}</p>
+      <p><strong>Hora solicitada:</strong> ${escaparHTML(horaSolicitada)}</p>
+
+      <hr>
+
+      <p><strong>IMPORTANTE:</strong> esta solicitud NO está autorizada automáticamente.</p>
+      <p>Debe revisarse la disponibilidad y autorizarse expresamente por el equipo de Xperience Málaga Apartments.</p>
+    `;
+
+    const resendResponse = await fetch(
+      "https://api.resend.com/emails",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          from: "Xperience Malaga Apartments <hola@xpce.es>",
+          to: [
+            "hola@xpce.es"
+          ],
+          subject: asunto,
+          text: texto,
+          html
+        })
+      }
+    );
+
+    const resendTexto =
+      await resendResponse.text();
+
+    let resendData = null;
+
+    try {
+      resendData =
+        resendTexto
+          ? JSON.parse(resendTexto)
+          : {};
+    } catch {
+      resendData = {
+        raw: resendTexto
+      };
+    }
+
+    if (!resendResponse.ok) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        error: "Resend no pudo enviar la solicitud de horario",
+        status: resendResponse.status,
+        detalle: resendData
+      });
+    }
+
+    return enviarJSON(res, 200, {
+      ok: true,
+      mensaje: "Solicitud de horario enviada correctamente",
+      tipo_solicitud: tipoNormalizado,
+      fecha_hora_aviso: fechaHoraAviso,
+      email_id:
+        resendData && resendData.id
+          ? resendData.id
+          : null
+    });
+
+  } catch (error) {
+
+    return enviarJSON(res, 500, {
+      ok: false,
+      error: "No se pudo enviar la solicitud de horario",
       detalle: error.message
     });
   }
