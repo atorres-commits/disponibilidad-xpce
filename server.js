@@ -147,6 +147,31 @@ if (url.pathname === "/solicitud-horario") {
 
   return await procesarSolicitudHorario(req, res);
 }
+    // --------------------------------------------------
+// SOLICITUD DE CUNA
+// --------------------------------------------------
+
+if (url.pathname === "/solicitud-cuna") {
+
+  if (req.method === "OPTIONS") {
+    res.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    });
+
+    return res.end();
+  }
+
+  if (req.method !== "POST") {
+    return enviarJSON(res, 405, {
+      ok: false,
+      error: "Metodo no permitido. Utiliza POST."
+    });
+  }
+
+  return await procesarSolicitudCuna(req, res);
+}
         // --------------------------------------------------
     // INFORMACION METEOROLOGICA
     // --------------------------------------------------
@@ -2267,6 +2292,184 @@ async function procesarSolicitudHorario(req, res) {
     return enviarJSON(res, 500, {
       ok: false,
       error: "No se pudo enviar la solicitud de horario",
+      detalle: error.message
+    });
+  }
+}// --------------------------------------------------
+// SOLICITUD DE CUNA - RESEND
+// --------------------------------------------------
+
+async function procesarSolicitudCuna(req, res) {
+
+  try {
+
+    if (!process.env.RESEND_API_KEY) {
+      return enviarJSON(res, 500, {
+        ok: false,
+        error: "RESEND_API_KEY no configurada"
+      });
+    }
+
+    const body = await leerJSON(req);
+
+    const nombreCompleto = String(
+      body.nombre_completo || ""
+    ).trim();
+
+    const alojamiento = String(
+      body.alojamiento || ""
+    ).trim();
+
+    const fechaEntrada = String(
+      body.fecha_entrada || ""
+    ).trim();
+
+    const fechaSalida = String(
+      body.fecha_salida || ""
+    ).trim();
+
+    const telefono = String(
+      body.telefono || ""
+    ).trim();
+
+    const numeroCunas = Number(
+      body.numero_cunas
+    );
+
+    const faltan = [];
+
+    if (!nombreCompleto) faltan.push("nombre_completo");
+    if (!alojamiento) faltan.push("alojamiento");
+    if (!fechaEntrada) faltan.push("fecha_entrada");
+    if (!fechaSalida) faltan.push("fecha_salida");
+    if (!telefono) faltan.push("telefono");
+
+    if (!Number.isInteger(numeroCunas) || numeroCunas < 1) {
+      faltan.push("numero_cunas");
+    }
+
+    if (faltan.length > 0) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "Faltan datos obligatorios o no son validos",
+        campos: faltan
+      });
+    }
+
+    const ahora = new Date();
+
+    const fechaHoraAviso =
+      new Intl.DateTimeFormat(
+        "es-ES",
+        {
+          timeZone: "Europe/Madrid",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        }
+      ).format(ahora);
+
+    const asunto =
+      `SOLICITUD DE CUNA - ${alojamiento} - ${nombreCompleto}`;
+
+    const texto = [
+      "Nueva solicitud de cuna",
+      "",
+      `Fecha y hora del aviso: ${fechaHoraAviso}`,
+      "",
+      `Huesped: ${nombreCompleto}`,
+      `Alojamiento: ${alojamiento}`,
+      `Fecha de entrada: ${fechaEntrada}`,
+      `Fecha de salida: ${fechaSalida}`,
+      `Telefono de contacto: ${telefono}`,
+      `Numero de cunas: ${numeroCunas}`,
+      "",
+      "La cuna es gratuita y debe quedar preparada previamente para la estancia."
+    ].join("\n");
+
+    const html = `
+      <h2>Nueva solicitud de cuna</h2>
+
+      <p><strong>Fecha y hora del aviso:</strong> ${escaparHTML(fechaHoraAviso)}</p>
+
+      <hr>
+
+      <p><strong>Huésped:</strong> ${escaparHTML(nombreCompleto)}</p>
+      <p><strong>Alojamiento:</strong> ${escaparHTML(alojamiento)}</p>
+      <p><strong>Fecha de entrada:</strong> ${escaparHTML(fechaEntrada)}</p>
+      <p><strong>Fecha de salida:</strong> ${escaparHTML(fechaSalida)}</p>
+      <p><strong>Teléfono de contacto:</strong> ${escaparHTML(telefono)}</p>
+      <p><strong>Número de cunas:</strong> ${numeroCunas}</p>
+
+      <hr>
+
+      <p>La cuna es gratuita y debe quedar preparada previamente para la estancia.</p>
+    `;
+
+    const resendResponse = await fetch(
+      "https://api.resend.com/emails",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          from: "Xperience Malaga Apartments <hola@xpce.es>",
+          to: [
+            "hola@xpce.es"
+          ],
+          subject: asunto,
+          text: texto,
+          html
+        })
+      }
+    );
+
+    const resendTexto =
+      await resendResponse.text();
+
+    let resendData = null;
+
+    try {
+      resendData =
+        resendTexto
+          ? JSON.parse(resendTexto)
+          : {};
+    } catch {
+      resendData = {
+        raw: resendTexto
+      };
+    }
+
+    if (!resendResponse.ok) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        error: "Resend no pudo enviar la solicitud de cuna",
+        status: resendResponse.status,
+        detalle: resendData
+      });
+    }
+
+    return enviarJSON(res, 200, {
+      ok: true,
+      mensaje: "Solicitud de cuna enviada correctamente",
+      numero_cunas: numeroCunas,
+      fecha_hora_aviso: fechaHoraAviso,
+      email_id:
+        resendData && resendData.id
+          ? resendData.id
+          : null
+    });
+
+  } catch (error) {
+
+    return enviarJSON(res, 500, {
+      ok: false,
+      error: "No se pudo enviar la solicitud de cuna",
       detalle: error.message
     });
   }
