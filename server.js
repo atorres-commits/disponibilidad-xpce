@@ -96,7 +96,31 @@ if (url.pathname === "/solicitud-reserva") {
 
   return await procesarSolicitudReserva(req, res);
 }
+// --------------------------------------------------
+// ENVIAR INCIDENCIA DE HUESPED
+// --------------------------------------------------
 
+if (url.pathname === "/enviar-incidencia") {
+
+  if (req.method === "OPTIONS") {
+    res.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    });
+
+    return res.end();
+  }
+
+  if (req.method !== "POST") {
+    return enviarJSON(res, 405, {
+      ok: false,
+      error: "Metodo no permitido. Utiliza POST."
+    });
+  }
+
+  return await procesarIncidencia(req, res);
+}
         // --------------------------------------------------
     // INFORMACION METEOROLOGICA
     // --------------------------------------------------
@@ -1250,31 +1274,7 @@ function buscarAlojamientoPorNombre(nombre) {
     );
   });
 }
-// --------------------------------------------------
-// ENVIAR INCIDENCIA DE HUESPED
-// --------------------------------------------------
 
-if (url.pathname === "/enviar-incidencia") {
-
-  if (req.method === "OPTIONS") {
-    res.writeHead(204, {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type"
-    });
-
-    return res.end();
-  }
-
-  if (req.method !== "POST") {
-    return enviarJSON(res, 405, {
-      ok: false,
-      error: "Metodo no permitido. Utiliza POST."
-    });
-  }
-
-  return await procesarIncidencia(req, res);
-}
 // --------------------------------------------------
 // INFORMACION METEOROLOGICA
 // --------------------------------------------------
