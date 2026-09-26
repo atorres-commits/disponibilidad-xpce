@@ -172,6 +172,31 @@ if (url.pathname === "/solicitud-cuna") {
 
   return await procesarSolicitudCuna(req, res);
 }
+    // --------------------------------------------------
+// SOLICITUD DE FACTURA
+// --------------------------------------------------
+
+if (url.pathname === "/solicitud-factura") {
+
+  if (req.method === "OPTIONS") {
+    res.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    });
+
+    return res.end();
+  }
+
+  if (req.method !== "POST") {
+    return enviarJSON(res, 405, {
+      ok: false,
+      error: "Metodo no permitido. Utiliza POST."
+    });
+  }
+
+  return await procesarSolicitudFactura(req, res);
+}
         // --------------------------------------------------
     // INFORMACION METEOROLOGICA
     // --------------------------------------------------
@@ -2470,6 +2495,203 @@ async function procesarSolicitudCuna(req, res) {
     return enviarJSON(res, 500, {
       ok: false,
       error: "No se pudo enviar la solicitud de cuna",
+      detalle: error.message
+    });
+  }
+}
+// --------------------------------------------------
+// SOLICITUD DE FACTURA - RESEND
+// --------------------------------------------------
+
+async function procesarSolicitudFactura(req, res) {
+
+  try {
+
+    if (!process.env.RESEND_API_KEY) {
+      return enviarJSON(res, 500, {
+        ok: false,
+        error: "RESEND_API_KEY no configurada"
+      });
+    }
+
+    const body = await leerJSON(req);
+
+    const nombreCompleto = String(
+      body.nombre_completo || ""
+    ).trim();
+
+    const alojamiento = String(
+      body.alojamiento || ""
+    ).trim();
+
+    const fechaEntrada = String(
+      body.fecha_entrada || ""
+    ).trim();
+
+    const fechaSalida = String(
+      body.fecha_salida || ""
+    ).trim();
+
+    const nombreFiscal = String(
+      body.nombre_fiscal || ""
+    ).trim();
+
+    const direccionFiscal = String(
+      body.direccion_fiscal || ""
+    ).trim();
+
+    const nifId = String(
+      body.nif_id || ""
+    ).trim();
+
+    const emailFactura = String(
+      body.email_factura || ""
+    ).trim();
+
+    const faltan = [];
+
+    if (!nombreCompleto) faltan.push("nombre_completo");
+    if (!alojamiento) faltan.push("alojamiento");
+    if (!fechaEntrada) faltan.push("fecha_entrada");
+    if (!fechaSalida) faltan.push("fecha_salida");
+    if (!nombreFiscal) faltan.push("nombre_fiscal");
+    if (!direccionFiscal) faltan.push("direccion_fiscal");
+    if (!nifId) faltan.push("nif_id");
+    if (!emailFactura) faltan.push("email_factura");
+
+    if (faltan.length > 0) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "Faltan datos obligatorios",
+        campos: faltan
+      });
+    }
+
+    if (!emailValido(emailFactura)) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "Direccion de correo electronico para la factura no valida"
+      });
+    }
+
+    const ahora = new Date();
+
+    const fechaHoraAviso =
+      new Intl.DateTimeFormat(
+        "es-ES",
+        {
+          timeZone: "Europe/Madrid",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        }
+      ).format(ahora);
+
+    const asunto =
+      `SOLICITUD DE FACTURA - ${alojamiento} - ${nombreCompleto}`;
+
+    const texto = [
+      "Nueva solicitud de factura",
+      "",
+      `Fecha y hora del aviso: ${fechaHoraAviso}`,
+      "",
+      `Huesped: ${nombreCompleto}`,
+      `Alojamiento: ${alojamiento}`,
+      `Fecha de entrada: ${fechaEntrada}`,
+      `Fecha de salida: ${fechaSalida}`,
+      "",
+      "DATOS FISCALES:",
+      `Nombre o razon social: ${nombreFiscal}`,
+      `Direccion fiscal: ${direccionFiscal}`,
+      `NIF / ID: ${nifId}`,
+      `Email para envio de factura: ${emailFactura}`
+    ].join("\n");
+
+    const html = `
+      <h2>Nueva solicitud de factura</h2>
+
+      <p><strong>Fecha y hora del aviso:</strong> ${escaparHTML(fechaHoraAviso)}</p>
+
+      <hr>
+
+      <p><strong>Huésped:</strong> ${escaparHTML(nombreCompleto)}</p>
+      <p><strong>Alojamiento:</strong> ${escaparHTML(alojamiento)}</p>
+      <p><strong>Fecha de entrada:</strong> ${escaparHTML(fechaEntrada)}</p>
+      <p><strong>Fecha de salida:</strong> ${escaparHTML(fechaSalida)}</p>
+
+      <hr>
+
+      <h3>Datos fiscales</h3>
+      <p><strong>Nombre o razón social:</strong> ${escaparHTML(nombreFiscal)}</p>
+      <p><strong>Dirección fiscal:</strong> ${escaparHTML(direccionFiscal)}</p>
+      <p><strong>NIF / ID:</strong> ${escaparHTML(nifId)}</p>
+      <p><strong>Email para envío de factura:</strong> ${escaparHTML(emailFactura)}</p>
+    `;
+
+    const resendResponse = await fetch(
+      "https://api.resend.com/emails",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          from: "Xperience Malaga Apartments <hola@xpce.es>",
+          to: [
+            "administracion@xpce.es"
+          ],
+          reply_to: emailFactura,
+          subject: asunto,
+          text: texto,
+          html
+        })
+      }
+    );
+
+    const resendTexto =
+      await resendResponse.text();
+
+    let resendData = null;
+
+    try {
+      resendData =
+        resendTexto
+          ? JSON.parse(resendTexto)
+          : {};
+    } catch {
+      resendData = {
+        raw: resendTexto
+      };
+    }
+
+    if (!resendResponse.ok) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        error: "Resend no pudo enviar la solicitud de factura",
+        status: resendResponse.status,
+        detalle: resendData
+      });
+    }
+
+    return enviarJSON(res, 200, {
+      ok: true,
+      mensaje: "Solicitud de factura enviada correctamente",
+      fecha_hora_aviso: fechaHoraAviso,
+      email_id:
+        resendData && resendData.id
+          ? resendData.id
+          : null
+    });
+
+  } catch (error) {
+
+    return enviarJSON(res, 500, {
+      ok: false,
+      error: "No se pudo enviar la solicitud de factura",
       detalle: error.message
     });
   }
