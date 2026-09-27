@@ -173,6 +173,32 @@ if (url.pathname === "/solicitud-cuna") {
   return await procesarSolicitudCuna(req, res);
 }
     // --------------------------------------------------
+// SOLICITUD DE EQUIPAMIENTO PARA BEBE
+// CUNAS Y TRONAS
+// --------------------------------------------------
+
+if (url.pathname === "/solicitud-equipamiento-bebe") {
+
+  if (req.method === "OPTIONS") {
+    res.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    });
+
+    return res.end();
+  }
+
+  if (req.method !== "POST") {
+    return enviarJSON(res, 405, {
+      ok: false,
+      error: "Metodo no permitido. Utiliza POST."
+    });
+  }
+
+  return await procesarSolicitudCuna(req, res);
+}
+    // --------------------------------------------------
 // SOLICITUD DE FACTURA
 // --------------------------------------------------
 
@@ -2358,8 +2384,12 @@ async function procesarSolicitudCuna(req, res) {
     ).trim();
 
     const numeroCunas = Number(
-      body.numero_cunas
-    );
+  body.numero_cunas || 0
+);
+    
+    const numeroTronas = Number(
+  body.numero_tronas || 0
+);
 
     const faltan = [];
 
@@ -2369,9 +2399,15 @@ async function procesarSolicitudCuna(req, res) {
     if (!fechaSalida) faltan.push("fecha_salida");
     if (!telefono) faltan.push("telefono");
 
-    if (!Number.isInteger(numeroCunas) || numeroCunas < 1) {
-      faltan.push("numero_cunas");
-    }
+   if (
+  !Number.isInteger(numeroCunas) ||
+  numeroCunas < 0 ||
+  !Number.isInteger(numeroTronas) ||
+  numeroTronas < 0 ||
+  (numeroCunas === 0 && numeroTronas === 0)
+) {
+  faltan.push("numero_cunas_o_numero_tronas");
+}
 
     if (faltan.length > 0) {
       return enviarJSON(res, 400, {
@@ -2398,10 +2434,9 @@ async function procesarSolicitudCuna(req, res) {
       ).format(ahora);
 
     const asunto =
-      `SOLICITUD DE CUNA - ${alojamiento} - ${nombreCompleto}`;
-
+  `SOLICITUD DE EQUIPAMIENTO BEBE - ${alojamiento} - ${nombreCompleto}`;
     const texto = [
-      "Nueva solicitud de cuna",
+      "Nueva solicitud de equipamiento para bebe",
       "",
       `Fecha y hora del aviso: ${fechaHoraAviso}`,
       "",
@@ -2411,12 +2446,13 @@ async function procesarSolicitudCuna(req, res) {
       `Fecha de salida: ${fechaSalida}`,
       `Telefono de contacto: ${telefono}`,
       `Numero de cunas: ${numeroCunas}`,
+      `Numero de tronas: ${numeroTronas}`,
       "",
-      "La cuna es gratuita y debe quedar preparada previamente para la estancia."
+      "Las cunas y tronas son gratuitas y deben quedar preparadas previamente para la estancia."
     ].join("\n");
 
     const html = `
-      <h2>Nueva solicitud de cuna</h2>
+      <h2>Nueva solicitud de equipamiento para bebe</h2>
 
       <p><strong>Fecha y hora del aviso:</strong> ${escaparHTML(fechaHoraAviso)}</p>
 
@@ -2428,10 +2464,10 @@ async function procesarSolicitudCuna(req, res) {
       <p><strong>Fecha de salida:</strong> ${escaparHTML(fechaSalida)}</p>
       <p><strong>Teléfono de contacto:</strong> ${escaparHTML(telefono)}</p>
       <p><strong>Número de cunas:</strong> ${numeroCunas}</p>
+      <p><strong>Número de tronas:</strong> ${numeroTronas}</p>
 
       <hr>
-
-      <p>La cuna es gratuita y debe quedar preparada previamente para la estancia.</p>
+      <p>Las cunas y tronas son gratuitas y deben quedar preparadas previamente para la estancia.</p>
     `;
 
     const resendResponse = await fetch(
@@ -2473,17 +2509,18 @@ async function procesarSolicitudCuna(req, res) {
     if (!resendResponse.ok) {
       return enviarJSON(res, 502, {
         ok: false,
-        error: "Resend no pudo enviar la solicitud de cuna",
+        error: "Resend no pudo enviar la solicitud de equipamiento para bebe",
         status: resendResponse.status,
         detalle: resendData
       });
     }
 
     return enviarJSON(res, 200, {
-      ok: true,
-      mensaje: "Solicitud de cuna enviada correctamente",
-      numero_cunas: numeroCunas,
-      fecha_hora_aviso: fechaHoraAviso,
+  ok: true,
+  mensaje: "Solicitud de equipamiento para bebe enviada correctamente",
+  numero_cunas: numeroCunas,
+  numero_tronas: numeroTronas,
+  fecha_hora_aviso: fechaHoraAviso,
       email_id:
         resendData && resendData.id
           ? resendData.id
@@ -2494,7 +2531,7 @@ async function procesarSolicitudCuna(req, res) {
 
     return enviarJSON(res, 500, {
       ok: false,
-      error: "No se pudo enviar la solicitud de cuna",
+      error: "No se pudo enviar la solicitud de equipamiento para bebe",
       detalle: error.message
     });
   }
