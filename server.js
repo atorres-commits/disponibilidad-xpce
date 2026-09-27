@@ -199,6 +199,31 @@ if (url.pathname === "/solicitud-equipamiento-bebe") {
   return await procesarSolicitudCuna(req, res);
 }
     // --------------------------------------------------
+// AVISO DE LLEGADA TARDIA
+// --------------------------------------------------
+
+if (url.pathname === "/notificar-llegada-tardia") {
+
+  if (req.method === "OPTIONS") {
+    res.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    });
+
+    return res.end();
+  }
+
+  if (req.method !== "POST") {
+    return enviarJSON(res, 405, {
+      ok: false,
+      error: "Metodo no permitido. Utiliza POST."
+    });
+  }
+
+  return await procesarLlegadaTardia(req, res);
+}
+    // --------------------------------------------------
 // SOLICITUD DE FACTURA
 // --------------------------------------------------
 
@@ -2532,6 +2557,183 @@ async function procesarSolicitudCuna(req, res) {
     return enviarJSON(res, 500, {
       ok: false,
       error: "No se pudo enviar la solicitud de equipamiento para bebe",
+      detalle: error.message
+    });
+  }
+}
+// --------------------------------------------------
+// AVISO DE LLEGADA TARDIA - RESEND
+// --------------------------------------------------
+
+async function procesarLlegadaTardia(req, res) {
+
+  try {
+
+    if (!process.env.RESEND_API_KEY) {
+      return enviarJSON(res, 500, {
+        ok: false,
+        error: "RESEND_API_KEY no configurada"
+      });
+    }
+
+    const body = await leerJSON(req);
+
+    const nombreCompleto = String(
+      body.nombre_completo || ""
+    ).trim();
+
+    const alojamiento = String(
+      body.alojamiento || ""
+    ).trim();
+
+    const fechaEntrada = String(
+      body.fecha_entrada || ""
+    ).trim();
+
+    const fechaSalida = String(
+      body.fecha_salida || ""
+    ).trim();
+
+    const telefono = String(
+      body.telefono || ""
+    ).trim();
+
+    const horaLlegada = String(
+      body.hora_llegada || ""
+    ).trim();
+
+    const faltan = [];
+
+    if (!nombreCompleto) faltan.push("nombre_completo");
+    if (!alojamiento) faltan.push("alojamiento");
+    if (!fechaEntrada) faltan.push("fecha_entrada");
+    if (!fechaSalida) faltan.push("fecha_salida");
+    if (!telefono) faltan.push("telefono");
+    if (!horaLlegada) faltan.push("hora_llegada");
+
+    if (faltan.length > 0) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "Faltan datos obligatorios",
+        campos: faltan
+      });
+    }
+
+    const ahora = new Date();
+
+    const fechaHoraAviso =
+      new Intl.DateTimeFormat(
+        "es-ES",
+        {
+          timeZone: "Europe/Madrid",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        }
+      ).format(ahora);
+
+    const asunto =
+      `LLEGADA TARDIA - ${alojamiento} - ${nombreCompleto}`;
+
+    const texto = [
+      "Aviso de llegada tardia de un huesped",
+      "",
+      `Fecha y hora del aviso: ${fechaHoraAviso}`,
+      "",
+      `Huesped: ${nombreCompleto}`,
+      `Alojamiento: ${alojamiento}`,
+      `Fecha de entrada: ${fechaEntrada}`,
+      `Fecha de salida: ${fechaSalida}`,
+      `Telefono de contacto: ${telefono}`,
+      `Hora aproximada de llegada: ${horaLlegada}`,
+      "",
+      "El huesped ha informado de que llegara despues de las 22:00 h.",
+      "Este aviso no implica asistencia presencial despues de las 22:00 h."
+    ].join("\n");
+
+    const html = `
+      <h2>Aviso de llegada tardía</h2>
+
+      <p><strong>Fecha y hora del aviso:</strong> ${escaparHTML(fechaHoraAviso)}</p>
+
+      <hr>
+
+      <p><strong>Huésped:</strong> ${escaparHTML(nombreCompleto)}</p>
+      <p><strong>Alojamiento:</strong> ${escaparHTML(alojamiento)}</p>
+      <p><strong>Fecha de entrada:</strong> ${escaparHTML(fechaEntrada)}</p>
+      <p><strong>Fecha de salida:</strong> ${escaparHTML(fechaSalida)}</p>
+      <p><strong>Teléfono de contacto:</strong> ${escaparHTML(telefono)}</p>
+      <p><strong>Hora aproximada de llegada:</strong> ${escaparHTML(horaLlegada)}</p>
+
+      <hr>
+
+      <p>El huésped ha informado de que llegará después de las 22:00 h.</p>
+      <p><strong>Este aviso no implica asistencia presencial después de las 22:00 h.</strong></p>
+    `;
+
+    const resendResponse = await fetch(
+      "https://api.resend.com/emails",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          from: "Xperience Malaga Apartments <hola@xpce.es>",
+          to: [
+            "hola@xpce.es"
+          ],
+          subject: asunto,
+          text: texto,
+          html
+        })
+      }
+    );
+
+    const resendTexto =
+      await resendResponse.text();
+
+    let resendData = null;
+
+    try {
+      resendData =
+        resendTexto
+          ? JSON.parse(resendTexto)
+          : {};
+    } catch {
+      resendData = {
+        raw: resendTexto
+      };
+    }
+
+    if (!resendResponse.ok) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        error: "Resend no pudo enviar el aviso de llegada tardia",
+        status: resendResponse.status,
+        detalle: resendData
+      });
+    }
+
+    return enviarJSON(res, 200, {
+      ok: true,
+      mensaje: "Aviso de llegada tardia enviado correctamente",
+      fecha_hora_aviso: fechaHoraAviso,
+      email_id:
+        resendData && resendData.id
+          ? resendData.id
+          : null
+    });
+
+  } catch (error) {
+
+    return enviarJSON(res, 500, {
+      ok: false,
+      error: "No se pudo enviar el aviso de llegada tardia",
       detalle: error.message
     });
   }
