@@ -758,11 +758,14 @@ if (url.pathname === "/informacion-alojamiento") {
       const resultados = await Promise.all(
         grupo.map(async (alojamiento) => {
 
-          const endpoint =
-            `https://api.lodgify.com/v2/availability/${alojamiento.id}` +
-            `?start=${encodeURIComponent(fechaEntrada)}` +
-            `&end=${encodeURIComponent(fechaSalida)}`;
+          const fechaFinDisponibilidad = new Date(`${fechaSalida}T00:00:00`);
+fechaFinDisponibilidad.setDate(fechaFinDisponibilidad.getDate() - 1);
+const fechaFinDisponibilidadStr = fechaFinDisponibilidad.toISOString().slice(0, 10);
 
+const endpoint =
+  `https://api.lodgify.com/v2/availability/${alojamiento.id}` +
+  `?start=${encodeURIComponent(fechaEntrada)}` +
+  `&end=${encodeURIComponent(fechaFinDisponibilidadStr)}`;
           try {
 
             const response = await fetch(endpoint, {
@@ -1161,11 +1164,14 @@ async function procesarAlojamientoConcreto(url, res) {
 
     // DISPONIBILIDAD REAL
 
-    const availabilityUrl =
-      `https://api.lodgify.com/v2/availability/${alojamiento.id}` +
-      `?start=${encodeURIComponent(fechaEntrada)}` +
-      `&end=${encodeURIComponent(fechaSalida)}`;
+    const fechaFinDisponibilidad = new Date(`${fechaSalida}T00:00:00`);
+fechaFinDisponibilidad.setDate(fechaFinDisponibilidad.getDate() - 1);
+const fechaFinDisponibilidadStr = fechaFinDisponibilidad.toISOString().slice(0, 10);
 
+const availabilityUrl =
+  `https://api.lodgify.com/v2/availability/${alojamiento.id}` +
+  `?start=${encodeURIComponent(fechaEntrada)}` +
+  `&end=${encodeURIComponent(fechaFinDisponibilidadStr)}`;
 
     const availabilityResponse = await fetch(
       availabilityUrl,
