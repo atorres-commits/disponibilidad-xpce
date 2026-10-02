@@ -1096,6 +1096,9 @@ async function procesarAlojamientoConcreto(url, res) {
     const numeroHuespedes = Number(
       url.searchParams.get("numero_huespedes")
     );
+    const codigoPromocional = (
+  url.searchParams.get("codigo_promocional") || ""
+).trim();
 
 
     if (
@@ -1284,6 +1287,12 @@ const availabilityUrl =
       "roomTypes[0].people",
       String(numeroHuespedes)
     );
+    if (codigoPromocional) {
+  quoteUrl.searchParams.set(
+    "promotionCode",
+    codigoPromocional
+  );
+}
 
 
     const quoteResponse = await fetch(
@@ -1350,7 +1359,8 @@ const availabilityUrl =
         presupuesto.limpieza,
 
       moneda:
-        presupuesto.moneda
+        presupuesto.moneda, codigo_promocional:
+  codigoPromocional || null
     });
 
 
