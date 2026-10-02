@@ -96,6 +96,31 @@ if (url.pathname === "/solicitud-reserva") {
 
   return await procesarSolicitudReserva(req, res);
 }
+    // --------------------------------------------------
+// CREAR RESERVA WEB XPERIENCE 2.0
+// --------------------------------------------------
+
+if (url.pathname === "/crear-reserva-web") {
+
+  if (req.method === "OPTIONS") {
+    res.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    });
+
+    return res.end();
+  }
+
+  if (req.method !== "POST") {
+    return enviarJSON(res, 405, {
+      ok: false,
+      error: "Metodo no permitido. Utiliza POST."
+    });
+  }
+
+  return await procesarCrearReservaWeb(req, res);
+}
 // --------------------------------------------------
 // ENVIAR INCIDENCIA DE HUESPED
 // --------------------------------------------------
@@ -1785,7 +1810,431 @@ function extraerPresupuesto(data) {
   };
 }
 
+// --------------------------------------------------
+// CREAR RESERVA WEB XPERIENCE 2.0
+// --------------------------------------------------
 
+async function procesarCrearReservaWeb(req, res) {
+
+  try {
+
+    if (!process.env.LODGIFY_API_KEY) {
+      return enviarJSON(res, 500, {
+        ok: false,
+        error: "LODGIFY_API_KEY no configurada"
+      });
+    }
+
+    const body = await leerJSON(req);
+
+    const alojamientoSolicitado = String(
+      body.alojamiento || ""
+    ).trim();
+
+    const fechaEntrada = String(
+      body.fecha_entrada || ""
+    ).trim();
+
+    const fechaSalida = String(
+      body.fecha_salida || ""
+    ).trim();
+
+    const numeroHuespedes = Number(
+      body.numero_huespedes
+    );
+
+    const nombre = String(
+      body.nombre || ""
+    ).trim();
+
+    const apellidos = String(
+      body.apellidos || ""
+    ).trim();
+
+    const email = String(
+      body.email || ""
+    ).trim();
+
+    const telefono = String(
+      body.telefono || ""
+    ).trim();
+
+    const codigoPromocional = String(
+      body.codigo_promocional || ""
+    ).trim();
+
+    const faltan = [];
+
+    if (!alojamientoSolicitado) faltan.push("alojamiento");
+    if (!fechaEntrada) faltan.push("fecha_entrada");
+    if (!fechaSalida) faltan.push("fecha_salida");
+
+    if (!Number.isInteger(numeroHuespedes) || numeroHuespedes < 1) {
+      faltan.push("numero_huespedes");
+    }
+
+    if (!nombre) faltan.push("nombre");
+    if (!apellidos) faltan.push("apellidos");
+    if (!email || !emailValido(email)) faltan.push("email");
+    if (!telefono) faltan.push("telefono");
+
+    if (faltan.length > 0) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "Faltan datos obligatorios o no son validos",
+        campos: faltan
+      });
+    }
+
+    if (fechaSalida <= fechaEntrada) {
+      return enviarJSON(res, 400, {
+        ok: false,
+        error: "La fecha de salida debe ser posterior a la fecha de entrada"
+      });
+    }
+
+    if (codigoPromocional) {
+      return enviarJSON(res, 409, {
+        ok: false,
+        error: "Codigo promocional pendiente de integracion segura",
+        codigo_promocional: codigoPromocional,
+        detalle:
+          "La reserva no se ha creado para evitar cobrar un importe sin aplicar correctamente el descuento."
+      });
+    }
+
+    const coincidencias =
+      buscarAlojamientoPorNombre(alojamientoSolicitado);
+
+    if (coincidencias.length === 0) {
+      return enviarJSON(res, 404, {
+        ok: false,
+        error: "Alojamiento no encontrado"
+      });
+    }
+
+    if (coincidencias.length > 1) {
+      return enviarJSON(res, 409, {
+        ok: false,
+        error: "Alojamiento ambiguo",
+        opciones: coincidencias.map(item => item.nombre)
+      });
+    }
+
+    const alojamiento = coincidencias[0];
+
+    if (alojamiento.capacidad < numeroHuespedes) {
+      return enviarJSON(res, 409, {
+        ok: false,
+        disponible: false,
+        motivo: "capacidad_insuficiente",
+        capacidad: alojamiento.capacidad
+      });
+    }
+
+    const headers = {
+      "X-ApiKey": process.env.LODGIFY_API_KEY,
+      "Accept": "application/json"
+    };
+
+    const fechaFinDisponibilidad =
+      new Date(`${fechaSalida}T00:00:00`);
+
+    fechaFinDisponibilidad.setDate(
+      fechaFinDisponibilidad.getDate() - 1
+    );
+
+    const fechaFinDisponibilidadStr =
+      fechaFinDisponibilidad.toISOString().slice(0, 10);
+
+    const availabilityUrl =
+      `https://api.lodgify.com/v2/availability/${alojamiento.id}` +
+      `?start=${encodeURIComponent(fechaEntrada)}` +
+      `&end=${encodeURIComponent(fechaFinDisponibilidadStr)}`;
+
+    const availabilityResponse = await fetch(
+      availabilityUrl,
+      {
+        method: "GET",
+        headers
+      }
+    );
+
+    if (!availabilityResponse.ok) {
+      const detalle = await availabilityResponse.text();
+
+      return enviarJSON(res, 502, {
+        ok: false,
+        error: "No se pudo volver a comprobar la disponibilidad",
+        status: availabilityResponse.status,
+        detalle
+      });
+    }
+
+    const availabilityData =
+      await availabilityResponse.json();
+
+    const resultadoDisponibilidad =
+      obtenerDisponibilidad(availabilityData);
+
+    if (!resultadoDisponibilidad.disponible) {
+      return enviarJSON(res, 409, {
+        ok: false,
+        disponible: false,
+        motivo: "sin_disponibilidad",
+        mensaje:
+          "El alojamiento ya no esta disponible para las fechas seleccionadas."
+      });
+    }
+
+    const roomTypeId =
+      resultadoDisponibilidad.room_type_id;
+
+    if (!roomTypeId) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        error: "No se pudo obtener el room_type_id"
+      });
+    }
+
+    const bookingResponse = await fetch(
+      "https://api.lodgify.com/v1/reservation/booking",
+      {
+        method: "POST",
+        headers: {
+          ...headers,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          source_text: "XPERIENCE 2.0 WEB",
+          arrival: fechaEntrada,
+          departure: fechaSalida,
+          property_id: alojamiento.id,
+          status: "Tentative",
+          rooms: [
+            {
+              room_type_id: roomTypeId,
+              guest_breakdown: {
+                adults: numeroHuespedes,
+                children: 0,
+                infants: 0,
+                pets: 0
+              }
+            }
+          ],
+          guest: {
+            guest_name: {
+              first_name: nombre,
+              last_name: apellidos
+            },
+            email,
+            phone: telefono,
+            locale: "es-ES"
+          },
+          payment_website_id: 475403,
+          bookability: "InstantBooking",
+          origin: "XPERIENCE 2.0 WEB"
+        })
+      }
+    );
+
+    const bookingTexto = await bookingResponse.text();
+
+    if (!bookingResponse.ok) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        error: "Lodgify no pudo crear la reserva",
+        status: bookingResponse.status,
+        detalle: bookingTexto
+      });
+    }
+
+    const bookingId = Number(
+      bookingTexto.replace(/[^0-9]/g, "")
+    );
+
+    if (!bookingId) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        error: "Lodgify creo la reserva pero no devolvio un booking_id valido",
+        detalle: bookingTexto
+      });
+    }
+
+    const quoteResponse = await fetch(
+      `https://api.lodgify.com/v1/reservation/booking/${bookingId}/quote`,
+      {
+        method: "POST",
+        headers: {
+          ...headers,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          is_policy_active: true,
+          room_types: [
+            {
+              room_type_id: roomTypeId
+            }
+          ]
+        })
+      }
+    );
+
+    const quoteTexto = await quoteResponse.text();
+
+    if (!quoteResponse.ok) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        booking_id: bookingId,
+        error: "Reserva creada, pero Lodgify no pudo crear el presupuesto",
+        status: quoteResponse.status,
+        detalle: quoteTexto
+      });
+    }
+
+    const quoteId = Number(
+      quoteTexto.replace(/[^0-9]/g, "")
+    ) || null;
+
+    const quoteDetailResponse = await fetch(
+      `https://api.lodgify.com/v1/reservation/booking/${bookingId}/quote`,
+      {
+        method: "GET",
+        headers
+      }
+    );
+
+    if (!quoteDetailResponse.ok) {
+      const detalle = await quoteDetailResponse.text();
+
+      return enviarJSON(res, 502, {
+        ok: false,
+        booking_id: bookingId,
+        quote_id: quoteId,
+        error: "Reserva y presupuesto creados, pero no se pudo leer el total",
+        status: quoteDetailResponse.status,
+        detalle
+      });
+    }
+
+    const quoteData = await quoteDetailResponse.json();
+
+    const total = Number(
+      quoteData.amount_gross
+    );
+
+    if (!Number.isFinite(total) || total <= 0) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        booking_id: bookingId,
+        quote_id: quoteId,
+        error: "El presupuesto de Lodgify no contiene un importe valido"
+      });
+    }
+
+    const paymentCreateResponse = await fetch(
+      `https://api.lodgify.com/v2/reservations/bookings/${bookingId}/quote/paymentLink`,
+      {
+        method: "POST",
+        headers: {
+          ...headers,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          amount: total
+        })
+      }
+    );
+
+    const paymentCreateTexto =
+      await paymentCreateResponse.text();
+
+    let paymentCreateData = {};
+
+    try {
+      paymentCreateData = paymentCreateTexto
+        ? JSON.parse(paymentCreateTexto)
+        : {};
+    } catch {
+      paymentCreateData = {};
+    }
+
+    if (
+      !paymentCreateResponse.ok ||
+      paymentCreateData.succeeded !== true
+    ) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        booking_id: bookingId,
+        quote_id: quoteId,
+        error: "Reserva creada, pero no se pudo generar el enlace de pago",
+        status: paymentCreateResponse.status,
+        detalle: paymentCreateTexto
+      });
+    }
+
+    const paymentLinkResponse = await fetch(
+      `https://api.lodgify.com/v2/reservations/bookings/${bookingId}/quote/paymentLink`,
+      {
+        method: "GET",
+        headers
+      }
+    );
+
+    if (!paymentLinkResponse.ok) {
+      const detalle = await paymentLinkResponse.text();
+
+      return enviarJSON(res, 502, {
+        ok: false,
+        booking_id: bookingId,
+        quote_id: quoteId,
+        error: "Reserva creada, pero no se pudo recuperar el enlace de pago",
+        status: paymentLinkResponse.status,
+        detalle
+      });
+    }
+
+    const paymentLinkData =
+      await paymentLinkResponse.json();
+
+    const paymentUrl = String(
+      paymentLinkData.url || ""
+    ).trim();
+
+    if (!paymentUrl.startsWith("https://checkout.lodgify.com/")) {
+      return enviarJSON(res, 502, {
+        ok: false,
+        booking_id: bookingId,
+        quote_id: quoteId,
+        error: "Lodgify no devolvio una URL de pago valida"
+      });
+    }
+
+    return enviarJSON(res, 200, {
+      ok: true,
+      booking_id: bookingId,
+      quote_id: quoteId,
+      alojamiento: alojamiento.nombre,
+      fecha_entrada: fechaEntrada,
+      fecha_salida: fechaSalida,
+      numero_huespedes: numeroHuespedes,
+      total,
+      moneda:
+        quoteData.currency && quoteData.currency.code
+          ? quoteData.currency.code
+          : "EUR",
+      payment_url: paymentUrl
+    });
+
+  } catch (error) {
+
+    return enviarJSON(res, 500, {
+      ok: false,
+      error: "No se pudo crear la reserva web",
+      detalle: error.message
+    });
+  }
+}
 // --------------------------------------------------
 // SOLICITUD DE CONTACTO PARA RESERVA - RESEND
 // --------------------------------------------------
